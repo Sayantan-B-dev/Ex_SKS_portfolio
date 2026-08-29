@@ -1,0 +1,7 @@
+# Cline rules for this repo
+
+Cline does not read AGENTS.md natively — read **AGENTS.md** in the repo root manually before starting any task here. It contains the full project summary, setup commands, constraints, conventions, verification workflow, and definition of done. This file only exists so Cline picks up instructions automatically; it intentionally does not duplicate them.
+
+Quick reminders specific to how Cline works in this repo:
+- Prefer Plan mode for anything touching layout/CSS in `app/globals.css` or the `clip-path` panels in `components/AchievementsSection.tsx` — these are visually finicky and worth a plan before editing.
+- When Cline proposes a file write, check it against the "Non-negotiable constraints" list in `AGENTS.md` before approving, especially: don't reorder sections, don't change image container aspect ratios, don't hardcode new colors outside `DESIGN.md`.
