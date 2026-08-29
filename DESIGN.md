@@ -20,20 +20,20 @@ Fonts are loaded via `next/font/google` in `app/layout.tsx` and exposed as CSS v
 
 | Role | CSS var | Font | Weight | Usage |
 |---|---|---|---|---|
-| Display | `--font-display` (→ `--font-anton`) | Anton | 400 (visually heavy by design) | Hero headline, section headings, achievement panel text |
-| UI / Nav / Buttons | `--font-ui` (→ `--font-oswald`) | Oswald | 500–700 | Nav links, all buttons, stat labels, logo wordmark |
-| Body | `--font-body` (→ `--font-inter`) | Inter | 400–600 | Paragraphs, bullet list copy, footer contact links |
+| Display | `--font-display` (→ `--font-shoulders`) | Big Shoulders | 700–800 | Hero headline, logo wordmark, section headings, achievement panel text, stat numbers, award badge |
+| UI / Nav / Buttons | `--font-ui` (→ `--font-oswald`) | Oswald | 500–700 | Nav links, all buttons, stat labels, logo sublines |
+| Body | `--font-body` (→ `--font-figtree`) | Figtree | 400–600 | Paragraphs, bullet list copy, footer contact links |
 
-Type scale (desktop, 1024px):
-- Hero big line: 44px (Anton)
-- Hero small line: 30px (Anton)
-- Section heading: 29px (Anton)
-- Achievement panel text: 15px (Anton)
-- Nav links: 12.5px (Oswald, 1.3px letter-spacing)
-- Body paragraph: 13.5–14px (Inter)
-- Stat number: 19px (Oswald bold) / Stat label: 11px (Oswald)
+Type scale (desktop, 1024px — fluid via `clamp` where noted):
+- Hero big line: clamp 36–52px (Big Shoulders 800)
+- Hero small line: clamp 26–34px (Big Shoulders 700)
+- Section heading: clamp 26–34px (Big Shoulders 800)
+- Achievement panel text: 16px (Big Shoulders 800)
+- Nav links: 12.5px (Oswald, ~0.12em letter-spacing)
+- Body paragraph: 14–14.5px (Figtree)
+- Stat number: 22px (Big Shoulders Display) / Stat label: 11px (Oswald)
 
-Rule: **all-caps + condensed = Anton or Oswald. Sentence-case paragraphs = Inter.** Don't mix.
+Rule: **all-caps + condensed = Big Shoulders or Oswald. Sentence-case paragraphs = Figtree.** Don't mix.
 
 ## Spacing
 - Page gutter (desktop): 40px

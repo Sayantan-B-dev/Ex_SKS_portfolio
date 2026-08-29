@@ -6,7 +6,7 @@ Canonical instructions for any AI coding agent working in this repo — Claude C
 
 - Framework: Next.js 16 (App Router, Turbopack), React 19, TypeScript
 - Styling: plain CSS in `app/globals.css` using CSS custom properties — no Tailwind, no CSS-in-JS, no CSS modules
-- Fonts: loaded via `next/font/google` in `app/layout.tsx` (Anton, Oswald, Inter) — not `<link>` tags
+- Fonts: loaded via `next/font/google` in `app/layout.tsx` (Big Shoulders, Oswald, Figtree) — not `<link>` tags
 - Images: `next/image`, remote source is `picsum.photos` (whitelisted in `next.config.ts`) as placeholder art
 - Reference: `DESIGN.md` is the values source of truth (colors, type scale, spacing); the screenshot is the layout source of truth
 
@@ -31,7 +31,7 @@ Node 20+ required (see `engines` in `package.json`).
 
 ## Conventions
 - CSS custom properties for all colors (`--bg`, `--yellow`, `--pink`, etc.) — never inline hex codes.
-- Font roles are fixed and don't mix: `Anton` (`--font-display`) for big display headlines only, `Oswald` (`--font-ui`) for nav/buttons/labels/all-caps UI text, `Inter` (`--font-body`) for paragraphs.
+- Font roles are fixed and don't mix: `Big Shoulders` (`--font-display`) for big display headlines only, `Oswald` (`--font-ui`) for nav/buttons/labels/all-caps UI text, `Figtree` (`--font-body`) for paragraphs.
 - Breakpoints: `900px`, `768px`, `480px`. Any layout change should be checked at all three, not just desktop.
 - TypeScript strict mode is on — don't add `any` or disable strict checks to work around a type error; fix the type.
 
