@@ -46,10 +46,14 @@ const STATS = [
 export default function StatsBar() {
   return (
     <section className="stats">
-      <div className="stats-inner wrap">
-        {STATS.map((s) => (
-          <div className="stat" key={s.label}>
-            {s.icon}
+      <div className="stats-inner wrap reveal-stagger">
+        {STATS.map((s, idx) => (
+          <div
+            className="stat reveal-item"
+            key={s.label}
+            style={{ "--i": idx } as React.CSSProperties}
+          >
+            <span aria-hidden="true">{s.icon}</span>
             <div>
               <div className="stat-num">{s.num}</div>
               <div className="stat-label">{s.label}</div>

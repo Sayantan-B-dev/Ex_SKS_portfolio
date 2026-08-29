@@ -1,26 +1,35 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import VideoModal from "@/components/VideoModal";
 
 export default function Hero() {
+  const [playHeroVideo, setPlayHeroVideo] = useState(false);
+
   return (
     <section className="hero" id="home">
-      <div className="hero-img-wrap">
+        <div className="hero-img-wrap" data-parallax="hero-bg">
         <Image
-          src="https://picsum.photos/seed/sksstage9/900/900"
-          alt="Samrat performing live"
+          src="/images/singing_on_stage_background_fire.webp"
+          alt="Samrat performing live on stage with fire"
           fill
           priority
+          quality={100}
           sizes="100vw"
         />
       </div>
       <div className="hero-duo" />
 
-      <div className="hero-content wrap">
-        <div className="hero-line1">LIVE. LOVE. MUSIC.</div>
-        <div className="hero-line2">
+      {/* Left-anchored content — no max-width centering */}
+      <div className="hero-content reveal-up">
+        <p className="hero-line1">LIVE. LOVE. MUSIC.</p>
+        <h1 className="hero-line2">
           OVER 1300 SHOWS
           <br />
           40 COUNTRIES
-        </div>
+        </h1>
         <p className="hero-sub">
           <b>Playback Singer • Music Director • Live Wire Performer</b>
           <br />
@@ -28,30 +37,37 @@ export default function Hero() {
           music to life.
         </p>
         <div className="hero-btns">
-          <a
-            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => setPlayHeroVideo(true)}
             className="btn-yellow"
+            aria-label="Watch video"
           >
             WATCH VIDEO
-            <span className="play-dot">
-              <svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor">
+            <span className="play-dot" aria-hidden="true">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
                 <polygon points="1,0 10,5 1,10" fill="#f5c518" />
               </svg>
             </span>
-          </a>
-          <a href="#connect" className="btn-outline">
+          </button>
+          <Link href="/#connect" className="btn-outline">
             BOOK SAMRAT &amp; THE BAND
-          </a>
+          </Link>
         </div>
       </div>
 
-      <div className="badge">
+      <div className="badge" data-parallax="hero-badge">
         WINNER OF
         <br />
         MIRCHI MUSIC
       </div>
+
+      <VideoModal
+        isOpen={playHeroVideo}
+        onClose={() => setPlayHeroVideo(false)}
+        title="Aao Huzoor — Samrat Sarkar Live"
+        videoId="CdQI-Q0ROVg"
+      />
     </section>
   );
 }

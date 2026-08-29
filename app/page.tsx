@@ -1,3 +1,4 @@
+import ScrollEffects from "@/components/ScrollEffects";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import StatsBar from "@/components/StatsBar";
@@ -10,13 +11,19 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <ScrollEffects />
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <Header />
-      <Hero />
-      <StatsBar />
-      <SongsSection />
-      <AchievementsSection />
-      <Endorsements />
-      <ConnectSection />
+      <main id="main">
+        <Hero />
+        <StatsBar />
+        <SongsSection />
+        <AchievementsSection />
+        <Endorsements />
+        <ConnectSection />
+      </main>
       <Footer />
     </>
   );
