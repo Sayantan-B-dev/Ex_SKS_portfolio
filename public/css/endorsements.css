@@ -1,0 +1,56 @@
+/* ===== ENDORSEMENTS ===== */
+.endorse {
+  padding: 56px 40px;
+  text-align: center;
+}
+.endorse h2 {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 800;
+  color: var(--pink);
+  letter-spacing: 0.08em;
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+.logo-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.logo-card {
+  width: 220px;
+  height: 84px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.25s var(--ease-out), background-color 0.25s var(--ease-out),
+    transform 0.25s var(--ease-out);
+  position: relative;
+}
+.logo-card:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-3px);
+}
+.logo-img-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.endorse-logo-img {
+  object-fit: contain !important;
+  filter: brightness(0.9) contrast(1.1);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.logo-card:hover .endorse-logo-img {
+  filter: brightness(1.2) contrast(1.15);
+  transform: scale(1.06);
+}

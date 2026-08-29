@@ -1,0 +1,233 @@
+/* ===== SONGS & MARQUEE ===== */
+
+.songs {
+  padding: 60px 0 50px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.songs-header {
+  padding: 0 40px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.sec-heading {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.2vw, 36px);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.05;
+  color: var(--white);
+  text-wrap: balance;
+}
+
+.sec-underline {
+  width: 56px;
+  height: 3px;
+  background: var(--pink);
+  margin: 14px auto 34px;
+  border-radius: 2px;
+}
+
+/* ===== MARQUEE VIEWPORT ===== */
+.song-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0 16px;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+}
+
+/* ===== MOVING TRACK ===== */
+.song-marquee-track {
+  display: flex;
+  width: max-content;
+  padding: 30px 0;
+  gap: 0;
+  animation: marquee-infinite 30s linear infinite;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.song-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ===== MARQUEE GROUP (one full copy of all cards) ===== */
+.song-marquee-group {
+  display: flex;
+  gap: 16px;
+  flex-shrink: 0;
+  padding-right: 16px;
+}
+
+@keyframes marquee-infinite {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===== CARD ===== */
+.song-card {
+  position: relative;
+  width: 280px;
+  flex: 0 0 280px;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1424;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  display: block;
+  padding: 0;
+  text-align: left;
+  transition:
+    transform 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+}
+
+.song-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  border-color: var(--pink);
+  box-shadow: 0 16px 36px rgba(255, 45, 120, 0.35);
+}
+
+.song-img-wrapper {
+  position: absolute;
+  inset: 0;
+}
+
+.song-card img {
+  transition: transform 0.4s var(--ease-out);
+}
+
+.song-card:hover img {
+  transform: scale(1.08);
+}
+
+/* ===== PLAY OVERLAY ===== */
+.song-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+  z-index: 1;
+}
+
+.song-card:hover .song-play-overlay {
+  opacity: 1;
+}
+
+.song-play-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(245, 197, 24, 0.6);
+  transform: scale(0.85);
+  transition: transform 0.25s var(--ease-out);
+}
+
+.song-card:hover .song-play-icon {
+  transform: scale(1);
+}
+
+.song-play-text {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--white);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ===== SONG TITLE ===== */
+.song-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 14px 12px 12px;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.95) 25%,
+    transparent
+  );
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--yellow);
+  line-height: 1.25;
+  text-align: left;
+}
+
+/* ===== FOOTER BUTTON ===== */
+.songs-footer {
+  margin-top: 32px;
+}
+
+.btn-outline-pink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--white);
+  border: 1.5px solid var(--pink);
+  padding: 14px 28px;
+  border-radius: 4px;
+  touch-action: manipulation;
+  transition:
+    background-color 0.18s var(--ease-out),
+    color 0.18s var(--ease-out),
+    transform 0.18s var(--ease-out);
+}
+
+.btn-outline-pink:hover {
+  background: var(--pink);
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.btn-large {
+  padding: 15px 32px;
+  font-size: 13.5px;
+}

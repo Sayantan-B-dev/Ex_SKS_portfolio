@@ -1,0 +1,17 @@
+:root {
+  --bg: #0a0712;
+  --bg-alt: #0d0a17;
+  --bg-panel: #110c1c;
+  --yellow: #f5c518;
+  --pink: #ff2d78;
+  --white: #f3f1f6;
+  --muted: #a79eb2;
+  --border: rgba(255, 255, 255, 0.12);
+  --max: 1400px;
+
+  --font-display: "Limelight", sans-serif;
+  --font-ui: "Oswald", sans-serif;
+  --font-body: "Figtree", sans-serif;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

@@ -1,0 +1,167 @@
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .achievements {
+    grid-template-columns: 1fr 1fr;
+  }
+  .p4 {
+    grid-column: 1 / -1;
+    min-height: 180px;
+  }
+  .ach-panel.p1,
+  .ach-panel.p2 {
+    clip-path: none;
+    margin-right: 0;
+  }
+  .ach-panel.p3 {
+    clip-path: none;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .milestones-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .shows-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-masonry-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gallery-card.col-span-2 {
+    grid-column: span 1;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+  .hero {
+    min-height: auto;
+  }
+  .hero-content {
+    padding: 50px 24px 200px;
+    max-width: 100%;
+  }
+  .hero-line2 {
+    font-size: 34px;
+  }
+  .badge {
+    right: 20px;
+    bottom: 20px;
+    font-size: 12px;
+    padding: 9px 14px;
+  }
+  .connect {
+    grid-template-columns: 1fr;
+    padding: 50px 24px 0;
+  }
+  .connect-img {
+    max-width: 320px;
+    margin: 0 auto;
+    aspect-ratio: 3 / 3.2;
+  }
+  .stats-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stat {
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .songs,
+  .endorse {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .song-card {
+    width: 200px;
+    flex: 0 0 200px;
+  }
+  .header-inner {
+    padding: 14px 20px;
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 40px 24px 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-line1 {
+    font-size: 24px;
+  }
+  .hero-line2 {
+    font-size: 28px;
+  }
+  .song-card {
+    width: 170px;
+    flex: 0 0 170px;
+  }
+  .stats-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+  .achievements {
+    grid-template-columns: 1fr;
+  }
+  .logo-card {
+    width: 150px;
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+  .milestones-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-masonry-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-bio-sec,
+  .shows-highlights-sec,
+  .gallery-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .song-marquee-track {
+    animation: none !important;
+    overflow-x: auto;
+    width: 100%;
+  }
+  .reveal-up,
+  .reveal-fade,
+  .reveal-stagger .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  img.img-smooth {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .btn-yellow:hover,
+  .song-card:hover img,
+  .hero-img-wrap,
+  .badge,
+  .connect-img,
+  .ach-panel img {
+    transform: none !important;
+  }
+}
