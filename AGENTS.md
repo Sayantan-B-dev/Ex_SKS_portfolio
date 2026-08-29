@@ -30,6 +30,7 @@ Node 20+ required (see `engines` in `package.json`).
 8. **No commits without explicit permission.** Do not run `git commit`, `git push`, or create PRs unless the user explicitly asks. Git actions require user approval.
 
 ## Conventions
+- **CSS lives in `public/css/` as separate files, imported via `globals.css`.** Never write CSS rules directly in `globals.css` — it should only contain `@import` statements. Create a new file in `public/css/` (e.g. `cursor.css`, `buttons.css`) and add the import to `globals.css`.
 - CSS custom properties for all colors (`--bg`, `--yellow`, `--pink`, etc.) — never inline hex codes.
 - Font roles are fixed and don't mix: `Big Shoulders` (`--font-display`) for big display headlines only, `Oswald` (`--font-ui`) for nav/buttons/labels/all-caps UI text, `Figtree` (`--font-body`) for paragraphs.
 - Breakpoints: `900px`, `768px`, `480px`. Any layout change should be checked at all three, not just desktop.
