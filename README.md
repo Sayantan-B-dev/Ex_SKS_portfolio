@@ -36,6 +36,12 @@ This project doesn't require any installed skills to work — `AGENTS.md`/`DESIG
 # Preview what a skill contains before installing (no changes made)
 npx skills add vercel-labs/agent-skills --list
 
+# Distinctive UI direction (Anthropic, ~830K installs)
+npx skills add anthropics/skills --skill frontend-design
+
+# Vercel Web Interface Guidelines (accessibility, type, focus, motion)
+npx skills add vercel-labs/agent-skills --skill web-design-guidelines
+
 # React + Next.js performance best practices (Vercel Engineering, officially maintained)
 npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices
 
