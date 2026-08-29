@@ -1,0 +1,16 @@
+{
+  "name": "SKS — Samrat Sarkar Music Band",
+  "short_name": "SKS Band",
+  "description": "Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0712",
+  "theme_color": "#f5c518",
+  "icons": [
+    {
+      "src": "/images/sks_logo_png.webp",
+      "sizes": "any",
+      "type": "image/webp"
+    }
+  ]
+}

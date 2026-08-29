@@ -7,8 +7,45 @@ import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import DecryptedText from "@/components/reactbits/DecryptedText";
 
 export const metadata = {
-  title: "Live Shows & Global Tours | Sammrat Ka Saagar",
-  description: "Explore the live performances, global concerts, and stage history of Samrat Sarkar & The Band.",
+  title: "Live Shows & Global Tours",
+  description:
+    "Explore 1300+ live performances by Samrat Sarkar & The Band across 40+ countries. Bryan Adams opening act, Mumbai Police Awards, celebrity mega concerts. Book customizable 5–16 member band packages.",
+  keywords: [
+    "live shows India",
+    "global tours",
+    "concert booking",
+    "Bryan Adams opening act",
+    "corporate event band",
+    "wedding band India",
+    "Mumbai Police Awards",
+    "1300 shows",
+    "40 countries",
+    "Sammrat Ka Saagar live",
+  ],
+  openGraph: {
+    title: "Live Shows & Global Tours | SKS Music Band",
+    description:
+      "1300+ live performances across 40+ countries. Bryan Adams opening act, celebrity mega concerts, customizable band packages.",
+    url: "https://sksband.com/shows",
+    images: [
+      {
+        url: "/images/achievements/opening_act_bryan_adams.webp",
+        width: 1200,
+        height: 630,
+        alt: "Samrat Sarkar opening act for Bryan Adams",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "Live Shows & Global Tours | SKS Music Band",
+    description:
+      "1300+ live performances across 40+ countries. Book the power band.",
+    images: ["/images/achievements/opening_act_bryan_adams.webp"],
+  },
+  alternates: {
+    canonical: "https://sksband.com/shows",
+  },
 };
 
 const COUNTRIES = [

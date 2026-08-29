@@ -7,8 +7,46 @@ import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import DecryptedText from "@/components/reactbits/DecryptedText";
 
 export const metadata = {
-  title: "About Samrat Sarkar | Sammrat Ka Saagar",
-  description: "Learn about Bollywood Playback Singer, Music Director, and Performer Samrat Sarkar.",
+  title: "About Samrat Sarkar",
+  description:
+    "Bollywood playback singer, composer, and electrifying live performer Samrat Sarkar. Sa Re Ga Ma prodigy, debut album Dil Se chart-topper, Cannes-acclaimed Lines soundtrack, Roland & Samson endorser. 1300+ shows in 40+ countries.",
+  keywords: [
+    "Samrat Sarkar biography",
+    "Bollywood singer profile",
+    "playback singer India",
+    "music director",
+    "live performer",
+    "Mirchi Music Awards",
+    "Roland endorser",
+    "Samson endorser",
+    "Cannes Festival Lines",
+    "Dil Se album",
+    "Sa Re Ga Ma",
+  ],
+  openGraph: {
+    title: "About Samrat Sarkar | SKS Music Band",
+    description:
+      "Bollywood playback singer, composer, and electrifying live performer. 1300+ shows across 40+ countries. Winner of Mirchi Music Awards.",
+    url: "https://sksband.com/about",
+    images: [
+      {
+        url: "/images/smiling_head_tilting_with_mic_stage_lights.webp",
+        width: 1200,
+        height: 630,
+        alt: "Samrat Sarkar portrait with microphone",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "About Samrat Sarkar | SKS Music Band",
+    description:
+      "Bollywood playback singer, composer, and electrifying live performer. 1300+ shows across 40+ countries.",
+    images: ["/images/smiling_head_tilting_with_mic_stage_lights.webp"],
+  },
+  alternates: {
+    canonical: "https://sksband.com/about",
+  },
 };
 
 const MILESTONES = [
