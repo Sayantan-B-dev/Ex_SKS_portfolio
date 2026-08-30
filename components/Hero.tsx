@@ -55,7 +55,6 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-
       <div className="badge" data-parallax="hero-badge">
         WINNER OF
         <br />
