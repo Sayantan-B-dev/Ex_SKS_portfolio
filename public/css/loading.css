@@ -1,0 +1,43 @@
+/* ── Initial page loading screen ── */
+.initial-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0712;
+}
+
+.initial-loading-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.initial-loading-logo {
+  font-family: var(--font-display), "Limelight", cursive;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--yellow, #f5c518);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.initial-loading-text {
+  font-family: var(--font-ui), "Oswald", sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ── Section loading fallback (BlinkBlur) ── */
+.section-loading-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  width: 100%;
+}

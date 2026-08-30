@@ -33,11 +33,16 @@
   transform: translate3d(0, 0, 0);
 }
 
-/* Smooth lazy loaded image fade-in */
+/* Smooth image fade-in without mutating server-rendered image attributes */
 img.img-smooth {
-  opacity: 0;
-  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: image-fade-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-img.img-smooth.loaded {
-  opacity: 1;
+
+@keyframes image-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -29,16 +29,6 @@ export default function ScrollEffects() {
 
     revealElements.forEach((el) => observer.observe(el));
 
-    // Handle image load fade-in
-    const images = document.querySelectorAll<HTMLImageElement>("img.img-smooth");
-    images.forEach((img) => {
-      if (img.complete) {
-        img.classList.add("loaded");
-      } else {
-        img.addEventListener("load", () => img.classList.add("loaded"), { once: true });
-      }
-    });
-
     // 2. Parallax Controller (requestAnimationFrame + passive scroll)
     if (!prefersReducedMotion) {
       let ticking = false;
