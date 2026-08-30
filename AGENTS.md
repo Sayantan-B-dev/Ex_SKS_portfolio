@@ -21,7 +21,7 @@ Node 20+ required (see `engines` in `package.json`).
 
 ## Non-negotiable constraints
 1. **The screenshot is the spec, not inspiration.** Don't redesign, simplify, re-theme, or "improve" sections — match it. If you must deviate, say why.
-2. **Don't reorder or remove page sections.** Fixed order: Header → Hero → Stats bar → Songs → Achievements → Endorsements → Connect → Footer.
+2. **Don't reorder or remove page sections.** Fixed order: Header → Hero → Stats bar → Songs → Achievements → Endorsements → FAQ → Connect → Footer.
 3. **Keep the component split as-is** (`components/Header.tsx`, `Hero.tsx`, `StatsBar.tsx`, `SongsSection.tsx`, `AchievementsSection.tsx`, `Endorsements.tsx`, `ConnectSection.tsx`, `Footer.tsx`) unless asked to restructure. Don't introduce a UI kit, CSS framework, or state-management library for what is a static marketing page.
 4. **Preserve exact copy and line breaks** in headings (e.g. "OVER 1300 SHOWS" / "40 COUNTRIES" as two lines) unless asked to change wording.
 5. **Image containers have fixed aspect ratios by design.** When swapping a `src`, never change the container's `aspect-ratio`/width/height to accommodate a differently-shaped image — crop/reposition with `object-position` instead.

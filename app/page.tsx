@@ -6,6 +6,7 @@ import StatsBar from "@/components/StatsBar";
 import SongsSection from "@/components/SongsSection";
 import AchievementsSection from "@/components/AchievementsSection";
 import Endorsements from "@/components/Endorsements";
+import FaqSection from "@/components/FaqSection";
 import ConnectSection from "@/components/ConnectSection";
 import Footer from "@/components/Footer";
 
@@ -65,6 +66,7 @@ export default function Home() {
         <SongsSection />
         <AchievementsSection />
         <Endorsements />
+        <FaqSection />
         <ConnectSection />
       </main>
       <Footer />

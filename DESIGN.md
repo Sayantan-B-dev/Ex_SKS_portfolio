@@ -53,6 +53,8 @@ Rule: **all-caps + condensed = Big Shoulders or Oswald. Sentence-case paragraphs
 ## Component patterns
 Each pattern below maps to one file under `components/`.
 
+**FAQ** (`FaqSection.tsx`) — native `<details>` accordions answer booking questions about event formats, band sizes, destination shows, and production options. It sits between endorsements and the contact section.
+
 **Buttons** — three variants, all Oswald/uppercase/letter-spaced:
 - Filled yellow (`.btn-yellow`) — primary action (Watch Video), in `Hero.tsx`
 - Outline pink (`.btn-outline-pink`, `.btn-book`, `.btn-getintouch`) — secondary CTA, fills pink on hover
