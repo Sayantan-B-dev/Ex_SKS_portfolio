@@ -1,31 +1,13 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import ScrollEffects from "@/components/ScrollEffects";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import StatsBar from "@/components/StatsBar";
-import LoadingFallback from "@/components/LoadingFallback";
-
-const SongsSection = dynamic(() => import("@/components/SongsSection"), {
-  loading: () => <LoadingFallback />,
-  ssr: true,
-});
-const AchievementsSection = dynamic(
-  () => import("@/components/AchievementsSection"),
-  { loading: () => <LoadingFallback />, ssr: true }
-);
-const Endorsements = dynamic(() => import("@/components/Endorsements"), {
-  loading: () => <LoadingFallback />,
-  ssr: true,
-});
-const ConnectSection = dynamic(() => import("@/components/ConnectSection"), {
-  loading: () => <LoadingFallback />,
-  ssr: true,
-});
-const Footer = dynamic(() => import("@/components/Footer"), {
-  loading: () => <LoadingFallback />,
-  ssr: true,
-});
+import SongsSection from "@/components/SongsSection";
+import AchievementsSection from "@/components/AchievementsSection";
+import Endorsements from "@/components/Endorsements";
+import ConnectSection from "@/components/ConnectSection";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",

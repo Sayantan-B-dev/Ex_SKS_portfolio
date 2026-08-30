@@ -82,6 +82,7 @@ export default function GalleryPage() {
               alt="Gallery hero banner"
               fill
               priority
+              loading="eager"
               sizes="100vw"
               className="subpage-hero-img"
             />
