@@ -33,7 +33,7 @@ export default async function BlogAdminPage({
   return (
     <main className="blog-admin-page">
       <div className="blog-admin-shell">
-        <Link href="/blog" className="blog-back-link">← VIEW JOURNAL</Link>
+        <Link href="/blog" className="blog-back-link">← VIEW BLOG</Link>
         <p className="subpage-tag">PRIVATE STUDIO</p>
         <h1>{loggedIn ? "PUBLISH A FIELD NOTE" : "ENTER THE STUDIO"}</h1>
         {!isConfigured() ? (
@@ -47,7 +47,7 @@ export default async function BlogAdminPage({
             <form action={editingPost ? updateAction : publishAction} className="blog-editor-form">
               {editingPost && <input type="hidden" name="id" value={editingPost.id} />}
               <label>Title<input name="title" required defaultValue={editingPost?.title} placeholder="A night the crowd sang back" /></label>
-              <label>Excerpt<textarea name="excerpt" required rows={3} defaultValue={editingPost?.excerpt} placeholder="A short introduction for the journal card." /></label>
+              <label>Excerpt<textarea name="excerpt" required rows={3} defaultValue={editingPost?.excerpt} placeholder="A short introduction for the blog card." /></label>
               <label>Cover image URL<input name="coverImage" type="url" defaultValue={editingPost?.cover_image ?? ""} placeholder="https://..." /></label>
               <label>Story<textarea name="content" required rows={14} defaultValue={editingPost?.content} placeholder="Write the story here..." /></label>
               <div className="blog-editor-actions">

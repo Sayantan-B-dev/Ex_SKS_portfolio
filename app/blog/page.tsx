@@ -34,7 +34,7 @@ export default async function BlogPage() {
       <Header />
       <main className="blog-page">
         <section className="blog-hero">
-          <p className="subpage-tag">THE SKS JOURNAL</p>
+          <p className="subpage-tag">THE SKS BLOG</p>
           <h1>NOTES FROM THE ROAD</h1>
           <p>Stories, studio moments, and soundtracked memories from Samrat&apos;s world.</p>
           <Link href="/blog/admin" className="blog-author-link">AUTHOR LOGIN <span>↗</span></Link>
@@ -43,7 +43,7 @@ export default async function BlogPage() {
           {!isBlogConfigured() ? (
             <p className="blog-empty">Connect Supabase to publish the first story.</p>
           ) : schemaMissing ? (
-            <p className="blog-empty">Run <code>supabase/blog_posts.sql</code> in Supabase to open the journal.</p>
+            <p className="blog-empty">Run <code>supabase/blog_posts.sql</code> in Supabase to open the blog.</p>
           ) : posts.length === 0 ? (
             <p className="blog-empty">The first story is being tuned. Check back soon.</p>
           ) : (

@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { href: "/shows", label: "SHOWS" },
   { href: "/#achievements", label: "ACHIEVEMENTS" },
   { href: "/gallery", label: "GALLERY" },
-  { href: "/blog", label: "JOURNAL" },
+  { href: "/blog", label: "BLOG" },
   { href: "/#connect", label: "CONTACT" },
 ];
 

@@ -14,7 +14,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <Header />
       <main className="blog-post-page">
-        <Link href="/blog" className="blog-back-link">← BACK TO JOURNAL</Link>
+        <Link href="/blog" className="blog-back-link">← BACK TO BLOG</Link>
         <article className="blog-post wrap">
           <p className="subpage-tag">FIELD NOTE · {new Date(post.published_at).toLocaleDateString("en-IN")}</p>
           <h1>{post.title}</h1>
