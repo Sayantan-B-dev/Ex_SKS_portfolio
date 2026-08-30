@@ -40,7 +40,7 @@ export default function ConnectSection() {
           alt="Samrat posing on stage after performance with crowd"
           fill
           loading="lazy"
-          sizes="(max-width: 768px) 100vw, 33vw"
+          sizes="(max-width: 768px) 320px, 40vw"
           className="img-smooth"
           style={{ objectPosition: "50% 20%" }}
         />

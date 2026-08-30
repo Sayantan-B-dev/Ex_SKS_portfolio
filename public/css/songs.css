@@ -45,6 +45,7 @@
     black 95%,
     transparent 100%
   );
+
   mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -59,18 +60,15 @@
   display: flex;
   width: max-content;
   padding: 30px 0;
-  gap: 0;
   animation: marquee-infinite 30s linear infinite;
   will-change: transform;
-  user-select: none;
-  -webkit-user-select: none;
 }
 
+/* pause only when hovered */
 .song-marquee-track:hover {
   animation-play-state: paused;
 }
-
-/* ===== MARQUEE GROUP (one full copy of all cards) ===== */
+/* ===== ONE COMPLETE COPY ===== */
 .song-marquee-group {
   display: flex;
   gap: 16px;
@@ -78,12 +76,14 @@
   padding-right: 16px;
 }
 
+/* Move exactly one group's width */
 @keyframes marquee-infinite {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
+
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 

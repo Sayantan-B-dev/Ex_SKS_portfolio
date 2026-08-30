@@ -59,3 +59,6 @@ Stick to official/high-install sources (`vercel-labs/*`, `vercel/next.js`, `anth
 
 ## Known limitation in restricted/offline sandboxes
 `next build` fetches and self-hosts Google Fonts at build time via `next/font/google`. In an environment with no internet access this step will fail — that's expected, not a bug in this repo. `next dev` degrades gracefully to a fallback font when fonts can't be reached, so local development still works.
+
+## Song marquee troubleshooting
+The song marquee is driven by the `marquee-infinite` animation in `public/css/songs.css`. Its track contains two identical song groups and translates by `-50%`, which makes the loop seamless. The reduced-motion media query in `public/css/responsive.css` intentionally keeps this marquee animation running so it does not become static when the browser reports `prefers-reduced-motion: reduce`; other page animations still honor that preference.

@@ -1,14 +1,32 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "../public/css/variables.css";
+import "../public/css/base.css";
+import "../public/css/animations.css";
+import "../public/css/header.css";
+import "../public/css/hero.css";
+import "../public/css/stats.css";
+import "../public/css/songs.css";
+import "../public/css/achievements.css";
+import "../public/css/endorsements.css";
+import "../public/css/connect.css";
+import "../public/css/footer.css";
+import "../public/css/modals.css";
+import "../public/css/subpage.css";
+import "../public/css/about.css";
+import "../public/css/shows.css";
+import "../public/css/gallery.css";
+import "../public/css/responsive.css";
+import CanvasCursor from "@/components/ui/CanvasCursor";
 
 const SITE_URL = "https://sksband.com";
-const SITE_NAME = "SKS — Samrat Sarkar Music Band";
+const SITE_NAME = "SKS : Samrat Sarkar Music Band";
 const OG_IMAGE = "/images/hero_samrat_live.webp";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL("https://sksband.com"),
   title: {
-    default: "SKS | Samrat Sarkar — Bollywood Playback Singer & Live Band",
+    default: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     template: "%s | Samrat Sarkar — SKS Music Band",
   },
   description:
@@ -154,7 +172,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <CanvasCursor />
+        {children}
+      </body>
     </html>
   );
 }

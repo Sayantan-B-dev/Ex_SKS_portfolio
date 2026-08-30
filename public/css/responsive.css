@@ -141,9 +141,7 @@
     transition-duration: 0.01ms !important;
   }
   .song-marquee-track {
-    animation: none !important;
-    overflow-x: auto;
-    width: 100%;
+    animation: marquee-infinite 30s linear infinite !important;
   }
   .reveal-up,
   .reveal-fade,
