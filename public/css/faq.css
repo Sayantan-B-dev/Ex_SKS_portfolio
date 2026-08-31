@@ -42,24 +42,24 @@
   border-bottom: 1px solid var(--border);
 }
 
-.faq-item summary {
+.faq-summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  width: 100%;
   padding: 22px 0;
   cursor: pointer;
   list-style: none;
   color: var(--white);
   font: 600 16px/1.3 var(--font-ui);
   letter-spacing: 0.04em;
+  background: none;
+  border: none;
+  text-align: left;
 }
 
-.faq-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-item summary:focus-visible {
+.faq-summary:focus-visible {
   outline: 2px solid var(--yellow);
   outline-offset: 5px;
 }
@@ -71,12 +71,12 @@
   transition: transform 0.25s var(--ease-out), color 0.25s var(--ease-out);
 }
 
-.faq-item[open] .faq-toggle {
+.faq-item.open .faq-toggle {
   transform: rotate(45deg);
   color: var(--yellow);
 }
 
-.faq-item summary:hover {
+.faq-summary:hover {
   color: var(--yellow);
 }
 

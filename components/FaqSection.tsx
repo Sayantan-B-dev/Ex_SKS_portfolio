@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 const FAQS = [
   {
     question: "What kind of events can SKS perform at?",
@@ -32,6 +36,12 @@ const FAQS = [
 ];
 
 export default function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const toggle = (index: number) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
+  };
+
   return (
     <section className="faq-section" aria-labelledby="faq-heading">
       <div className="faq-inner wrap">
@@ -48,17 +58,28 @@ export default function FaqSection() {
           </p>
         </div>
         <div className="faq-list reveal-stagger">
-          {FAQS.map((item, index) => (
-            <details className="faq-item reveal-item" key={item.question} open={index === 0}>
-              <summary>
-                <span>{item.question}</span>
-                <span className="faq-toggle" aria-hidden="true">
-                  +
-                </span>
-              </summary>
-              <p>{item.answer}</p>
-            </details>
-          ))}
+          {FAQS.map((item, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div
+                className={`faq-item reveal-item${isOpen ? " open" : ""}`}
+                key={item.question}
+              >
+                <button
+                  type="button"
+                  className="faq-summary"
+                  aria-expanded={isOpen}
+                  onClick={() => toggle(index)}
+                >
+                  <span>{item.question}</span>
+                  <span className="faq-toggle" aria-hidden="true">
+                    +
+                  </span>
+                </button>
+                {isOpen && <p>{item.answer}</p>}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
