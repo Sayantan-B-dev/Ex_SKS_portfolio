@@ -74,3 +74,42 @@ ul {
   margin: 0 auto;
   position: relative;
 }
+
+/* Touch-friendly tap targets — minimum 44×44px on mobile */
+@media (pointer: coarse) {
+  nav a,
+  .burger,
+  .btn-book,
+  .btn-yellow,
+  .btn-outline,
+  .btn-outline-pink,
+  .btn-getintouch,
+  .song-card,
+  .gallery-tab-btn,
+  .faq-item summary,
+  .footer-social-btn,
+  .footer-links a,
+  .footer-contact-item,
+  .blog-read-link,
+  .blog-back-link,
+  .country-pill {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .burger {
+    padding: 10px;
+    min-width: 44px;
+    justify-content: center;
+  }
+
+  .burger span {
+    width: 24px;
+  }
+
+  .nav a,
+  .mobile-nav a {
+    padding: 12px 0;
+  }
+}
