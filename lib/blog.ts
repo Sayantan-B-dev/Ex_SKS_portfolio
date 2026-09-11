@@ -1,6 +1,6 @@
 import "server-only";
 
-import { createClient } from "@supabase/supabase-js";
+import { MongoClient, ObjectId, type Collection, type WithId } from "mongodb";
 
 export type BlogPost = {
   id: string;
@@ -13,65 +13,165 @@ export type BlogPost = {
   created_at: string;
 };
 
-export class BlogSchemaMissingError extends Error {
-  constructor() {
-    super("The public.blog_posts table has not been created.");
-    this.name = "BlogSchemaMissingError";
+/**
+ * This site shares the Blue Eye Entertainment cluster with another app, so it
+ * only ever reads and writes its own `SamratPortfolio` collection and tags each
+ * document with a content `type`. The other app's `artists` collection is never
+ * touched.
+ */
+const BLOG_TYPE = "blog_post";
+const DEFAULT_DB_NAME = "BlueEyeEntertainment";
+const DEFAULT_COLLECTION_NAME = "SamratPortfolio";
+
+type BlogPostDocument = {
+  type: typeof BLOG_TYPE;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  cover_image: string | null;
+  published_at: Date;
+  created_at: Date;
+  updated_at: Date;
+};
+
+export function isBlogConfigured() {
+  return Boolean(process.env.MONGODB_URI);
+}
+
+declare global {
+  // Cached across dev-server hot reloads so every edit doesn't open a new pool.
+  var __sksMongoClient: Promise<MongoClient> | undefined;
+}
+
+function getClient() {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error("Blog is not configured. Add MONGODB_URI to your environment.");
+  }
+  if (!globalThis.__sksMongoClient) {
+    const connecting = new MongoClient(uri, {
+      serverSelectionTimeoutMS: 8000,
+    }).connect();
+    globalThis.__sksMongoClient = connecting;
+    connecting.catch(() => {
+      if (globalThis.__sksMongoClient === connecting) {
+        globalThis.__sksMongoClient = undefined;
+      }
+    });
+  }
+  return globalThis.__sksMongoClient;
+}
+
+async function getPostsCollection() {
+  const client = await getClient();
+  const dbName = process.env.MONGODB_DB_NAME || DEFAULT_DB_NAME;
+  const collectionName =
+    process.env.MONGODB_PORTFOLIO_COLLECTION || DEFAULT_COLLECTION_NAME;
+  return client
+    .db(dbName)
+    .collection<BlogPostDocument>(collectionName);
+}
+
+function createIndexes() {
+  return (async () => {
+    const collection: Collection<BlogPostDocument> = await getPostsCollection();
+    await collection.createIndexes([
+      {
+        // Unique per blog post only — the partial filter stops other content
+        // types in this shared collection from colliding on a missing slug.
+        key: { slug: 1 },
+        name: "blog_slug_unique",
+        unique: true,
+        partialFilterExpression: { type: BLOG_TYPE },
+      },
+      { key: { type: 1, published_at: -1 }, name: "blog_type_published" },
+    ]);
+  })();
+}
+
+let indexesReady: Promise<void> | null = null;
+
+async function ensureIndexes() {
+  indexesReady ??= createIndexes();
+  try {
+    await indexesReady;
+  } catch (error) {
+    indexesReady = null; // Let the next request retry a transient failure.
+    throw error;
   }
 }
 
-const BLOG_COLUMNS =
-  "id,title,slug,excerpt,content,cover_image,published_at,created_at";
+function toIso(value: Date | string) {
+  return value instanceof Date
+    ? value.toISOString()
+    : new Date(value).toISOString();
+}
 
-export function isBlogConfigured() {
-  return Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.SUPABASE_SERVICE_ROLE_KEY
+function toBlogPost(doc: WithId<BlogPostDocument>): BlogPost {
+  return {
+    id: doc._id.toHexString(),
+    title: doc.title,
+    slug: doc.slug,
+    excerpt: doc.excerpt,
+    content: doc.content,
+    cover_image: doc.cover_image ?? null,
+    published_at: toIso(doc.published_at),
+    created_at: toIso(doc.created_at),
+  };
+}
+
+function toObjectId(id: string) {
+  if (!ObjectId.isValid(id)) throw new Error("That story id is not valid.");
+  return new ObjectId(id);
+}
+
+function describeError(error: unknown) {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function isDuplicateKeyError(error: unknown) {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    (error as { code?: unknown }).code === 11000
   );
 }
 
-function getSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) {
-    throw new Error(
-      "Blog is not configured. Add NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."
-    );
-  }
-  return createClient(url, key, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
+function buildSlug(title: string) {
+  const slugBase = title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  return `${slugBase || "post"}-${Date.now().toString(36)}`;
 }
 
 export async function getPublishedPosts() {
-  const { data, error } = await getSupabase()
-    .from("blog_posts")
-    .select(BLOG_COLUMNS)
-    .order("published_at", { ascending: false });
-  if (error?.code === "PGRST205") throw new BlogSchemaMissingError();
-  if (error) throw new Error(`Unable to load blog posts: ${error.message}`);
-  return (data ?? []) as BlogPost[];
+  await ensureIndexes();
+  const collection = await getPostsCollection();
+  const docs = await collection
+    .find({ type: BLOG_TYPE })
+    .sort({ published_at: -1 })
+    .toArray();
+  return docs.map(toBlogPost);
 }
 
 export async function getAdminPosts() {
-  const { data, error } = await getSupabase()
-    .from("blog_posts")
-    .select(BLOG_COLUMNS)
-    .order("created_at", { ascending: false });
-  if (error?.code === "PGRST205") throw new BlogSchemaMissingError();
-  if (error) throw new Error(`Unable to load blog posts: ${error.message}`);
-  return (data ?? []) as BlogPost[];
+  await ensureIndexes();
+  const collection = await getPostsCollection();
+  const docs = await collection
+    .find({ type: BLOG_TYPE })
+    .sort({ created_at: -1 })
+    .toArray();
+  return docs.map(toBlogPost);
 }
 
 export async function getPublishedPost(slug: string) {
-  const { data, error } = await getSupabase()
-    .from("blog_posts")
-    .select(BLOG_COLUMNS)
-    .eq("slug", slug)
-    .maybeSingle();
-  if (error?.code === "PGRST205") throw new BlogSchemaMissingError();
-  if (error) throw new Error(`Unable to load blog post: ${error.message}`);
-  return data as BlogPost | null;
+  await ensureIndexes();
+  const collection = await getPostsCollection();
+  const doc = await collection.findOne({ type: BLOG_TYPE, slug });
+  return doc ? toBlogPost(doc) : null;
 }
 
 export async function createBlogPost(input: {
@@ -80,20 +180,28 @@ export async function createBlogPost(input: {
   content: string;
   coverImage: string;
 }) {
-  const slugBase = input.title
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-  const slug = `${slugBase || "post"}-${Date.now().toString(36)}`;
-  const { error } = await getSupabase().from("blog_posts").insert({
-    title: input.title,
-    slug,
-    excerpt: input.excerpt,
-    content: input.content,
-    cover_image: input.coverImage || null,
-  });
-  if (error) throw new Error(`Unable to publish blog post: ${error.message}`);
+  await ensureIndexes();
+  const collection = await getPostsCollection();
+  const slug = buildSlug(input.title);
+  const now = new Date();
+  try {
+    await collection.insertOne({
+      type: BLOG_TYPE,
+      title: input.title,
+      slug,
+      excerpt: input.excerpt,
+      content: input.content,
+      cover_image: input.coverImage || null,
+      published_at: now,
+      created_at: now,
+      updated_at: now,
+    });
+  } catch (error) {
+    if (isDuplicateKeyError(error)) {
+      throw new Error("A story with that address already exists. Try again.");
+    }
+    throw new Error(`Unable to publish blog post: ${describeError(error)}`);
+  }
   return slug;
 }
 
@@ -104,20 +212,32 @@ export async function updateBlogPost(input: {
   content: string;
   coverImage: string;
 }) {
-  const { error } = await getSupabase()
-    .from("blog_posts")
-    .update({
-      title: input.title,
-      excerpt: input.excerpt,
-      content: input.content,
-      cover_image: input.coverImage || null,
-      updated_at: new Date().toISOString(),
-    })
-    .eq("id", input.id);
-  if (error) throw new Error(`Unable to update blog post: ${error.message}`);
+  await ensureIndexes();
+  const collection = await getPostsCollection();
+  try {
+    await collection.updateOne(
+      { _id: toObjectId(input.id), type: BLOG_TYPE },
+      {
+        $set: {
+          title: input.title,
+          excerpt: input.excerpt,
+          content: input.content,
+          cover_image: input.coverImage || null,
+          updated_at: new Date(),
+        },
+      }
+    );
+  } catch (error) {
+    throw new Error(`Unable to update blog post: ${describeError(error)}`);
+  }
 }
 
 export async function deleteBlogPost(id: string) {
-  const { error } = await getSupabase().from("blog_posts").delete().eq("id", id);
-  if (error) throw new Error(`Unable to delete blog post: ${error.message}`);
+  await ensureIndexes();
+  const collection = await getPostsCollection();
+  try {
+    await collection.deleteOne({ _id: toObjectId(id), type: BLOG_TYPE });
+  } catch (error) {
+    throw new Error(`Unable to delete blog post: ${describeError(error)}`);
+  }
 }

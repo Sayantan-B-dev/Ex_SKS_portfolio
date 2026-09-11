@@ -3,7 +3,7 @@
 Next.js (App Router) recreation of a music-band landing page, pixel-matched against a reference screenshot.
 
 ## Stack
-Next.js 16 · React 19 · TypeScript · plain CSS (no Tailwind/CSS-in-JS) · `next/font` · `next/image`
+Next.js 16 · React 19 · TypeScript · plain CSS (no Tailwind/CSS-in-JS) · `next/font` · `next/image` · MongoDB Atlas (blog only)
 
 ## Setup
 ```bash
@@ -64,4 +64,12 @@ Stick to official/high-install sources (`vercel-labs/*`, `vercel/next.js`, `anth
 The song marquee is driven by the `marquee-infinite` animation in `public/css/songs.css`. Its track contains two identical song groups and translates by `-50%`, which makes the loop seamless. The reduced-motion media query in `public/css/responsive.css` intentionally keeps this marquee animation running so it does not become static when the browser reports `prefers-reduced-motion: reduce`; other page animations still honor that preference.
 
 ## Blog setup
-The `/blog` blog stores posts in Supabase. Copy `.env.example` to `.env.local`, fill in the Supabase project URL and service-role key, and set the single author credentials plus a long random `BLOG_SESSION_SECRET`. Run [`supabase/blog_posts.sql`](./supabase/blog_posts.sql) once, then optionally run [`supabase/seed.sql`](./supabase/seed.sql), in the Supabase SQL editor. The public blog includes an **AUTHOR LOGIN** link; the author manages all posts from `/blog/admin`, where they can create, read, update, and delete stories. The service-role key is only used on the server and must never be exposed to the browser.
+The `/blog` blog stores posts in MongoDB Atlas. Copy `.env.example` to `.env.local` and fill in `MONGODB_URI`, `MONGODB_DB_NAME`, and `MONGODB_PORTFOLIO_COLLECTION`, plus the single author credentials and a long random `BLOG_SESSION_SECRET`.
+
+```bash
+npm run seed:blog   # creates the indexes and adds two sample stories
+```
+
+The seed is idempotent — re-running it never duplicates a story or reshuffles its publish date. The public blog includes an **AUTHOR LOGIN** link; the author manages all posts from `/blog/admin`, where they can create, read, update, and delete stories.
+
+This site shares the Blue Eye Entertainment Atlas cluster with another app, so it keeps every document in its own `SamratPortfolio` collection, tagged with a `type` field. The other app's `artists` collection is never read or written, and the connection string is only used on the server — it must never be exposed to the browser.

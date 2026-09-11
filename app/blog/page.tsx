@@ -2,7 +2,6 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
-  BlogSchemaMissingError,
   type BlogPost,
   getPublishedPosts,
   isBlogConfigured,
@@ -20,14 +19,8 @@ function formatDate(value: string) {
 
 export default async function BlogPage() {
   let posts: BlogPost[] = [];
-  let schemaMissing = false;
   if (isBlogConfigured()) {
-    try {
-      posts = await getPublishedPosts();
-    } catch (error) {
-      if (!(error instanceof BlogSchemaMissingError)) throw error;
-      schemaMissing = true;
-    }
+    posts = await getPublishedPosts();
   }
   return (
     <>
@@ -41,9 +34,7 @@ export default async function BlogPage() {
         </section>
         <section className="blog-grid wrap">
           {!isBlogConfigured() ? (
-            <p className="blog-empty">Connect Supabase to publish the first story.</p>
-          ) : schemaMissing ? (
-            <p className="blog-empty">Run <code>supabase/blog_posts.sql</code> in Supabase to open the blog.</p>
+            <p className="blog-empty">Connect MongoDB to publish the first story.</p>
           ) : posts.length === 0 ? (
             <p className="blog-empty">The first story is being tuned. Check back soon.</p>
           ) : (

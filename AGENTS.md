@@ -2,12 +2,13 @@
 Canonical instructions for any AI coding agent working in this repo — Claude Code, Cursor, OpenCode, Antigravity, Windsurf, Codex CLI, Copilot, Aider, Cline, or anything else. This is the single source of truth; tool-specific files (`CLAUDE.md`, `.clinerules`) are thin pointers back to this one so instructions never drift out of sync across tools.
 
 ## Project summary
-`sks-music-band` — a Next.js (App Router) recreation of a music-band landing page, pixel-matched against a reference screenshot (`type--Normal.png`, keep it in the repo root if present). One route (`/`), no CMS, no database, no auth. Composed of one page (`app/page.tsx`) assembling eight presentational components under `components/`.
+`sks-music-band` — a Next.js (App Router) recreation of a music-band landing page, pixel-matched against a reference screenshot (`type--Normal.png`, keep it in the repo root if present). The landing page (`app/page.tsx`) assembles eight presentational components under `components/`; there are additionally `/about`, `/shows`, `/gallery`, and a `/blog`. No CMS, no auth provider — the single blog author signs in with env credentials and an HMAC cookie.
 
 - Framework: Next.js 16 (App Router, Turbopack), React 19, TypeScript
 - Styling: plain CSS in `app/globals.css` using CSS custom properties — no Tailwind, no CSS-in-JS, no CSS modules
 - Fonts: loaded via `next/font/google` in `app/layout.tsx` (Big Shoulders, Oswald, Figtree) — not `<link>` tags
 - Images: `next/image`, remote source is `picsum.photos` (whitelisted in `next.config.ts`) as placeholder art
+- Data: MongoDB Atlas via the official `mongodb` driver, used **only** by the blog (`lib/blog.ts`). No ORM. See the collection-scope gotcha below before touching it.
 - Reference: `DESIGN.md` is the values source of truth (colors, type scale, spacing); the screenshot is the layout source of truth
 
 ## Setup
@@ -16,8 +17,9 @@ npm install
 npm run dev      # http://localhost:3000
 npm run build    # production build — requires real internet to fetch Google Fonts at build time
 npm run lint
+npm run seed:blog # optional — seeds two sample stories into MongoDB
 ```
-Node 20+ required (see `engines` in `package.json`).
+Node 20+ required (see `engines` in `package.json`). Copy `.env.example` to `.env.local` and fill in `MONGODB_URI` before using the blog.
 
 ## Non-negotiable constraints
 1. **The screenshot is the spec, not inspiration.** Don't redesign, simplify, re-theme, or "improve" sections — match it. If you must deviate, say why.
@@ -26,7 +28,7 @@ Node 20+ required (see `engines` in `package.json`).
 4. **Preserve exact copy and line breaks** in headings (e.g. "OVER 1300 SHOWS" / "40 COUNTRIES" as two lines) unless asked to change wording.
 5. **Image containers have fixed aspect ratios by design.** When swapping a `src`, never change the container's `aspect-ratio`/width/height to accommodate a differently-shaped image — crop/reposition with `object-position` instead.
 6. **Pull all colors, type sizes, and spacing from `DESIGN.md`.** Don't hardcode a new hex value or px size without adding it there first.
-7. **`Header.tsx` is the only client component** (`"use client"`, for the mobile-menu `useState`). Keep the rest as server components — don't add `"use client"` to a component unless it genuinely needs interactivity, state, or a browser-only API.
+7. **Don't add `"use client"` unless the component genuinely needs interactivity, state, or a browser-only API.** The data-backed route pages (`app/blog/*`) are server components; keep them that way — they reach MongoDB only through `lib/blog.ts`, which is `server-only`.
 8. **No commits without explicit permission.** Do not run `git commit`, `git push`, or create PRs unless the user explicitly asks. Git actions require user approval.
 
 ## Conventions
@@ -64,6 +66,9 @@ Avoid old WebKit-based tools (e.g. `wkhtmltoimage`) for this — they don't supp
 - **`next build` requires real internet access** to fetch Google Fonts at build time (`next/font/google` downloads and self-hosts them at build). In a sandboxed/offline environment this step will hard-fail — that's expected, not a code bug. `next dev` degrades gracefully to a fallback font instead.
 - **`clip-path` panels in `AchievementsSection.tsx`** are sensitive to text overflow — keep `.ach-text` anchored inside the un-clipped portion of each trapezoid when adjusting panel widths.
 - If real photography/logos replace the `picsum.photos` placeholders, add the new host to `images.remotePatterns` in `next.config.ts` — Next's image optimizer blocks unlisted remote hosts by default.
+- **The blog's MongoDB collection is shared infrastructure — never widen its scope.** `lib/blog.ts` reuses the Blue Eye Entertainment Atlas cluster, so it must only ever touch the `SamratPortfolio` collection (env: `MONGODB_PORTFOLIO_COLLECTION`) inside `MONGODB_DB_NAME`. The `artists` collection belongs to a different app and must never be read or written here. Every document carries a `type` tag (`blog_post`) and all queries filter on it, so future content types can share the one collection.
+- **The blog's unique `slug` index is deliberately partial** (`partialFilterExpression: { type: "blog_post" }`). A plain unique index would collide as soon as two non-blog documents in the shared collection lack a `slug`. Keep the filter when editing indexes (in `lib/blog.ts` and `scripts/seed-blog.mjs`, which define them independently).
+- **`lib/blog.ts` is the only module that talks to MongoDB**, and it caches one `MongoClient` on `globalThis` so dev hot-reloads don't leak connection pools. Route everything blog-database-related through it.
 
 ## Definition of done
 - [ ] Matches the reference screenshot at 1024px width (or explicitly diverges for a stated reason)
