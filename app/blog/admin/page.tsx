@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ConfirmDeletePost from "@/components/ConfirmDeletePost";
 import { isAuthenticated, isConfigured } from "@/lib/blog-auth";
 import {
   deleteAction,
@@ -72,16 +73,11 @@ export default async function BlogAdminPage({
                       </div>
                       <div className="blog-row-actions">
                         <Link href={`/blog/admin?edit=${post.id}`}>EDIT</Link>
-                        <form action={deleteAction} className="blog-delete-form">
-                          <input type="hidden" name="id" value={post.id} />
-                          <button
-                            type="submit"
-                            className="blog-delete-button"
-                            aria-label={`Delete ${post.title}`}
-                          >
-                            DELETE
-                          </button>
-                        </form>
+                        <ConfirmDeletePost
+                          action={deleteAction}
+                          postId={post.id}
+                          postTitle={post.title}
+                        />
                       </div>
                     </div>
                   ))}
