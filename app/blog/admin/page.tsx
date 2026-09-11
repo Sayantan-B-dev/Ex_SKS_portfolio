@@ -1,5 +1,7 @@
 import Link from "next/link";
 import ConfirmDeletePost from "@/components/ConfirmDeletePost";
+import PasswordField from "@/components/PasswordField";
+import SubmitButton from "@/components/SubmitButton";
 import { isAuthenticated, isConfigured } from "@/lib/blog-auth";
 import {
   deleteAction,
@@ -52,7 +54,12 @@ export default async function BlogAdminPage({
               <label>Cover image URL<input name="coverImage" type="url" defaultValue={editingPost?.cover_image ?? ""} placeholder="https://..." /></label>
               <label>Story<textarea name="content" required rows={14} defaultValue={editingPost?.content} placeholder="Write the story here..." /></label>
               <div className="blog-editor-actions">
-                <button type="submit" className="blog-submit-button">{editingPost ? "SAVE CHANGES" : "PUBLISH STORY"}</button>
+                <SubmitButton
+                  className="blog-submit-button"
+                  pendingLabel={editingPost ? "SAVING…" : "PUBLISHING…"}
+                >
+                  {editingPost ? "SAVE CHANGES" : "PUBLISH STORY"}
+                </SubmitButton>
                 {editingPost && <Link href="/blog/admin" className="blog-cancel-link">CANCEL EDIT</Link>}
               </div>
             </form>
@@ -84,15 +91,17 @@ export default async function BlogAdminPage({
                 </div>
               )}
             </section>
-            <form action={logoutAction}><button className="blog-logout-button" type="submit">SIGN OUT</button></form>
+            <form action={logoutAction}>
+              <SubmitButton className="blog-logout-button" pendingLabel="SIGNING OUT…">SIGN OUT</SubmitButton>
+            </form>
           </>
         ) : (
           <>
             {query.error && <p className="admin-message admin-error">Those details did not match. Try again.</p>}
             <form action={loginAction} className="blog-login-form">
               <label>Username<input name="username" required autoComplete="username" /></label>
-              <label>Password<input name="password" type="password" required autoComplete="current-password" /></label>
-              <button type="submit" className="blog-submit-button">UNLOCK STUDIO</button>
+              <PasswordField />
+              <SubmitButton className="blog-submit-button" pendingLabel="UNLOCKING…">UNLOCK STUDIO</SubmitButton>
             </form>
           </>
         )}
