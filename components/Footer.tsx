@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="footer-img-wrap">
         <Image
           src="/images/smiling_head_tilting_with_mic_stage_lights.webp"
-          alt="Samrat smiling on stage"
+          alt="Samrat Sarkar smiling on stage with microphone and stage lights"
           fill
           loading="lazy"
           className="footer-bg-img img-smooth"
@@ -69,7 +69,13 @@ export default function Footer() {
               </svg>
               FACEBOOK
             </a>
-            <a href="#" aria-label="Instagram" className="footer-social-btn">
+            <a
+              href="https://www.instagram.com/singersamrat"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="footer-social-btn"
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                 <rect x="3" y="3" width="18" height="18" rx="5" />
                 <circle cx="12" cy="12" r="4" />
@@ -88,6 +94,7 @@ export default function Footer() {
             <Link href="/about">About</Link>
             <Link href="/shows">Shows</Link>
             <Link href="/gallery">Gallery</Link>
+            <Link href="/blog">Blog</Link>
             <Link href="/#connect">Contact</Link>
           </nav>
         </div>

@@ -94,6 +94,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <p className="blog-post-excerpt">{post.excerpt}</p>
           {post.cover_image && <img className="blog-post-image" src={post.cover_image} alt={post.title} />}
           <div className="blog-post-content">{post.content}</div>
+          <p className="blog-hero-links">
+            <Link href="/#connect" className="blog-read-link">BOOK SAMRAT FOR YOUR EVENT <span>↗</span></Link>
+          </p>
         </article>
       </main>
       <Footer />

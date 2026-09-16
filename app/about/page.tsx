@@ -94,7 +94,7 @@ export default function AboutPage() {
           <div className="subpage-hero-bg">
             <Image
               src="/images/posing_on_stage_after_singing_background_crowd_with_flashlight.webp"
-              alt="Samrat on stage"
+              alt="Samrat Sarkar live on stage with crowd and flashlights"
               fill
               priority
               sizes="100vw"
@@ -120,7 +120,7 @@ export default function AboutPage() {
               <div className="about-portrait-card">
                 <Image
                   src="/images/smiling_head_tilting_with_mic_stage_lights.webp"
-                  alt="Samrat portrait with microphone"
+                  alt="Samrat Sarkar portrait holding a microphone under stage lights"
                   fill
                   priority
                   className="img-smooth"

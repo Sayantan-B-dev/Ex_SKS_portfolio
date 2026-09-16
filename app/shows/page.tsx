@@ -149,7 +149,7 @@ export default function ShowsPage() {
                   <div className="show-card-img-wrap">
                     <Image
                       src={show.image}
-                      alt={show.title}
+                      alt={`${show.title} : Samrat Sarkar live on stage`}
                       fill
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 33vw"

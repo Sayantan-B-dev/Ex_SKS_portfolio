@@ -88,3 +88,8 @@
   color: var(--white);
   margin-top: 8px;
 }
+.gallery-cta-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}

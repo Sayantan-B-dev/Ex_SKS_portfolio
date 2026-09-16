@@ -6,7 +6,7 @@ import StatsBar from "@/components/StatsBar";
 import SongsSection from "@/components/SongsSection";
 import AchievementsSection from "@/components/AchievementsSection";
 import Endorsements from "@/components/Endorsements";
-import FaqSection from "@/components/FaqSection";
+import FaqSection, { FAQS } from "@/components/FaqSection";
 import ConnectSection from "@/components/ConnectSection";
 import Footer from "@/components/Footer";
 import { SITE_URL } from "@/lib/site";
@@ -28,13 +28,16 @@ export const metadata: Metadata = {
     "Aao Huzoor",
   ],
   openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "SKS : Samrat Sarkar Music Band",
     title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     description:
       "Over 1300 shows across 40+ countries. Bollywood playback singer, music director, and electrifying live performer.",
     url: SITE_URL,
     images: [
       {
-        url: "/images/hero_samrat_live.webp",
+        url: `${SITE_URL}/images/hero_samrat_live.webp`,
         width: 1200,
         height: 630,
         alt: "Samrat Sarkar performing live on stage",
@@ -42,11 +45,11 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image" as const,
+    card: "summary_large_image",
     title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     description:
       "Over 1300 shows across 40+ countries. Bollywood playback singer, music director, and electrifying live performer.",
-    images: ["/images/hero_samrat_live.webp"],
+    images: [`${SITE_URL}/images/hero_samrat_live.webp`],
   },
   alternates: {
     canonical: SITE_URL,
@@ -54,9 +57,25 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
   return (
     <>
       <ScrollEffects />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <a className="skip-link" href="#main">
         Skip to content
       </a>

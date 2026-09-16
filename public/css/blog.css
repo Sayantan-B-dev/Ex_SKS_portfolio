@@ -51,6 +51,11 @@
   transform: translate(3px, -3px);
 }
 
+.blog-hero-links {
+  display: flex;
+  justify-content: center;
+}
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

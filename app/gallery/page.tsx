@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollEffects from "@/components/ScrollEffects";
@@ -79,7 +80,7 @@ export default function GalleryPage() {
           <div className="subpage-hero-bg">
             <Image
               src="/images/hero_samrat_live.webp"
-              alt="Gallery hero banner"
+              alt="Samrat Sarkar live concert crowd with stage lights"
               fill
               priority
               loading="eager"
@@ -90,9 +91,9 @@ export default function GalleryPage() {
           </div>
           <div className="wrap subpage-hero-content reveal-up">
             <p className="subpage-tag">VISUAL ARCHIVES</p>
-            <h1 className="subpage-title">
-              <DecryptedText text="PHOTO &amp; STAGE GALLERY" speed={28} maxIterations={14} />
-            </h1>
+              <h1 className="subpage-title">
+                <DecryptedText text="PHOTO AND STAGE GALLERY" speed={28} maxIterations={14} />
+              </h1>
             <p className="subpage-subtitle">
               Live Concerts • Stadium Lights • Award Ceremonies • Album Artwork
             </p>
@@ -137,6 +138,12 @@ export default function GalleryPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="gallery-cta-row reveal-up">
+            <Link href="/#connect" className="btn-yellow">
+              BOOK SAMRAT AND THE BAND
+            </Link>
           </div>
         </section>
 

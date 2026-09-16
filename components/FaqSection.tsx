@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const FAQS = [
+export const FAQS = [
   {
     question: "What kind of events can SKS perform at?",
     answer:

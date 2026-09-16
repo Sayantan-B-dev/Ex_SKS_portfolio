@@ -63,6 +63,9 @@ export default async function BlogPage() {
           <p className="subpage-tag">THE SKS BLOG</p>
           <h1>NOTES FROM THE ROAD</h1>
           <p>Stories, studio moments, and soundtracked memories from Samrat&apos;s world.</p>
+          <p className="blog-hero-links">
+            <Link href="/#connect" className="blog-author-link">BOOK SAMRAT FOR YOUR EVENT <span>↗</span></Link>
+          </p>
           <Link href="/blog/admin" className="blog-author-link">AUTHOR LOGIN <span>↗</span></Link>
         </section>
         <section className="blog-grid wrap">
@@ -75,7 +78,7 @@ export default async function BlogPage() {
               <article className={`blog-card blog-card-${(index % 3) + 1}`} key={post.id}>
                 <div className="blog-card-art">
                   {post.cover_image ? (
-                    <img src={post.cover_image} alt="" />
+                    <img src={post.cover_image} alt={post.title} />
                   ) : (
                     <span>{String(index + 1).padStart(2, "0")}</span>
                   )}
