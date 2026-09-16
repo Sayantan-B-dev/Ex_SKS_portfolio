@@ -78,7 +78,7 @@ function createIndexes() {
     const collection: Collection<BlogPostDocument> = await getPostsCollection();
     await collection.createIndexes([
       {
-        // Unique per blog post only — the partial filter stops other content
+        // Unique per blog post only : the partial filter stops other content
         // types in this shared collection from colliding on a missing slug.
         key: { slug: 1 },
         name: "blog_slug_unique",

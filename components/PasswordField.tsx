@@ -15,7 +15,7 @@ export default function PasswordField({
   const id = useId();
 
   return (
-    // The toggle lives outside the <label> so the markup stays valid — a
+    // The toggle lives outside the <label> so the markup stays valid : a
     // <button> inside a <label> would be a second labelable element.
     <div className="password-field-wrap">
       <label htmlFor={id}>{label}</label>

@@ -78,7 +78,7 @@ const MILESTONES = [
   {
     year: "GLOBAL TOURS",
     title: "1300+ Shows in 40+ Countries",
-    desc: "Commanding stadiums and grand arenas worldwide—from opening for Bryan Adams to sharing stages with Amitabh Bachchan, SRK, Salman Khan, and Akshay Kumar.",
+    desc: "Commanding stadiums and grand arenas worldwide, from opening for Bryan Adams to sharing stages with Amitabh Bachchan, SRK, Salman Khan, and Akshay Kumar.",
     tag: "Live Wire",
   },
 ];
@@ -143,7 +143,7 @@ export default function AboutPage() {
                 From chartbusters like <i>Aao Huzoor</i>, <i>Dil Di Dhadkan</i>, <i>Bichde</i>, and <i>Mere Sukh Bhi Tere Nein</i> featured on MTV, Zoom, and B4U to soulful Bollywood film anthems, Samrat has amassed millions of streams across Spotify, Apple Music, and YouTube.
               </p>
               <p className="bio-para">
-                His music for the film <b>Lines</b>, starring Hina Khan and Farida Jalal, received grand international acclaim at the prestigous <b>Cannes Festival</b>. Signed by <b>Roland India</b> and <b>Samson</b> as an official brand endorser, Samrat brings unrivaled stage energy with his 5–16 member band.
+                His music for the film <b>Lines</b>, starring Hina Khan and Farida Jalal, received grand international acclaim at the prestigous <b>Cannes Festival</b>. Signed by <b>Roland India</b> and <b>Samson</b> as an official brand endorser, Samrat brings unrivaled stage energy with his 5 to 16 member band.
               </p>
 
               <div className="about-cta-row">

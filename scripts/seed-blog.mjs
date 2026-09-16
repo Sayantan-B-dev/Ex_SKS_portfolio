@@ -21,7 +21,7 @@ function loadEnvFile(path) {
       process.env[key] = rawValue.replace(/^(['"])(.*)\1$/, "$2");
     }
   } catch {
-    // The file is optional — real environment variables always win.
+    // The file is optional : real environment variables always win.
   }
 }
 
@@ -96,7 +96,7 @@ try {
   }
 
   console.log(
-    `\nDone — ${collection.collectionName} in "${dbName}". Other collections were untouched.`
+    `\nDone : ${collection.collectionName} in "${dbName}". Other collections were untouched.`
   );
 } finally {
   await client.close();

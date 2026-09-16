@@ -4,7 +4,7 @@ const HIGHLIGHTS = [
   "Playback Singer",
   "Music Director (Film/OTTs)",
   "Live Wire Performer",
-  "5–16 member Band",
+  "5 to 16 member Band",
   "Concerts, Corporate Meets, Weddings, Sangeet, Barat, Gala Birthday Bash",
 ];
 

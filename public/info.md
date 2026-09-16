@@ -1,4 +1,4 @@
-# Sammrat Ka Saagar — PDF Content + YouTube Links
+# Sammrat Ka Saagar : PDF Content + YouTube Links
 
 ## Bio
 
@@ -28,7 +28,7 @@ YouTube:
 https://www.youtube.com/watch?v=TymQvultiAw
 
 
-## Bichde — Kisi Da Na Yaar
+## Bichde : Kisi Da Na Yaar
 
 YouTube:
 https://www.youtube.com/watch?v=dbILxBMJaAM
@@ -92,7 +92,7 @@ YouTube:
 https://www.youtube.com/results?search_query=Kukku+The+Great+Samrat+Sarkar
 
 
-## Tum Itni Khoobsurat Ho — Singardaan
+## Tum Itni Khoobsurat Ho : Singardaan
 
 YouTube:
 https://www.youtube.com/results?search_query=Tum+Itni+Khoobsurat+Ho+Samrat+Sarkar
@@ -172,7 +172,7 @@ The PDF says:
 
 The PDF's recognition section shows:
 
-- **Roland India** — the PDF says Samrat has been signed by Roland India as a Brand Endorser.
+- **Roland India** : the PDF says Samrat has been signed by Roland India as a Brand Endorser.
 - **Samson** is also mentioned.
 - **Mirchi Music Awards** branding is shown.
 - **Majhire Majhi** is stated in the bio to have won various awards. :contentReference[oaicite:8]{index=8}
@@ -180,7 +180,7 @@ The PDF's recognition section shows:
 
 # Live Shows
 
-Pages 6–8 of the PDF contain photographs from the band's live shows. They show Samrat performing with his band, musicians, singers and dancers at large-scale events. :contentReference[oaicite:9]{index=9}
+Pages 6 to 8 of the PDF contain photographs from the band's live shows. They show Samrat performing with his band, musicians, singers and dancers at large-scale events. :contentReference[oaicite:9]{index=9}
 
 
 # Connect With Samrat & The Band
@@ -190,7 +190,7 @@ The PDF lists these services:
 - Playback Singer
 - Music Director (Film/OTTs)
 - Live Wire Performer
-- 5–16 member Band
+- 5 to 16 member Band
 - Concerts
 - Corporate Meets
 - Weddings
@@ -206,7 +206,7 @@ It also says the setup can include:
 - Collaborations with artists from various parts of the world :contentReference[oaicite:11]{index=11}
 
 
-# YouTube Links — Songs Named in the PDF
+# YouTube Links : Songs Named in the PDF
 
 https://www.youtube.com/watch?v=CdQI-Q0ROVg
 

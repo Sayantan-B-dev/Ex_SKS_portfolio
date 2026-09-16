@@ -95,7 +95,7 @@ export default function SongsSection() {
 
       <div className="song-marquee-container">
         <div className="song-marquee-track">
-          {/* First group — visible, interactive */}
+          {/* First group : visible, interactive */}
           <div className="song-marquee-group">
             {SONGS.map((song, idx) => (
               <SongCard
@@ -112,7 +112,7 @@ export default function SongsSection() {
             ))}
           </div>
 
-          {/* Second group — aria-hidden duplicate for seamless loop */}
+          {/* Second group : aria-hidden duplicate for seamless loop */}
           <div className="song-marquee-group" aria-hidden="true">
             {SONGS.map((song, idx) => (
               <SongCard

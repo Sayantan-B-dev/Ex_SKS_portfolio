@@ -1,4 +1,4 @@
-/* ===== RESPONSIVE — MASTER FILE ===== */
+/* ===== RESPONSIVE : MASTER FILE ===== */
 
 /* ── 900px (tablet landscape) ── */
 @media (max-width: 900px) {
@@ -942,7 +942,7 @@
   }
 }
 
-/* ===== TOUCH DEVICES — hide cursor dot ===== */
+/* ===== TOUCH DEVICES : hide cursor dot ===== */
 @media (pointer: coarse) {
   .cursor-dot {
     display: none !important;

@@ -11,7 +11,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Live Shows & Global Tours",
   description:
-    "Explore 1300+ live performances by Samrat Sarkar & The Band across 40+ countries. Bryan Adams opening act, Mumbai Police Awards, celebrity mega concerts. Book customizable 5–16 member band packages.",
+    "Explore 1300+ live performances by Samrat Sarkar & The Band across 40+ countries. Bryan Adams opening act, Mumbai Police Awards, celebrity mega concerts. Book customizable 5 to 16 member band packages.",
   keywords: [
     "live shows India",
     "global tours",

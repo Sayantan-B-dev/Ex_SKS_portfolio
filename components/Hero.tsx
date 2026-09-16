@@ -22,7 +22,7 @@ export default function Hero() {
       </div>
       <div className="hero-duo" />
 
-      {/* Left-anchored content — no max-width centering */}
+      {/* Left-anchored content : no max-width centering */}
       <div className="hero-content reveal-up">
         <p className="hero-line1">LIVE. LOVE. MUSIC.</p>
         <h1 className="hero-line2">
@@ -64,7 +64,7 @@ export default function Hero() {
       <VideoModal
         isOpen={playHeroVideo}
         onClose={() => setPlayHeroVideo(false)}
-        title="Aao Huzoor — Samrat Sarkar Live"
+        title="Aao Huzoor : Samrat Sarkar Live"
         videoId="CdQI-Q0ROVg"
       />
     </section>

@@ -12,7 +12,7 @@ interface SubmitButtonProps {
 }
 
 /**
- * Must be rendered inside the `<form>` whose action it submits — `useFormStatus`
+ * Must be rendered inside the `<form>` whose action it submits : `useFormStatus`
  * reports the state of the nearest parent form.
  */
 export default function SubmitButton({

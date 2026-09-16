@@ -4,7 +4,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Photo & Stage Gallery",
   description:
-    "Visual archives of Samrat Sarkar & The Band — live concerts, stadium lights, award ceremonies, celebrity galas, and album artwork from 40+ countries.",
+    "Visual archives of Samrat Sarkar & The Band : live concerts, stadium lights, award ceremonies, celebrity galas, and album artwork from 40+ countries.",
   keywords: [
     "Samrat Sarkar photos",
     "SKS band gallery",

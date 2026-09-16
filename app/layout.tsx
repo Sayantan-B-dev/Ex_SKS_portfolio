@@ -27,10 +27,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
-    template: "%s | Samrat Sarkar — SKS Music Band",
+    template: "%s | Samrat Sarkar : SKS Music Band",
   },
   description:
-    "Sammrat Ka Saagar (SKS) — Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries. Winner of Mirchi Music Awards. Endorsed by Roland & Samson. Book the 5–16 member power band for concerts, corporate events, weddings, and global tours.",
+    "Sammrat Ka Saagar (SKS) : Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries. Winner of Mirchi Music Awards. Endorsed by Roland & Samson. Book the 5 to 16 member power band for concerts, corporate events, weddings, and global tours.",
   keywords: [
     "Samrat Sarkar",
     "Sammrat Ka Saagar",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "SKS | Samrat Sarkar — Bollywood Playback Singer & Live Band",
+    title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     description:
       "Over 1300 shows across 40+ countries. Bollywood playback singer, music director, and electrifying live performer. Winner of Mirchi Music Awards. Book the power band.",
     images: [
@@ -69,14 +69,14 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Samrat Sarkar performing live on stage — SKS Music Band",
+        alt: "Samrat Sarkar performing live on stage with SKS Music Band",
         type: "image/webp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SKS | Samrat Sarkar — Bollywood Playback Singer & Live Band",
+    title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     description:
       "Over 1300 shows across 40+ countries. Bollywood playback singer, music director, and electrifying live performer.",
     images: [OG_IMAGE],

@@ -71,7 +71,7 @@ function ConfirmDialog({
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        // The delete is already in flight — don't let Escape imply it stopped.
+        // The delete is already in flight, so don't let Escape imply it stopped.
         if (!pendingRef.current) closeRef.current();
         return;
       }

@@ -75,7 +75,7 @@ ul {
   position: relative;
 }
 
-/* Touch-friendly tap targets — minimum 44×44px on mobile */
+/* Touch-friendly tap targets : minimum 44x44px on mobile */
 @media (pointer: coarse) {
   nav a,
   .burger,
