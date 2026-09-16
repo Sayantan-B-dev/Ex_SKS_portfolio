@@ -15,13 +15,16 @@ export const metadata: Metadata = {
     "concert photography",
   ],
   openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "SKS : Samrat Sarkar Music Band",
     title: "Photo & Stage Gallery | SKS Music Band",
     description:
       "Visual archives of live concerts, stadium lights, award ceremonies, and album artwork.",
     url: `${SITE_URL}/gallery`,
     images: [
       {
-        url: "/images/hero_samrat_live.webp",
+        url: `${SITE_URL}/images/hero_samrat_live.webp`,
         width: 1200,
         height: 630,
         alt: "SKS Music Band stage gallery",
@@ -29,11 +32,11 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image" as const,
+    card: "summary_large_image",
     title: "Photo & Stage Gallery | SKS Music Band",
     description:
       "Visual archives of live concerts, stadium lights, award ceremonies.",
-    images: ["/images/hero_samrat_live.webp"],
+    images: [`${SITE_URL}/images/hero_samrat_live.webp`],
   },
   alternates: {
     canonical: `${SITE_URL}/gallery`,

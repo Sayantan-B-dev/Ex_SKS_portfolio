@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,7 +8,7 @@ import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import DecryptedText from "@/components/reactbits/DecryptedText";
 import { SITE_URL } from "@/lib/site";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Live Shows & Global Tours",
   description:
     "Explore 1300+ live performances by Samrat Sarkar & The Band across 40+ countries. Bryan Adams opening act, Mumbai Police Awards, celebrity mega concerts. Book customizable 5–16 member band packages.",
@@ -24,13 +25,16 @@ export const metadata = {
     "Sammrat Ka Saagar live",
   ],
   openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "SKS : Samrat Sarkar Music Band",
     title: "Live Shows & Global Tours | SKS Music Band",
     description:
       "1300+ live performances across 40+ countries. Bryan Adams opening act, celebrity mega concerts, customizable band packages.",
     url: `${SITE_URL}/shows`,
     images: [
       {
-        url: "/images/achievements/opening_act_bryan_adams.webp",
+        url: `${SITE_URL}/images/achievements/opening_act_bryan_adams.webp`,
         width: 1200,
         height: 630,
         alt: "Samrat Sarkar opening act for Bryan Adams",
@@ -38,11 +42,11 @@ export const metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image" as const,
+    card: "summary_large_image",
     title: "Live Shows & Global Tours | SKS Music Band",
     description:
       "1300+ live performances across 40+ countries. Book the power band.",
-    images: ["/images/achievements/opening_act_bryan_adams.webp"],
+    images: [`${SITE_URL}/images/achievements/opening_act_bryan_adams.webp`],
   },
   alternates: {
     canonical: `${SITE_URL}/shows`,

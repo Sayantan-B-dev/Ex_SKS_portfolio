@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "../public/css/variables.css";
 import "../public/css/base.css";
@@ -21,7 +21,7 @@ import CanvasCursor from "@/components/ui/CanvasCursor";
 import { SITE_URL } from "@/lib/site";
 
 const SITE_NAME = "SKS : Samrat Sarkar Music Band";
-const OG_IMAGE = "/images/hero_samrat_live.webp";
+const OG_IMAGE = `${SITE_URL}/images/hero_samrat_live.webp`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -104,12 +104,17 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#f5c518",
+  colorScheme: "dark",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
+  const musicGroupJsonLd = {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
     name: "Sammrat Ka Saagar (SKS)",
@@ -154,6 +159,14 @@ export default function RootLayout({
     },
   };
 
+  const webSiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    alternateName: "Sammrat Ka Saagar",
+    url: SITE_URL,
+  };
+
   return (
     <html lang="en">
       <head>
@@ -169,7 +182,11 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(musicGroupJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
       </head>
       <body>

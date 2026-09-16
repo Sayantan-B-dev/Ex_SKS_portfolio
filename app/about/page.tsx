@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,7 +8,7 @@ import ScrollEffects from "@/components/ScrollEffects";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import DecryptedText from "@/components/reactbits/DecryptedText";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "About Samrat Sarkar",
   description:
     "Bollywood playback singer, composer, and electrifying live performer Samrat Sarkar. Sa Re Ga Ma prodigy, debut album Dil Se chart-topper, Cannes-acclaimed Lines soundtrack, Roland & Samson endorser. 1300+ shows in 40+ countries.",
@@ -25,13 +26,16 @@ export const metadata = {
     "Sa Re Ga Ma",
   ],
   openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "SKS : Samrat Sarkar Music Band",
     title: "About Samrat Sarkar | SKS Music Band",
     description:
       "Bollywood playback singer, composer, and electrifying live performer. 1300+ shows across 40+ countries. Winner of Mirchi Music Awards.",
     url: `${SITE_URL}/about`,
     images: [
       {
-        url: "/images/smiling_head_tilting_with_mic_stage_lights.webp",
+        url: `${SITE_URL}/images/smiling_head_tilting_with_mic_stage_lights.webp`,
         width: 1200,
         height: 630,
         alt: "Samrat Sarkar portrait with microphone",
@@ -39,11 +43,13 @@ export const metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image" as const,
+    card: "summary_large_image",
     title: "About Samrat Sarkar | SKS Music Band",
     description:
       "Bollywood playback singer, composer, and electrifying live performer. 1300+ shows across 40+ countries.",
-    images: ["/images/smiling_head_tilting_with_mic_stage_lights.webp"],
+    images: [
+      `${SITE_URL}/images/smiling_head_tilting_with_mic_stage_lights.webp`,
+    ],
   },
   alternates: {
     canonical: `${SITE_URL}/about`,
