@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Photo & Stage Gallery",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "Photo & Stage Gallery | SKS Music Band",
     description:
       "Visual archives of live concerts, stadium lights, award ceremonies, and album artwork.",
-    url: "https://sksband.com/gallery",
+    url: `${SITE_URL}/gallery`,
     images: [
       {
         url: "/images/hero_samrat_live.webp",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     images: ["/images/hero_samrat_live.webp"],
   },
   alternates: {
-    canonical: "https://sksband.com/gallery",
+    canonical: `${SITE_URL}/gallery`,
   },
 };
 

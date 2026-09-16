@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { SITE_URL } from "@/lib/site";
 import ConfirmDeletePost from "@/components/ConfirmDeletePost";
 import PasswordField from "@/components/PasswordField";
 import SubmitButton from "@/components/SubmitButton";
@@ -13,6 +15,19 @@ import {
 import { getAdminPosts, type BlogPost } from "@/lib/blog";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Studio Login",
+  description: "Private author studio for SKS blog management.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
+  alternates: {
+    canonical: `${SITE_URL}/blog/admin`,
+  },
+};
 
 export default async function BlogAdminPage({
   searchParams,

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { SITE_URL } from "@/lib/site";
 import ScrollEffects from "@/components/ScrollEffects";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import DecryptedText from "@/components/reactbits/DecryptedText";
@@ -27,7 +28,7 @@ export const metadata = {
     title: "About Samrat Sarkar | SKS Music Band",
     description:
       "Bollywood playback singer, composer, and electrifying live performer. 1300+ shows across 40+ countries. Winner of Mirchi Music Awards.",
-    url: "https://sksband.com/about",
+    url: `${SITE_URL}/about`,
     images: [
       {
         url: "/images/smiling_head_tilting_with_mic_stage_lights.webp",
@@ -45,7 +46,7 @@ export const metadata = {
     images: ["/images/smiling_head_tilting_with_mic_stage_lights.webp"],
   },
   alternates: {
-    canonical: "https://sksband.com/about",
+    canonical: `${SITE_URL}/about`,
   },
 };
 

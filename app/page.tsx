@@ -9,6 +9,7 @@ import Endorsements from "@/components/Endorsements";
 import FaqSection from "@/components/FaqSection";
 import ConnectSection from "@/components/ConnectSection";
 import Footer from "@/components/Footer";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     description:
       "Over 1300 shows across 40+ countries. Bollywood playback singer, music director, and electrifying live performer.",
-    url: "",
+    url: SITE_URL,
     images: [
       {
         url: "/images/hero_samrat_live.webp",
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     images: ["/images/hero_samrat_live.webp"],
   },
   alternates: {
-    canonical: "",
+    canonical: SITE_URL,
   },
 };
 

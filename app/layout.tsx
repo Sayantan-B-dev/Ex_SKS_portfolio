@@ -18,13 +18,13 @@ import "../public/css/shows.css";
 import "../public/css/gallery.css";
 import "../public/css/responsive.css";
 import CanvasCursor from "@/components/ui/CanvasCursor";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://sksband.com";
 const SITE_NAME = "SKS : Samrat Sarkar Music Band";
 const OG_IMAGE = "/images/hero_samrat_live.webp";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sksband.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     template: "%s | Samrat Sarkar — SKS Music Band",

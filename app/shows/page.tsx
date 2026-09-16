@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import ScrollEffects from "@/components/ScrollEffects";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import DecryptedText from "@/components/reactbits/DecryptedText";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata = {
   title: "Live Shows & Global Tours",
@@ -26,7 +27,7 @@ export const metadata = {
     title: "Live Shows & Global Tours | SKS Music Band",
     description:
       "1300+ live performances across 40+ countries. Bryan Adams opening act, celebrity mega concerts, customizable band packages.",
-    url: "https://sksband.com/shows",
+    url: `${SITE_URL}/shows`,
     images: [
       {
         url: "/images/achievements/opening_act_bryan_adams.webp",
@@ -44,7 +45,7 @@ export const metadata = {
     images: ["/images/achievements/opening_act_bryan_adams.webp"],
   },
   alternates: {
-    canonical: "https://sksband.com/shows",
+    canonical: `${SITE_URL}/shows`,
   },
 };
 
