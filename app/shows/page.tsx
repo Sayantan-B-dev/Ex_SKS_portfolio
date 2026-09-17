@@ -5,7 +5,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollEffects from "@/components/ScrollEffects";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
-import DecryptedText from "@/components/reactbits/DecryptedText";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -123,7 +122,7 @@ export default function ShowsPage() {
           <div className="wrap subpage-hero-content reveal-up">
             <p className="subpage-tag">STAGE PRESENCE &amp; TOURS</p>
             <h1 className="subpage-title">
-              <DecryptedText text="OVER 1300 SHOWS WORLDWIDE" speed={28} maxIterations={14} />
+              OVER 1300 SHOWS WORLDWIDE
             </h1>
             <p className="subpage-subtitle">
               40+ Countries • 100+ Shows Annually • 5 to 16 Member Power Band

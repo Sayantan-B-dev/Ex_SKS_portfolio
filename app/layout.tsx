@@ -99,9 +99,6 @@ export const metadata: Metadata = {
     apple: "/images/sks_logo_png.webp",
   },
   manifest: "/manifest.json",
-  alternates: {
-    canonical: SITE_URL,
-  },
 };
 
 export const viewport: Viewport = {

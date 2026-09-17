@@ -6,7 +6,6 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollEffects from "@/components/ScrollEffects";
-import DecryptedText from "@/components/reactbits/DecryptedText";
 
 const GALLERY_ITEMS = [
   {
@@ -92,7 +91,7 @@ export default function GalleryPage() {
           <div className="wrap subpage-hero-content reveal-up">
             <p className="subpage-tag">VISUAL ARCHIVES</p>
               <h1 className="subpage-title">
-                <DecryptedText text="PHOTO AND STAGE GALLERY" speed={28} maxIterations={14} />
+                PHOTO AND STAGE GALLERY
               </h1>
             <p className="subpage-subtitle">
               Live Concerts • Stadium Lights • Award Ceremonies • Album Artwork

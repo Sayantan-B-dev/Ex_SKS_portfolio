@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import { SITE_URL } from "@/lib/site";
 import ScrollEffects from "@/components/ScrollEffects";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
-import DecryptedText from "@/components/reactbits/DecryptedText";
 
 export const metadata: Metadata = {
   title: "About Samrat Sarkar",
@@ -105,7 +104,7 @@ export default function AboutPage() {
           <div className="wrap subpage-hero-content reveal-up">
             <p className="subpage-tag">BIOGRAPHY &amp; ARTISTRY</p>
             <h1 className="subpage-title">
-              <DecryptedText text="ABOUT SAMRAT SARKAR" speed={30} maxIterations={14} />
+              ABOUT SAMRAT SARKAR
             </h1>
             <p className="subpage-subtitle">
               Playback Singer • Music Director (Film/OTTs) • Live Wire Performer
