@@ -1,9 +1,21 @@
 import type { MetadataRoute } from "next";
+
 import { SITE_URL } from "@/lib/site";
 
 const BASE_URL = SITE_URL.replace(/\/$/, "");
 
-const staticPages = [
+type SitemapPost = {
+  slug: string;
+  published_at?: string | Date | null;
+  updated_at?: string | Date | null;
+};
+
+type StaticPage = {
+  path: string;
+  lastModified: string;
+};
+
+const STATIC_PAGES: readonly StaticPage[] = [
   {
     path: "",
     lastModified: "2026-09-10",
@@ -24,35 +36,101 @@ const staticPages = [
     path: "/gallery",
     lastModified: "2026-09-10",
   },
-] as const;
+];
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticEntries: MetadataRoute.Sitemap = staticPages.map(
-    ({ path, lastModified }) => ({
-      url: `${BASE_URL}${path}`,
-      lastModified: new Date(lastModified),
-    }),
-  );
+function validDate(
+  value?: string | Date | null,
+): Date | undefined {
+  if (!value) return undefined;
 
-  try {
-    const { isBlogConfigured, getPublishedPosts } =
-      await import("@/lib/blog");
+  const date =
+    value instanceof Date
+      ? value
+      : new Date(value);
 
-    if (!isBlogConfigured()) {
-      return staticEntries;
+  return Number.isNaN(date.getTime())
+    ? undefined
+    : date;
+}
+
+function sitemapEntry(
+  path: string,
+  lastModified?: string | Date | null,
+): MetadataRoute.Sitemap[number] {
+  const item: MetadataRoute.Sitemap[number] = {
+    url: `${BASE_URL}${path}`,
+  };
+
+  const date = validDate(lastModified);
+
+  if (date) {
+    item.lastModified = date;
+  }
+
+  return item;
+}
+
+function dedupeEntries(
+  entries: MetadataRoute.Sitemap,
+): MetadataRoute.Sitemap {
+  const seen = new Set<string>();
+
+  return entries.filter((item) => {
+    if (seen.has(item.url)) {
+      return false;
     }
 
-    const posts = await getPublishedPosts();
+    seen.add(item.url);
+    return true;
+  });
+}
 
-    const postEntries: MetadataRoute.Sitemap = posts
-      .filter((post) => post.slug && post.published_at)
-      .map((post) => ({
-        url: `${BASE_URL}/blog/${encodeURIComponent(post.slug)}`,
-        lastModified: new Date(post.published_at),
-      }));
+export const revalidate = 3600;
 
-    return [...staticEntries, ...postEntries];
-  } catch {
-    return staticEntries;
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const staticEntries: MetadataRoute.Sitemap =
+    STATIC_PAGES.map(({ path, lastModified }) =>
+      sitemapEntry(path, lastModified),
+    );
+
+  let blogEntries: MetadataRoute.Sitemap = [];
+
+  try {
+    const {
+      isBlogConfigured,
+      getPublishedPosts,
+    } = await import("@/lib/blog");
+
+    if (isBlogConfigured()) {
+      const posts =
+        (await getPublishedPosts()) as SitemapPost[];
+
+      blogEntries = posts
+        .filter(
+          (post) =>
+            Boolean(post?.slug) &&
+            Boolean(
+              post?.updated_at ??
+                post?.published_at,
+            ),
+        )
+        .map((post) =>
+          sitemapEntry(
+            `/blog/${encodeURIComponent(post.slug)}`,
+            post.updated_at ??
+              post.published_at,
+          ),
+        );
+    }
+  } catch (error) {
+    console.error(
+      "Sitemap: failed to fetch blog posts:",
+      error,
+    );
   }
+
+  return dedupeEntries([
+    ...staticEntries,
+    ...blogEntries,
+  ]);
 }
