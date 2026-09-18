@@ -66,7 +66,7 @@ export default function ConnectSection() {
           </svg>
           <p>Connect with us to know more.</p>
         </div>
-        <a href="mailto:bookings@samratmusic.com" className="btn-getintouch">
+        <a href="mailto:Samratkasagar@gmail.com" className="btn-getintouch">
           GET IN TOUCH
         </a>
       </div>

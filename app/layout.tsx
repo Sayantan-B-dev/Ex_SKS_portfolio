@@ -151,8 +151,8 @@ export default function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "booking",
-      email: "bookings@samratmusic.com",
-      telephone: "+91-98765-43210",
+      email: "Samratkasagar@gmail.com",
+      telephone: "+91-99304-39715",
     },
   };
 

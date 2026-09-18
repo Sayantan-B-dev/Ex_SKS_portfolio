@@ -65,7 +65,7 @@ export default function Hero() {
         isOpen={playHeroVideo}
         onClose={() => setPlayHeroVideo(false)}
         title="Aao Huzoor : Samrat Sarkar Live"
-        videoId="CdQI-Q0ROVg"
+        videoId="GHTWrTMTdiM"
       />
     </section>
   );
