@@ -90,6 +90,29 @@
   color: #000;
   transform: rotate(90deg);
 }
+.video-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.video-modal-youtube-link {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 7px 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+.video-modal-youtube-link:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #000;
+}
 .video-modal-iframe-wrap {
   position: relative;
   width: 100%;

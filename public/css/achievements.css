@@ -82,3 +82,7 @@
   line-height: 1.7;
   letter-spacing: 0.04em;
 }
+.p4-watch-link {
+  margin-top: 14px;
+  display: inline-block;
+}

@@ -37,14 +37,24 @@ export default function VideoModal({ isOpen, onClose, title, videoId }: VideoMod
           <div className="video-modal-title">
             <span className="playing-dot" /> {title}
           </div>
-          <button
-            type="button"
-            className="video-modal-close"
-            onClick={onClose}
-            aria-label="Close video modal"
-          >
-            ✕
-          </button>
+          <div className="video-modal-actions">
+            <a
+              href={`https://www.youtube.com/watch?v=${videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="video-modal-youtube-link"
+            >
+              VIEW IT ON YOUTUBE
+            </a>
+            <button
+              type="button"
+              className="video-modal-close"
+              onClick={onClose}
+              aria-label="Close video modal"
+            >
+              ✕
+            </button>
+          </div>
         </div>
 
         <div className="video-modal-iframe-wrap">

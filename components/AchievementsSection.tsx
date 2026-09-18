@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import VideoModal from "@/components/VideoModal";
 
 const PANELS = [
   {
@@ -22,6 +26,8 @@ const PANELS = [
 ];
 
 export default function AchievementsSection() {
+  const [playSharedStageVideo, setPlaySharedStageVideo] = useState(false);
+
   return (
     <section className="achievements reveal-stagger" id="achievements">
       {PANELS.map((panel, idx) => (
@@ -73,8 +79,22 @@ export default function AchievementsSection() {
             <br />
             &amp; OTHER SUPERSTARS
           </p>
+          <button
+            type="button"
+            onClick={() => setPlaySharedStageVideo(true)}
+            className="btn-outline p4-watch-link"
+          >
+            WATCH VIDEO
+          </button>
         </div>
       </div>
+
+      <VideoModal
+        isOpen={playSharedStageVideo}
+        onClose={() => setPlaySharedStageVideo(false)}
+        title="Shared Stage With Superstars : Samrat Sarkar Live"
+        videoId="8CZk4NYqApU"
+      />
     </section>
   );
 }
