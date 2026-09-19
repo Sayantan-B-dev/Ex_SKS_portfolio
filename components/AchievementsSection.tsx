@@ -8,19 +8,19 @@ const PANELS = [
   {
     src: "/images/achievements/shows_countries.webp",
     className: "p1",
-    alt: "Over 1300 shows across 40 countries",
+    alt: "Samrat Sarkar SKS Music Band — over 1300 live shows across 40 countries worldwide",
     text: ["OVER 1300 SHOWS", "40 COUNTRIES"],
   },
   {
     src: "/images/achievements/opening_act_bryan_adams.webp",
     className: "p2",
-    alt: "Opening act for Bryan Adams",
+    alt: "Samrat Sarkar opening act for Bryan Adams at Palace Gardens Bangalore",
     text: ["OPENING ACT", "FOR BRYAN ADAMS"],
   },
   {
     src: "/images/achievements/winner_mirchi_music.webp",
     className: "p3",
-    alt: "Winner of Mirchi Music",
+    alt: "Winner of Mirchi Music Awards — Samrat Sarkar SKS Band",
     text: ["WINNER OF", "MIRCHI MUSIC"],
   },
 ];
@@ -61,7 +61,7 @@ export default function AchievementsSection() {
       >
         <Image
           src="/images/achievements/shared_stage_crowd.webp"
-          alt="Shared stage with superstars"
+          alt="Samrat Sarkar shared stage with Amitabh Bachchan, SRK, Salman Khan, Sachin Tendulkar, and Akshay Kumar"
           fill
           loading="lazy"
           sizes="(max-width: 900px) 100vw, 25vw"

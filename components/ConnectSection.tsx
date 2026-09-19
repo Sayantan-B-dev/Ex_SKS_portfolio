@@ -37,7 +37,7 @@ export default function ConnectSection() {
       <div className="connect-img reveal-up" data-parallax="connect-img">
         <Image
           src="/images/posing_on_stage_after_singing_background_crowd_with_flashlight.webp"
-          alt="Samrat posing on stage after performance with crowd"
+          alt="Samrat Sarkar posing on stage after live performance with crowd — book SKS Music Band for events"
           fill
           loading="lazy"
           sizes="(max-width: 768px) 320px, 40vw"

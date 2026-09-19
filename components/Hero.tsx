@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="hero-img-wrap" data-parallax="hero-bg">
         <Image
           src="/images/singing_on_stage_background_fire.webp"
-          alt="Samrat performing live on stage with fire"
+          alt="Samrat Sarkar performing live on stage with fire — Bollywood playback singer and live band performer"
           fill
           priority
           quality={100}

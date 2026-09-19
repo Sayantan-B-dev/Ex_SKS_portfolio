@@ -1,0 +1,24 @@
+# SKS Music Band — Samrat Sarkar
+# https://www.samratsarkar.co
+
+/* TEAM */
+Samrat Sarkar — Playback Singer, Music Director, Live Performer
+Contact: Samratkasagar@gmail.com
+Twitter: @singersamrat
+Instagram: @singersamrat
+YouTube: @SammratKaSaagar
+Facebook: sammratKaSaagar
+
+/* SITE */
+Last update: 2026/09/20
+Language: English, Hindi
+Doctype: HTML5
+Framework: Next.js 16 (App Router)
+Hosting: Vercel
+CSS: Custom (no framework)
+Fonts: Big Shoulders, Oswald, Figtree (Google Fonts)
+Icons: WebP
+
+/* THANKS */
+Google Search Console
+Vercel Analytics
