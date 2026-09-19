@@ -21,6 +21,16 @@ export const metadata: Metadata = {
     "tour diary",
     "studio moments",
     "live band India",
+    "Samrat Sarkar tour diary",
+    "SKS music band blog",
+    "Bollywood singer blog",
+    "Indian musician blog",
+    "concert stories India",
+    "live music stories",
+    "backstage stories India",
+    "Bollywood band diary",
+    "Indian live band stories",
+    "music tour blog India",
   ],
   openGraph: {
     type: "website",
@@ -55,8 +65,31 @@ export default async function BlogPage() {
   if (isBlogConfigured()) {
     posts = await getPublishedPosts();
   }
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${SITE_URL}/blog`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
       <main className="blog-page">
         <section className="blog-hero">

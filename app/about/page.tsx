@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     "Bollywood playback singer, composer, and electrifying live performer Samrat Sarkar. Sa Re Ga Ma prodigy, debut album Dil Se chart-topper, Cannes-acclaimed Lines soundtrack, Roland & Samson endorser. 1300+ shows in 40+ countries.",
   keywords: [
     "Samrat Sarkar biography",
+    "Samrat Sarkar singer",
     "Bollywood singer profile",
     "playback singer India",
     "music director",
@@ -23,6 +24,24 @@ export const metadata: Metadata = {
     "Cannes Festival Lines",
     "Dil Se album",
     "Sa Re Ga Ma",
+    "Samrat Sarkar age",
+    "Samrat Sarkar hometown",
+    "Samrat Sarkar Kolkata",
+    "Sammrat Ka Saagar biography",
+    "Indian singer songwriter",
+    "Bollywood playback singer list",
+    "top Bollywood singers India",
+    "best live performer India",
+    "Roland India artist profile",
+    "Samson endorser India",
+    "Cannes film music composer",
+    "Lines Hina Khan film music",
+    "Dil Di Dhadkan singer",
+    "Bichde singer",
+    "Aao Huzoor original singer",
+    "Majhire Majhi singer",
+    "Sa Re Ga Ma contestant",
+    "child prodigy singer India",
   ],
   openGraph: {
     type: "website",
@@ -83,9 +102,65 @@ const MILESTONES = [
 ];
 
 export default function AboutPage() {
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Samrat Sarkar",
+    alternateName: ["Sammrat Ka Saagar", "Samrat Sarkar Singer"],
+    jobTitle: "Playback Singer, Music Director, Live Performer",
+    url: `${SITE_URL}/about`,
+    image: `${SITE_URL}/images/smiling_head_tilting_with_mic_stage_lights.webp`,
+    description:
+      "Bollywood playback singer, composer, and electrifying live performer. Over 1300 shows across 40+ countries. Winner of Mirchi Music Awards. Endorsed by Roland & Samson.",
+    birthPlace: {
+      "@type": "Place",
+      name: "Kolkata, India",
+    },
+    sameAs: [
+      "https://www.youtube.com/@SammratKaSaagar",
+      "https://www.facebook.com/sammratKaSaagar",
+      "https://www.instagram.com/singersamrat",
+    ],
+    award: ["Mirchi Music Awards", "Umang Mumbai Police Awards"],
+    knowsAbout: [
+      "Bollywood Playback Singing",
+      "Live Music Performance",
+      "Music Direction",
+      "Indian Pop Music",
+      "Punjabi Music",
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About Samrat Sarkar",
+        item: `${SITE_URL}/about`,
+      },
+    ],
+  };
+
   return (
     <>
       <ScrollEffects />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
       <main className="page-main">
         {/* Page Hero */}
@@ -93,7 +168,7 @@ export default function AboutPage() {
           <div className="subpage-hero-bg">
             <Image
               src="/images/posing_on_stage_after_singing_background_crowd_with_flashlight.webp"
-              alt="Samrat Sarkar live on stage with crowd and flashlights"
+              alt="Samrat Sarkar live on stage with crowd and flashlights — Bollywood playback singer and live performer"
               fill
               priority
               sizes="100vw"
@@ -119,7 +194,7 @@ export default function AboutPage() {
               <div className="about-portrait-card">
                 <Image
                   src="/images/smiling_head_tilting_with_mic_stage_lights.webp"
-                  alt="Samrat Sarkar portrait holding a microphone under stage lights"
+                  alt="Samrat Sarkar portrait holding a microphone under stage lights — SKS Music Band founder"
                   fill
                   priority
                   className="img-smooth"

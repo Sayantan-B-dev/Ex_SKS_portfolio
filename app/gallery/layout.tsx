@@ -13,6 +13,16 @@ export const metadata: Metadata = {
     "award ceremony",
     "Bollywood singer photos",
     "concert photography",
+    "Samrat Sarkar gallery",
+    "SKS band live photos",
+    "Indian singer photos",
+    "Bollywood live concert images",
+    "concert stage photos India",
+    "celebrity concert photos",
+    "stadium concert photos",
+    "award night photos India",
+    "Bryan Adams opening act photo",
+    "live band performance photos",
   ],
   openGraph: {
     type: "website",
@@ -48,5 +58,32 @@ export default function GalleryLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Gallery",
+        item: `${SITE_URL}/gallery`,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

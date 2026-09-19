@@ -22,6 +22,28 @@ export const metadata: Metadata = {
     "1300 shows",
     "40 countries",
     "Sammrat Ka Saagar live",
+    "Samrat Sarkar live shows",
+    "hire live band for event",
+    "best live shows India",
+    "celebrity concert India",
+    "Bollywood live concert",
+    "international touring band",
+    "world tour band India",
+    "stadium concert band",
+    "mega concert India",
+    "corporate gala entertainment",
+    "luxury wedding band India",
+    "sangeet night band",
+    "baraat band hire",
+    "private event live band",
+    "5 member band India",
+    "16 member big band India",
+    "customizable band package India",
+    "Bryan Adams Bangalore opening act",
+    "Umang Awards performer",
+    "concert band for hire near me",
+    "live music for wedding reception",
+    "Bollywood band for corporate event",
   ],
   openGraph: {
     type: "website",
@@ -101,9 +123,60 @@ const HIGHLIGHT_SHOWS = [
 ];
 
 export default function ShowsPage() {
+  const eventJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "EventSeries",
+    name: "Samrat Sarkar & SKS Music Band Live Shows",
+    description:
+      "1300+ live performances across 40+ countries. Bollywood playback singer Samrat Sarkar and the SKS power band performing at concerts, corporate events, weddings, and global tours.",
+    url: `${SITE_URL}/shows`,
+    image: `${SITE_URL}/images/achievements/opening_act_bryan_adams.webp`,
+    performer: {
+      "@type": "MusicGroup",
+      name: "Sammrat Ka Saagar (SKS)",
+      url: SITE_URL,
+    },
+    location: {
+      "@type": "Place",
+      name: "Worldwide",
+    },
+    organizer: {
+      "@type": "MusicGroup",
+      name: "Sammrat Ka Saagar (SKS)",
+      url: SITE_URL,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Live Shows & Tours",
+        item: `${SITE_URL}/shows`,
+      },
+    ],
+  };
+
   return (
     <>
       <ScrollEffects />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
       <main className="page-main">
         {/* Page Hero */}
@@ -111,7 +184,7 @@ export default function ShowsPage() {
           <div className="subpage-hero-bg">
             <Image
               src="/images/singing_on_stage_background_fire.webp"
-              alt="Samrat live concert stage"
+              alt="Samrat Sarkar live concert stage — SKS Music Band performing worldwide across 40 countries"
               fill
               priority
               sizes="100vw"
