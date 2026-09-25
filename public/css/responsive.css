@@ -254,6 +254,11 @@
     min-height: auto;
     height: 80vh;
   }
+  /* Centered crop on phones : the site-wide left-top anchor pushes the
+     performer out of the narrow frame, so the hero opts out below 768px. */
+  .hero-img-wrap img {
+    object-position: center;
+  }
   .hero-content {
     padding: 60px 24px 180px;
     max-width: 100%;
