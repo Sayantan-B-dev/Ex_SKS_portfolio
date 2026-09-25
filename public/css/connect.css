@@ -1,8 +1,8 @@
-/* ===== CONNECT ===== */
+/* ===== CONNECT : 3-column layout, 3:4 portrait photo in the middle ===== */
 .connect {
-  padding: 60px 40px 0;
+  padding: 60px 40px;
   display: grid;
-  grid-template-columns: 1fr 1.05fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
   gap: 30px;
   align-items: center;
 }
@@ -31,37 +31,30 @@
   margin-top: 3px;
   color: var(--pink);
 }
-.connect-img {
-  border-radius: 10px 10px 0 0;
-  overflow: hidden;
-  /* Matches the source photo's own ratio on purpose : this image must never be
-     cropped, unlike every other slot on the site. Deliberate exception to the
-     "don't change container ratios" rule, at the client's request. */
-  aspect-ratio: 16 / 9;
+/* Fixed 3 / 4 portrait slot : the container drives the crop, never the source.
+   Centred anchor keeps the performer in frame when the landscape source is
+   cropped to portrait — same opt-out as .footer-bg-img. Served at quality 100
+   with a sizes hint matching the slot, so it keeps full detail. */
+.connect-photo {
   position: relative;
+  width: 320px;
+  max-width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
   will-change: transform;
-  /* Full width stays visible; the left and right edges fade out instead of
-     being cut, so the photo blends into the page. */
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    #000 14%,
-    #000 86%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    #000 14%,
-    #000 86%,
-    transparent 100%
-  );
 }
-.connect-img img {
-  /* No offset needed : the slot matches the photo's ratio, so nothing is
-     cropped and object-position has no effect. No filter either — this client
-     photo is shown raw, see the note in DESIGN.md. */
+.connect-photo img {
   object-position: center;
+}
+/* Magnet layer : overscanned 24px on every side so the ±14px cursor drift
+   never exposes an edge — the fixed container clips it (overflow hidden). */
+.connect-magnet {
+  position: absolute;
+  inset: -24px;
+  will-change: transform;
+  transition: transform 0.18s ease-out;
 }
 .connect-right {
   display: flex;

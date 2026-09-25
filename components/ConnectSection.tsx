@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
 
 const HIGHLIGHTS = [
   "Playback Singer",
@@ -15,6 +18,31 @@ const Star = () => (
 );
 
 export default function ConnectSection() {
+  const magnetRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useRef<boolean | null>(null);
+
+  // Magnet drift : the fixed container never moves (overflow hidden clips),
+  // the overscanned image inside leans toward the cursor and springs back.
+  const onMagnetMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const layer = magnetRef.current;
+    if (!layer) return;
+    if (reduceMotion.current === null) {
+      reduceMotion.current = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+    }
+    if (reduceMotion.current) return;
+    const box = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - box.left) / box.width - 0.5;
+    const y = (e.clientY - box.top) / box.height - 0.5;
+    // Subtle : a few px of lean is felt without ever looking off-center.
+    const shift = 7;
+    layer.style.transform = `translate3d(${(x * 2 * shift).toFixed(1)}px, ${(y * 2 * shift).toFixed(1)}px, 0)`;
+  };
+  const onMagnetLeave = () => {
+    magnetRef.current?.style.setProperty("transform", "translate3d(0, 0, 0)");
+  };
+
   return (
     <section className="connect wrap" id="connect">
       <div className="connect-left reveal-up">
@@ -34,16 +62,23 @@ export default function ConnectSection() {
         </ul>
       </div>
 
-      <div className="connect-img reveal-up" data-parallax="connect-img">
-        <Image
-          src="/images/posing_on_stage_after_singing_background_crowd_with_flashlight.webp"
-          alt="Samrat Sarkar posing on stage after live performance with crowd — book SKS Music Band for events"
-          fill
-          loading="lazy"
-          quality={100}
-          sizes="(max-width: 900px) 340px, 40vw"
-          className="img-smooth"
-        />
+      <div
+        className="connect-photo reveal-up"
+        data-parallax="connect-img"
+        onMouseMove={onMagnetMove}
+        onMouseLeave={onMagnetLeave}
+      >
+        <div className="connect-magnet" ref={magnetRef}>
+          <Image
+            src="/images/posing_on_stage_after_singing_background_crowd_with_flashlight.webp"
+            alt="Samrat Sarkar posing on stage after live performance with crowd — book SKS Music Band for events"
+            fill
+            loading="lazy"
+            quality={100}
+            sizes="(max-width: 900px) 100vw, 100vw"
+            className="img-smooth"
+          />
+        </div>
       </div>
 
       <div className="connect-right reveal-up">

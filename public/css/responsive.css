@@ -95,21 +95,16 @@
     height: 70px;
   }
 
-  /* Connect */
+  /* Connect : stacks with the photo staying in the middle */
   .connect {
     grid-template-columns: 1fr;
     gap: 30px;
-    padding: 50px 30px 0;
+    padding: 50px 30px;
   }
-  .connect-img {
-    /* width is required: with auto margins + max-width and no in-flow content
-       the grid item would otherwise resolve to fit-content (0px) and vanish */
+  .connect-photo {
     width: 100%;
     max-width: 340px;
     margin: 0 auto;
-    /* keeps the uncropped 16 / 9 framing from connect.css */
-    aspect-ratio: 16 / 9;
-    order: -1;
   }
   .connect-left {
     text-align: center;
@@ -402,11 +397,10 @@
 
   /* Connect */
   .connect {
-    padding: 40px 20px 0;
+    padding: 40px 20px;
   }
-  .connect-img {
-    width: 100%;
-    max-width: 280px;
+  .connect-photo {
+    max-width: 300px;
   }
   .connect-left h2 {
     font-size: clamp(22px, 3vw, 28px);
@@ -731,12 +725,11 @@
 
   /* Connect */
   .connect {
-    padding: 36px 16px 0;
+    padding: 36px 16px;
     gap: 24px;
   }
-  .connect-img {
-    width: 100%;
-    max-width: 240px;
+  .connect-photo {
+    max-width: 260px;
   }
   .connect-left h2 {
     font-size: clamp(20px, 4vw, 26px);
