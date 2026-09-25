@@ -14,10 +14,6 @@ const SONGS = [
     videoId: "TymQvultiAw",
   },
   {
-    title: "TUM ITNI KHOOBSURAT HO",
-    videoId: "C-DQBUY0VQc",
-  },
-  {
     title: "BICHDE",
     videoId: "dbILxBMJaAM",
   },

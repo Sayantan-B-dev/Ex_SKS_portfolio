@@ -92,12 +92,6 @@ YouTube:
 https://www.youtube.com/results?search_query=Kukku+The+Great+Samrat+Sarkar
 
 
-## Tum Itni Khoobsurat Ho : Singardaan
-
-YouTube:
-https://www.youtube.com/results?search_query=Tum+Itni+Khoobsurat+Ho+Samrat+Sarkar
-
-
 ## 2 BHK / Radio
 
 YouTube:
@@ -221,7 +215,5 @@ https://www.youtube.com/results?search_query=Samrat+Sarkar+Dil+Se
 https://www.youtube.com/results?search_query=Samrat+Sarkar+Majhire+Majhi
 
 https://www.youtube.com/results?search_query=Samrat+Sarkar+Tadap
-
-https://www.youtube.com/results?search_query=Tum+Itni+Khoobsurat+Ho+Samrat+Sarkar
 
 https://www.youtube.com/results?search_query=Lines+Samrat+Sarkar+Mera+Sona+Bachpan
