@@ -66,9 +66,21 @@
   .ach-panel.p3 {
     clip-path: none;
   }
+  /* Panels are plain rectangles here, so drop the trapezoid clip and let the
+     media sit evenly inset : the ring becomes a uniform 1px border. These
+     selectors must match the per-panel ones in achievements.css to win. */
+  .ach-panel.p1 .ach-media,
+  .ach-panel.p2 .ach-media,
+  .ach-panel.p3 .ach-media {
+    clip-path: none;
+    inset: 1px;
+  }
   .p4 {
     grid-column: 1 / -1;
     min-height: 180px;
+  }
+  .ach-feature {
+    grid-template-columns: 240px 1fr;
   }
 
   /* Endorsements */
@@ -87,9 +99,13 @@
     padding: 50px 30px 0;
   }
   .connect-img {
+    /* width is required: with auto margins + max-width and no in-flow content
+       the grid item would otherwise resolve to fit-content (0px) and vanish */
+    width: 100%;
     max-width: 340px;
     margin: 0 auto;
-    aspect-ratio: 3 / 3.2;
+    /* keeps the uncropped 16 / 9 framing from connect.css */
+    aspect-ratio: 16 / 9;
     order: -1;
   }
   .connect-left {
@@ -323,6 +339,10 @@
     left: 16px;
     bottom: 16px;
   }
+  .ach-feature-text {
+    font-size: 14px;
+    padding: 18px 20px;
+  }
   .p4 h2 {
     font-size: 17px;
   }
@@ -344,6 +364,7 @@
     padding: 40px 20px 0;
   }
   .connect-img {
+    width: 100%;
     max-width: 280px;
   }
   .connect-left h2 {
@@ -624,6 +645,15 @@
   .ach-panel {
     min-height: 200px;
   }
+  .ach-feature {
+    grid-template-columns: 1fr;
+  }
+  .ach-feature-img {
+    /* definite width + justify-self: auto margins would collapse this to 0 */
+    width: 100%;
+    max-width: 260px;
+    justify-self: center;
+  }
   .ach-text {
     font-size: 14px;
     left: 14px;
@@ -660,6 +690,7 @@
     gap: 24px;
   }
   .connect-img {
+    width: 100%;
     max-width: 240px;
   }
   .connect-left h2 {
@@ -937,8 +968,15 @@
   .hero-img-wrap,
   .badge,
   .connect-img,
-  .ach-panel img {
+  .ach-panel img,
+  .ach-text {
     transform: none !important;
+  }
+  /* the hover sweep would otherwise park its gradient over the photo */
+  .ach-media::after,
+  .p4::before,
+  .ach-feature-img::after {
+    display: none !important;
   }
 }
 
