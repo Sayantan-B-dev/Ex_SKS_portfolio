@@ -6,36 +6,66 @@ import VideoModal from "@/components/VideoModal";
 
 type AchievementPanel = {
   src: string;
-  className: string;
+  pos: "p1" | "p2" | "p3" | "p4";
   alt: string;
-  text: [string, string];
-  /** Optional press citation rendered under the yellow label. */
-  article?: { href: string; headline: string };
+  eyebrow: string;
+  lines: string[];
+  body: React.ReactNode;
+  cue: string;
+  /** Optional press link rendered as the panel cue. */
+  article?: { href: string; title: string };
 };
+
+const MID_DAY_URL =
+  "https://www.mid-day.com/buzz/article/singer-samrat-sarkar-s-career-is-soaring-high-from-hindi-pop-song-collaboration-with-usha-uthup-to-performing-live-in-40-countries-8452";
 
 const PANELS: AchievementPanel[] = [
   {
     src: "/images/achievements/shows_countries.webp",
-    className: "p1",
+    pos: "p1",
     alt: "Samrat Sarkar SKS Music Band — over 1300 live shows across 40 countries worldwide",
-    text: ["OVER 1300 SHOWS", "40 COUNTRIES"],
+    eyebrow: "01 · Live Career",
+    lines: ["OVER 1300 SHOWS", "40 COUNTRIES"],
+    body: "More than 1,300 live shows across 40 countries, building an international performance career.",
+    cue: "Live Performer",
   },
   {
     src: "/images/achievements/opening_act_bryan_adams2.webp",
-    className: "p2",
-    alt: "Samrat Sarkar opening act for Bryan Adams at Palace Gardens Bangalore",
-    text: ["OPENING ACT", "FOR BRYAN ADAMS"],
+    pos: "p2",
+    alt: "Samrat Sarkar career soaring high — Hindi pop collaboration with Usha Uthup, live in 40 countries",
+    eyebrow: "02 · Career Milestone",
+    lines: ["FROM", "USHA UTHUP", "TO 40 COUNTRIES"],
+    body: "Singer Samrat Sarkar's career is soaring high, from Hindi pop song collaboration with Usha Uthup to performing live in 40 countries.",
+    cue: "Click to see more",
     article: {
-      href: "https://www.mid-day.com/buzz/article/singer-samrat-sarkar-s-career-is-soaring-high-from-hindi-pop-song-collaboration-with-usha-uthup-to-performing-live-in-40-countries-8452",
-      headline:
+      href: MID_DAY_URL,
+      title:
         "Singer Samrat Sarkar's career is soaring high, from Hindi Pop song collaboration with Usha Uthup to performing live in 40 countries",
     },
   },
   {
     src: "/images/achievements/winner_mirchi_music_flipped.webp",
-    className: "p3",
+    pos: "p3",
     alt: "Winner of Mirchi Music Awards — Samrat Sarkar SKS Band",
-    text: ["WINNER OF", "MIRCHI MUSIC"],
+    eyebrow: "03 · Recognition",
+    lines: ["WINNER OF", "MIRCHI", "MUSIC"],
+    body: "Recognised as a winner at the Mirchi Music Awards.",
+    cue: "Award Recognition",
+  },
+  {
+    src: "/images/achievements/sharing_stage_with_bryan.webp",
+    pos: "p4",
+    alt: "Samrat Sarkar sharing the stage with Bryan Adams at Palace Grounds, Bangalore",
+    eyebrow: "04 · Major Performance",
+    lines: ["OPENING ACT", "FOR BRYAN", "ADAMS"],
+    body: (
+      <>
+        He notably performed the{" "}
+        <strong>opening act for rock legend Bryan Adams</strong> at Palace
+        Grounds, Bangalore.
+      </>
+    ),
+    cue: "Palace Grounds · Bangalore",
   },
 ];
 
@@ -44,102 +74,100 @@ export default function AchievementsSection() {
 
   return (
     <section className="achievements reveal-stagger" id="achievements">
-      {PANELS.map((panel, idx) => (
-        <div
-          className={`ach-panel ${panel.className} reveal-item`}
-          key={panel.alt}
-          data-parallax="panel"
-          style={{ "--i": idx } as React.CSSProperties}
-        >
-          {/* Clipped 1px inside the panel so the panel's background shows as a
-              thin border that follows the trapezoid's diagonal edges. */}
-          <div className="ach-media">
-            <Image
-              src={panel.src}
-              alt={panel.alt}
-              fill
-              loading="lazy"
-              sizes="(max-width: 900px) 50vw, 25vw"
-              className="img-smooth"
-            />
-            <div className="ach-overlay" />
+      <div className="ach-layout">
+        {/* Shared-stage strip : full width on top of the 2x2 grid */}
+        <div className="ach-wide reveal-item" style={{ "--i": 0 } as React.CSSProperties}>
+          <div className="ach-wide-photo" aria-hidden="true">
+            <div className="ach-zoom">
+              <Image
+                src="/images/achievements/shared_stage_crowd.webp"
+                alt=""
+                fill
+                loading="lazy"
+                sizes="100vw"
+                className="img-smooth"
+              />
+              <div className="ach-overlay" />
+            </div>
           </div>
-          <div className="ach-text">
-            {panel.text[0]}
-            <br />
-            {panel.text[1]}
-            {panel.article && (
-              <a
-                className="ach-press"
-                href={panel.article.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={panel.article.headline}
-                aria-label={`Read the full article: ${panel.article.headline}`}
-              >
-                <span className="ach-press-headline">{panel.article.headline}</span>
-                <span className="ach-press-more">Click to see more</span>
-              </a>
-            )}
+          <div className="ach-wide-inner">
+            <div className="ach-wide-copy">
+              <span className="ach-wide-title">SHARED STAGE WITH</span>
+              <span className="ach-wide-names">
+                MR. BACHCHAN, SRK, SALMAN KHAN, SACHIN TENDULKAR, KAREENA,
+                AKSHAY KUMAR &amp; OTHER SUPERSTARS
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setPlaySharedStageVideo(true)}
+              className="btn-outline ach-wide-watch"
+            >
+              WATCH VIDEO
+            </button>
           </div>
         </div>
-      ))}
 
-      <div
-        className="ach-panel p4 reveal-item"
-        data-parallax="panel"
-        style={{ "--i": PANELS.length } as React.CSSProperties}
-      >
-        <Image
-          src="/images/achievements/shared_stage_crowd.webp"
-          alt="Samrat Sarkar shared stage with Amitabh Bachchan, SRK, Salman Khan, Sachin Tendulkar, and Akshay Kumar"
-          fill
-          loading="lazy"
-          sizes="(max-width: 900px) 100vw, 25vw"
-          className="img-smooth p4-bg"
-        />
-        <div className="ach-overlay p4-overlay" />
-        <div className="p4-content">
-          <h2>SHARED STAGE WITH</h2>
-          <p>
-            MR. BACHCHAN, SRK,
-            <br />
-            SALMAN KHAN, SACHIN TENDULKAR,
-            <br />
-            KAREENA, AKSHAY KUMAR
-            <br />
-            &amp; OTHER SUPERSTARS
-          </p>
-          <button
-            type="button"
-            onClick={() => setPlaySharedStageVideo(true)}
-            className="btn-outline p4-watch-link"
+        {PANELS.map((panel, idx) => (
+          <div
+            className={`ach-panel ${panel.pos} reveal-item`}
+            key={panel.eyebrow}
+            data-parallax="panel"
+            style={{ "--i": idx + 1 } as React.CSSProperties}
           >
-            WATCH VIDEO
-          </button>
-        </div>
-      </div>
-
-      {/* Bryan Adams moment : own container so it isn't buried in the p4 list */}
-      <div
-        className="ach-feature reveal-item"
-        style={{ "--i": PANELS.length + 1 } as React.CSSProperties}
-      >
-        <div className="ach-feature-img">
-          <Image
-            src="/images/achievements/sharing_stage_with_bryan.webp"
-            alt="Samrat Sarkar sharing the stage with Bryan Adams at Palace Grounds, Bangalore"
-            fill
-            loading="lazy"
-            sizes="(max-width: 480px) 100vw, 340px"
-            className="img-smooth"
-          />
-        </div>
-        <p className="ach-feature-text">
-          He notably performed the{" "}
-          <strong>opening act for rock legend Bryan Adams</strong> at Palace
-          Grounds, Bangalore.
-        </p>
+            <div className="ach-media">
+              <div className="ach-zoom">
+                <Image
+                  src={panel.src}
+                  alt={panel.alt}
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 480px) 100vw, 50vw"
+                  className="img-smooth"
+                />
+                <div className="ach-overlay" />
+              </div>
+            </div>
+            <span className="ach-eyebrow">{panel.eyebrow}</span>
+            <div className="ach-text">
+              <span className="ach-heading">
+                {panel.lines.map((line, i) => (
+                  <span key={line}>
+                    {i > 0 && <br />}
+                    {line}
+                  </span>
+                ))}
+              </span>
+              <span className="ach-body">
+                {panel.article && (
+                  <Image
+                    src="/logos/middaylogo.webp"
+                    alt="Mid-day"
+                    width={112}
+                    height={30}
+                    loading="lazy"
+                    className="ach-press-logo-side"
+                  />
+                )}
+                {panel.body}
+              </span>
+              {panel.article ? (
+                <a
+                  className="ach-cue"
+                  href={panel.article.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={panel.article.title}
+                  aria-label={`Read the full article: ${panel.article.title}`}
+                >
+                  <span>{panel.cue}</span>
+                </a>
+              ) : (
+                <span className="ach-cue">{panel.cue}</span>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
 
       <VideoModal

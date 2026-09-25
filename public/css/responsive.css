@@ -52,35 +52,38 @@
 
   /* Achievements */
   .achievements {
-    grid-template-columns: 1fr 1fr;
-    min-height: auto;
+    padding: 0 30px;
+  }
+  .ach-layout {
+    gap: 8px;
   }
   .ach-panel {
-    min-height: 260px;
+    min-height: 320px;
   }
-  .ach-panel.p1,
-  .ach-panel.p2 {
-    clip-path: none;
-    margin-right: 0;
+  .ach-text {
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
   }
-  .ach-panel.p3 {
-    clip-path: none;
+  .ach-eyebrow {
+    top: 24px;
+    left: 24px;
+    right: auto;
   }
-  /* Panels are plain rectangles here, so drop the trapezoid clip and let the
-     media sit evenly inset : the ring becomes a uniform 1px border. These
-     selectors must match the per-panel ones in achievements.css to win. */
-  .ach-panel.p1 .ach-media,
-  .ach-panel.p2 .ach-media,
-  .ach-panel.p3 .ach-media {
-    clip-path: none;
-    inset: 1px;
+  .ach-heading {
+    font-size: clamp(19px, 2.8vw, 26px);
   }
-  .p4 {
-    grid-column: 1 / -1;
-    min-height: 180px;
+  .ach-body {
+    font-size: 12.5px;
   }
-  .ach-feature {
-    grid-template-columns: 240px 1fr;
+  .ach-wide-inner {
+    padding: 36px 30px;
+  }
+  .ach-wide {
+    margin: 0 24px;
+  }
+  .ach-wide-title {
+    font-size: clamp(20px, 3vw, 28px);
   }
 
   /* Endorsements */
@@ -331,23 +334,61 @@
   }
 
   /* Achievements */
+  .achievements {
+    padding: 0 20px;
+  }
+  .ach-layout {
+    gap: 8px;
+  }
   .ach-panel {
-    min-height: 220px;
+    min-height: 300px;
   }
   .ach-text {
-    font-size: 15px;
-    left: 16px;
-    bottom: 16px;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
   }
-  .ach-feature-text {
-    font-size: 14px;
-    padding: 18px 20px;
+  .ach-eyebrow {
+    font-size: 9px;
+    margin-bottom: 9px;
+    top: 20px;
+    left: 20px;
+    right: auto;
   }
-  .p4 h2 {
-    font-size: 17px;
+  .ach-heading {
+    font-size: clamp(16px, 3vw, 21px);
   }
-  .p4 p {
-    font-size: 13px;
+  .ach-body {
+    font-size: 11.5px;
+    margin-top: 10px;
+  }
+  .ach-cue {
+    font-size: 9px;
+    margin-top: 10px;
+  }
+  a.ach-cue {
+    font-size: 10px;
+    padding: 11px 18px;
+  }
+  .ach-press-logo-side {
+    height: 24px;
+    margin: 2px 10px 4px 0;
+  }
+  .ach-wide-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 18px;
+    padding: 32px 24px;
+  }
+  .ach-wide-copy {
+    align-items: center;
+  }
+  .ach-wide-names {
+    font-size: 12.5px;
+  }
+  .ach-wide-watch {
+    padding: 11px 22px;
+    font-size: 11px;
   }
 
   /* Endorsements */
@@ -638,34 +679,38 @@
     font-size: 12px;
   }
 
-  /* Achievements */
+  /* Achievements : single column, 5th strip stacks last */
   .achievements {
+    padding: 0 16px;
+  }
+  .ach-layout {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
   .ach-panel {
-    min-height: 200px;
-  }
-  .ach-feature {
-    grid-template-columns: 1fr;
-  }
-  .ach-feature-img {
-    /* definite width + justify-self: auto margins would collapse this to 0 */
-    width: 100%;
-    max-width: 260px;
-    justify-self: center;
+    min-height: 220px;
   }
   .ach-text {
-    font-size: 14px;
-    left: 14px;
-    bottom: 14px;
-    right: 14px;
+    left: 18px;
+    right: 18px;
+    bottom: 20px;
   }
-  .p4 h2 {
-    font-size: 16px;
+  .ach-eyebrow {
+    top: 16px;
+    left: 18px;
+    right: auto;
   }
-  .p4 p {
+  .ach-wide-inner {
+    padding: 32px 20px;
+  }
+  .ach-wide {
+    margin: 0;
+  }
+  .ach-wide-title {
+    font-size: 22px;
+  }
+  .ach-wide-names {
     font-size: 12px;
-    line-height: 1.6;
   }
 
   /* Endorsements */
@@ -969,13 +1014,13 @@
   .badge,
   .connect-img,
   .ach-panel img,
+  .ach-zoom,
   .ach-text {
     transform: none !important;
   }
   /* the hover sweep would otherwise park its gradient over the photo */
   .ach-media::after,
-  .p4::before,
-  .ach-feature-img::after {
+  .ach-wide-photo::after {
     display: none !important;
   }
 }

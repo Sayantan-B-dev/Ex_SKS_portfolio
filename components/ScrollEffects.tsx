@@ -72,7 +72,9 @@ export default function ScrollEffects() {
             const offset = (progress - 0.5) * factor;
             const img = panel.querySelector<HTMLElement>("img");
             if (img) {
-              img.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(1.08)`;
+              // Translate only : zoom is owned by the CSS `scale` property
+              // (achievements.css) so hover zoom composes instead of doubling.
+              img.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
             }
           }
         });
