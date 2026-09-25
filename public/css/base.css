@@ -52,6 +52,9 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Anchor the crop at the image's top-left so a differently-shaped source is
+     never trimmed from the top or left of the frame (rule: crop, don't resize). */
+  object-position: left top;
 }
 a {
   color: inherit;

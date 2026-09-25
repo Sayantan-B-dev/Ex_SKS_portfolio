@@ -10,6 +10,8 @@
 }
 .footer-bg-img {
   object-fit: cover;
+  /* Portrait head-shot used as a wide strip : keep the face centred, don't
+     inherit the site-wide left-top crop anchor from base.css. */
   object-position: 50% 25%;
   filter: brightness(0.3) saturate(1.2);
 }
@@ -41,6 +43,7 @@
 }
 .footer-sks-logo {
   object-fit: contain;
+  object-position: center;
 }
 .footer-brand-text {
   line-height: 1;

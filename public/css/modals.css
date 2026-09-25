@@ -155,6 +155,7 @@
 }
 .lightbox-img {
   object-fit: contain;
+  object-position: center;
 }
 .lightbox-caption {
   font-family: var(--font-ui);

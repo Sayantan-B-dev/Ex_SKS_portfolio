@@ -16,7 +16,6 @@
 }
 .hero-img-wrap img {
   filter: saturate(1.15) contrast(1.05) brightness(0.85);
-  object-position: 70% 25%;
 }
 .hero-duo {
   position: absolute;

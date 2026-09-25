@@ -47,6 +47,7 @@
 }
 .endorse-logo-img {
   object-fit: contain !important;
+  object-position: center;
   filter: brightness(0.9) contrast(1.1);
   transition: filter 0.3s ease, transform 0.3s ease;
 }

@@ -160,6 +160,7 @@ nav a.active {
 }
 .sks-official-logo {
   object-fit: contain;
+  object-position: center;
 }
 .logo-text-block {
   display: flex;
