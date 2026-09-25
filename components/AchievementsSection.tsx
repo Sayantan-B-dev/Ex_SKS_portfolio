@@ -4,7 +4,16 @@ import Image from "next/image";
 import { useState } from "react";
 import VideoModal from "@/components/VideoModal";
 
-const PANELS = [
+type AchievementPanel = {
+  src: string;
+  className: string;
+  alt: string;
+  text: [string, string];
+  /** Optional press citation rendered under the yellow label. */
+  article?: { href: string; headline: string };
+};
+
+const PANELS: AchievementPanel[] = [
   {
     src: "/images/achievements/shows_countries.webp",
     className: "p1",
@@ -12,13 +21,18 @@ const PANELS = [
     text: ["OVER 1300 SHOWS", "40 COUNTRIES"],
   },
   {
-    src: "/images/achievements/opening_act_bryan_adams.webp",
+    src: "/images/achievements/opening_act_bryan_adams2.webp",
     className: "p2",
     alt: "Samrat Sarkar opening act for Bryan Adams at Palace Gardens Bangalore",
     text: ["OPENING ACT", "FOR BRYAN ADAMS"],
+    article: {
+      href: "https://www.mid-day.com/buzz/article/singer-samrat-sarkar-s-career-is-soaring-high-from-hindi-pop-song-collaboration-with-usha-uthup-to-performing-live-in-40-countries-8452",
+      headline:
+        "Singer Samrat Sarkar's career is soaring high, from Hindi Pop song collaboration with Usha Uthup to performing live in 40 countries",
+    },
   },
   {
-    src: "/images/achievements/winner_mirchi_music.webp",
+    src: "/images/achievements/winner_mirchi_music_flipped.webp",
     className: "p3",
     alt: "Winner of Mirchi Music Awards — Samrat Sarkar SKS Band",
     text: ["WINNER OF", "MIRCHI MUSIC"],
@@ -37,19 +51,36 @@ export default function AchievementsSection() {
           data-parallax="panel"
           style={{ "--i": idx } as React.CSSProperties}
         >
-          <Image
-            src={panel.src}
-            alt={panel.alt}
-            fill
-            loading="lazy"
-            sizes="(max-width: 900px) 50vw, 25vw"
-            className="img-smooth"
-          />
-          <div className="ach-overlay" />
+          {/* Clipped 1px inside the panel so the panel's background shows as a
+              thin border that follows the trapezoid's diagonal edges. */}
+          <div className="ach-media">
+            <Image
+              src={panel.src}
+              alt={panel.alt}
+              fill
+              loading="lazy"
+              sizes="(max-width: 900px) 50vw, 25vw"
+              className="img-smooth"
+            />
+            <div className="ach-overlay" />
+          </div>
           <div className="ach-text">
             {panel.text[0]}
             <br />
             {panel.text[1]}
+            {panel.article && (
+              <a
+                className="ach-press"
+                href={panel.article.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={panel.article.headline}
+                aria-label={`Read the full article: ${panel.article.headline}`}
+              >
+                <span className="ach-press-headline">{panel.article.headline}</span>
+                <span className="ach-press-more">Click to see more</span>
+              </a>
+            )}
           </div>
         </div>
       ))}
@@ -87,6 +118,28 @@ export default function AchievementsSection() {
             WATCH VIDEO
           </button>
         </div>
+      </div>
+
+      {/* Bryan Adams moment : own container so it isn't buried in the p4 list */}
+      <div
+        className="ach-feature reveal-item"
+        style={{ "--i": PANELS.length + 1 } as React.CSSProperties}
+      >
+        <div className="ach-feature-img">
+          <Image
+            src="/images/achievements/sharing_stage_with_bryan.webp"
+            alt="Samrat Sarkar sharing the stage with Bryan Adams at Palace Grounds, Bangalore"
+            fill
+            loading="lazy"
+            sizes="(max-width: 480px) 100vw, 340px"
+            className="img-smooth"
+          />
+        </div>
+        <p className="ach-feature-text">
+          He notably performed the{" "}
+          <strong>opening act for rock legend Bryan Adams</strong> at Palace
+          Grounds, Bangalore.
+        </p>
       </div>
 
       <VideoModal
