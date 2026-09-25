@@ -24,8 +24,8 @@ export default function Footer() {
             <Image
               src="/images/sks_logo_png.webp"
               alt="SKS Official Logo"
-              width={60}
-              height={60}
+              width={80}
+              height={80}
               className="footer-sks-logo"
             />
           </div>

@@ -37,8 +37,8 @@
   gap: 14px;
 }
 .footer-logo-wrap {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   position: relative;
 }
 .footer-sks-logo {
@@ -59,7 +59,7 @@
 }
 .footer-tagline {
   font-family: var(--font-ui);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   color: var(--yellow);
   margin-top: 5px;

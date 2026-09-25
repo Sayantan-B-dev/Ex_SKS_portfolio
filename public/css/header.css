@@ -154,8 +154,8 @@ nav a.active {
 }
 .logo-brand .logo-img-wrap {
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
 }
 .sks-official-logo {
@@ -177,7 +177,7 @@ nav a.active {
 }
 .logo-brand .sub1 {
   font-family: var(--font-ui);
-  font-size: 10px;
+  font-size: 12.5px;
   letter-spacing: 0.22em;
   color: var(--yellow);
   margin-top: 4px;
@@ -185,7 +185,7 @@ nav a.active {
 }
 .logo-brand .sub2 {
   font-family: var(--font-ui);
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.28em;
   color: var(--muted);
   margin-top: 2px;

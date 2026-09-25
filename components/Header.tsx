@@ -34,8 +34,8 @@ export default function Header() {
             <Image
               src="/images/sks_logo_png.webp"
               alt="SKS Sammrat Ka Saagar Official Logo"
-              width={54}
-              height={54}
+              width={64}
+              height={64}
               className="sks-official-logo"
               priority
             />

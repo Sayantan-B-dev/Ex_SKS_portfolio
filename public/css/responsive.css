@@ -18,14 +18,14 @@
     font-size: 24px;
   }
   .logo-brand .sub1 {
-    font-size: 8.5px;
+    font-size: 10px;
   }
   .logo-brand .sub2 {
-    font-size: 7px;
+    font-size: 8px;
   }
   .logo-brand .logo-img-wrap {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
 
   /* Hero */
@@ -236,14 +236,14 @@
     letter-spacing: 0.1em;
   }
   .logo-brand .logo-img-wrap {
-    width: 36px;
-    height: 36px;
+    width: 46px;
+    height: 46px;
   }
   .logo-brand .sks {
     font-size: 22px;
   }
   .logo-brand .sub1 {
-    font-size: 8px;
+    font-size: 9.5px;
   }
   .header-right {
     gap: 12px;
@@ -580,18 +580,18 @@
     padding: 10px 16px;
   }
   .logo-brand .logo-img-wrap {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
   }
   .logo-brand .sks {
     font-size: 20px;
   }
   .logo-brand .sub1 {
-    font-size: 7.5px;
+    font-size: 9px;
     letter-spacing: 0.16em;
   }
   .logo-brand .sub2 {
-    font-size: 6.5px;
+    font-size: 7.5px;
   }
   .btn-book {
     padding: 7px 12px;
@@ -776,7 +776,7 @@
     font-size: 24px;
   }
   .footer-tagline {
-    font-size: 8.5px;
+    font-size: 10px;
   }
 
   /* FAQ */
