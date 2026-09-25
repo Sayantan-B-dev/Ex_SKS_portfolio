@@ -41,3 +41,21 @@
   min-height: 180px;
   width: 100%;
 }
+
+/* ── Media loading overlay : centered BlinkBlur over loading modal content ──
+   The modal backdrop behind already dims the full screen; this overlay dims
+   the content box itself and centers the app-yellow (#f5c518 = --yellow)
+   spinner until the iframe / image reports loaded. */
+.media-loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Light translucent veil, not pitch black : the loading artwork stays
+     faintly visible behind the spinner. */
+  background: rgba(5, 3, 8, 0.35);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}

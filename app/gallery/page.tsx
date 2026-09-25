@@ -6,6 +6,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollEffects from "@/components/ScrollEffects";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 const GALLERY_ITEMS = [
   {
@@ -63,6 +64,18 @@ const CATEGORIES = ["ALL", "Concerts", "Crowd", "Portraits", "Awards"];
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("ALL");
   const [activeImage, setActiveImage] = useState<{ src: string; title: string } | null>(null);
+  // Spinner shows until the open image reports loaded — derived, no effect.
+  const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
+  const lightboxLoading = !!activeImage && loadedSrc !== activeImage.src;
+
+  const openImage = (item: { src: string; title: string }) => {
+    setLoadedSrc(null);
+    setActiveImage(item);
+  };
+  const closeImage = () => {
+    setLoadedSrc(null);
+    setActiveImage(null);
+  };
 
   const filteredItems =
     activeCategory === "ALL"
@@ -120,7 +133,7 @@ export default function GalleryPage() {
                 className={`gallery-card reveal-item ${item.span}`}
                 key={`${item.title}-${idx}`}
                 style={{ "--i": idx % 6 } as React.CSSProperties}
-                onClick={() => setActiveImage({ src: item.src, title: item.title })}
+                onClick={() => openImage({ src: item.src, title: item.title })}
               >
                 <Image
                   src={item.src}
@@ -150,7 +163,7 @@ export default function GalleryPage() {
         {activeImage && (
           <div
             className="video-modal-backdrop"
-            onClick={() => setActiveImage(null)}
+            onClick={() => closeImage()}
             role="dialog"
             aria-modal="true"
           >
@@ -161,16 +174,18 @@ export default function GalleryPage() {
               <button
                 type="button"
                 className="video-modal-close"
-                onClick={() => setActiveImage(null)}
+                onClick={() => closeImage()}
                 aria-label="Close image"
               >
                 ✕
               </button>
               <div className="lightbox-img-wrap">
+                {lightboxLoading && <LoadingOverlay label={`Loading ${activeImage.title}`} />}
                 <Image
                   src={activeImage.src}
                   alt={activeImage.title}
                   fill
+                  onLoad={() => setLoadedSrc(activeImage.src)}
                   className="lightbox-img"
                   sizes="90vw"
                 />
