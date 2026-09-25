@@ -53,7 +53,7 @@ export default function Endorsements() {
                     fill
                     loading="lazy"
                     className="endorse-logo-img"
-                    sizes="200px"
+                    sizes="240px"
                   />
                 </div>
               </SpotlightCard>

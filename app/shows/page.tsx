@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/shows`,
     images: [
       {
-        url: `${SITE_URL}/images/achievements/opening_act_bryan_adams.webp`,
+        url: `${SITE_URL}/images/achievements/opening_act_bryan_adams2.webp`,
         width: 1200,
         height: 630,
         alt: "Samrat Sarkar opening act for Bryan Adams",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "Live Shows & Global Tours | SKS Music Band",
     description:
       "1300+ live performances across 40+ countries. Book the power band.",
-    images: [`${SITE_URL}/images/achievements/opening_act_bryan_adams.webp`],
+    images: [`${SITE_URL}/images/achievements/opening_act_bryan_adams2.webp`],
   },
   alternates: {
     canonical: `${SITE_URL}/shows`,
@@ -106,13 +106,13 @@ const HIGHLIGHT_SHOWS = [
     title: "OPENING ACT FOR BRYAN ADAMS",
     venue: "Palace Gardens, Bangalore",
     desc: "Commanded the opening act for legendary global rock icon Bryan Adams in front of 30,000+ roaring music fans.",
-    image: "/images/achievements/opening_act_bryan_adams.webp",
+    image: "/images/achievements/opening_act_bryan_adams2.webp",
   },
   {
     title: "UMANG MUMBAI POLICE AWARDS",
     venue: "Cineyug & Sony TV Broadcast",
     desc: "Electrifying star performance honoring the Mumbai Police department alongside Bollywood's elite superstar fraternity.",
-    image: "/images/achievements/winner_mirchi_music.webp",
+    image: "/images/achievements/winner_mirchi_music_flipped.webp",
   },
   {
     title: "CELEBRITY MEGA CONCERTS",
@@ -130,7 +130,7 @@ export default function ShowsPage() {
     description:
       "1300+ live performances across 40+ countries. Bollywood playback singer Samrat Sarkar and the SKS power band performing at concerts, corporate events, weddings, and global tours.",
     url: `${SITE_URL}/shows`,
-    image: `${SITE_URL}/images/achievements/opening_act_bryan_adams.webp`,
+    image: `${SITE_URL}/images/achievements/opening_act_bryan_adams2.webp`,
     performer: {
       "@type": "MusicGroup",
       name: "Sammrat Ka Saagar (SKS)",

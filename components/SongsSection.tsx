@@ -29,6 +29,10 @@ const SONGS = [
     title: "LINES",
     videoId: "EovwiZ1tp7I",
   },
+  {
+    title: "TAWA GARAM HAI",
+    videoId: "kL5WB8Lvo8A",
+  },
 ];
 
 function youtubeThumb(videoId: string) {
@@ -59,7 +63,7 @@ function SongCard({
           fill
           loading="lazy"
           quality={100}
-          sizes="280px"
+          sizes="(max-width: 480px) 220px, (max-width: 768px) 300px, 400px"
           className="img-smooth"
         />
         <div className="song-play-overlay">

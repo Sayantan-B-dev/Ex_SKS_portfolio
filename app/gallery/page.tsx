@@ -34,7 +34,7 @@ const GALLERY_ITEMS = [
     span: "col-span-2",
   },
   {
-    src: "/images/achievements/opening_act_bryan_adams.webp",
+    src: "/images/achievements/opening_act_bryan_adams2.webp",
     title: "Opening Act for Bryan Adams, Bangalore",
     category: "Concerts",
     span: "col-span-1",
@@ -46,7 +46,7 @@ const GALLERY_ITEMS = [
     span: "col-span-1",
   },
   {
-    src: "/images/achievements/winner_mirchi_music.webp",
+    src: "/images/achievements/winner_mirchi_music_flipped.webp",
     title: "Winner of Mirchi Music Awards",
     category: "Awards",
     span: "col-span-1",
