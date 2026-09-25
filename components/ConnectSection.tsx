@@ -40,9 +40,9 @@ export default function ConnectSection() {
           alt="Samrat Sarkar posing on stage after live performance with crowd — book SKS Music Band for events"
           fill
           loading="lazy"
-          sizes="(max-width: 768px) 320px, 40vw"
+          quality={100}
+          sizes="(max-width: 900px) 340px, 40vw"
           className="img-smooth"
-          style={{ objectPosition: "50% 20%" }}
         />
       </div>
 
