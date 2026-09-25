@@ -220,9 +220,10 @@ export default function RootLayout({
     },
     contactPoint: {
       "@type": "ContactPoint",
+      name: "Blue Eye Entertainment",
       contactType: "booking",
       email: "Samratkasagar@gmail.com",
-      telephone: "+91-99304-39715",
+      telephone: "+91-91379-52580",
       availableLanguage: ["English", "Hindi", "Bengali"],
     },
     areaServed: {
@@ -263,9 +264,10 @@ export default function RootLayout({
     },
     contactPoint: {
       "@type": "ContactPoint",
+      name: "Blue Eye Entertainment",
       contactType: "booking",
       email: "Samratkasagar@gmail.com",
-      telephone: "+91-99304-39715",
+      telephone: "+91-91379-52580",
       availableLanguage: ["English", "Hindi", "Bengali"],
     },
     sameAs: [

@@ -109,11 +109,11 @@ export default function Footer() {
             </svg>
             Samratkasagar@gmail.com
           </a>
-          <a className="footer-contact-item" href="tel:+919930439715">
+          <a className="footer-contact-item" href="tel:+919137952580">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
               <path d="M22 16.9v2a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 3.2 2 2 0 0 1 4 1h2a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L7 8.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z" />
             </svg>
-            +91 99304 39715
+            +91 91379 52580
           </a>
         </div>
       </div>
