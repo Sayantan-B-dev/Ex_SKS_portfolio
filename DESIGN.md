@@ -44,15 +44,16 @@ Rule: **all-caps + condensed = Big Shoulders or Oswald. Sentence-case paragraphs
 - Card gap (songs grid): 12px
 - Button padding: 12–13px vertical / 22–26px horizontal
 - Border radius: 3–4px on buttons/cards (sharp, not rounded — don't default to 8px+ radii). Sanctioned exception: achievement panels use big diagonal curves — p1/p4 `36px 0 36px 0`, p2/p3 `0 36px 0 36px` — and the shared-stage strip uses 24px all round.
-- Achievement layout (`.ach-layout`): section gutters 40px each side (30/20/16px down the breakpoints), 2-column grid, 10px gap (8px below 900px); panels min-height 420px (320/280/220px down the breakpoints); copy bottom-left on all four; 5th strip carries an extra 48px side inset each side (24/12/0px down the breakpoints)
+- Achievement layout (`.ach-layout`): section gutters 40px each side (30/20/16px down the breakpoints), 2-column grid, 10px gap (8px below 900px); panels min-height 420px (320/300/240/200px down 900/768/720/480); copy bottom-left on all four; 5th strip carries an extra 48px side inset each side (24/12/0px down the breakpoints)
 
 ## Breakpoints
 | Width | Behavior |
 |---|---|
 | ≥900px | Full desktop layout as designed; achievements is a plain 2×2 grid (420px panels, diagonal 36px corners) with gutters, shared-stage strip full-width on top with extra inset |
 | 768–900px | Same 2-column achievement grid, shrunk; strip text/button stacked centered ≤768px |
+| ≤720px | Achievements go single-column, one by one (strip, then 1, 2, 3, 4 in DOM order) — dedicated breakpoint just for this section |
 | ≤768px | Nav hides behind burger menu (`components/Header.tsx`), hero text block widens, connect section stacks to 1 column |
-| ≤480px | Stats bar → 2 columns, achievements → 1 column (5th strip first, then 1, 2, 3, 4), footer stacks vertically |
+| ≤480px | Stats bar → 2 columns, achievements stays single-column but tighter, footer stacks vertically |
 
 ## Component patterns
 Each pattern below maps to one file under `components/`.

@@ -578,6 +578,32 @@
   }
 }
 
+/* ── 720px (achievements stack one-by-one) ── */
+@media (max-width: 720px) {
+  /* Achievements : single column — strip first, then 1, 2, 3, 4 in DOM order */
+  .ach-layout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .ach-panel {
+    min-height: 240px;
+  }
+  .ach-text {
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+  }
+  .ach-wide-inner {
+    padding: 34px 24px;
+  }
+  .ach-wide-title {
+    font-size: 22px;
+  }
+  .ach-wide-names {
+    font-size: 12px;
+  }
+}
+
 /* ── 480px (mobile) ── */
 @media (max-width: 480px) {
   /* Header */
@@ -678,21 +704,17 @@
     font-size: 12px;
   }
 
-  /* Achievements : single column, 5th strip stacks last */
+  /* Achievements : tighter single column (stacking lives at 720px) */
   .achievements {
     padding: 0 16px;
   }
-  .ach-layout {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
   .ach-panel {
-    min-height: 220px;
+    min-height: 200px;
   }
   .ach-text {
-    left: 18px;
-    right: 18px;
-    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    bottom: 18px;
   }
   .ach-eyebrow {
     top: 16px;
@@ -700,16 +722,16 @@
     right: auto;
   }
   .ach-wide-inner {
-    padding: 32px 20px;
+    padding: 28px 16px;
   }
   .ach-wide {
     margin: 0;
   }
   .ach-wide-title {
-    font-size: 22px;
+    font-size: 20px;
   }
   .ach-wide-names {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   /* Endorsements */
