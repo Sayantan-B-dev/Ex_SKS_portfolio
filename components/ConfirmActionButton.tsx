@@ -1,21 +1,41 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { useFormStatus } from "react-dom";
 
 import SubmitButton from "@/components/SubmitButton";
 
-interface ConfirmDeletePostProps {
+interface ConfirmActionButtonProps {
   action: (formData: FormData) => Promise<void>;
-  postId: string;
-  postTitle: string;
+  /** Field name and value submitted when the dialog is confirmed. */
+  name: string;
+  value: string;
+  triggerLabel: string;
+  ariaLabel: string;
+  tag: string;
+  heading: string;
+  text: ReactNode;
+  confirmLabel: string;
+  pendingLabel: string;
 }
 
-export default function ConfirmDeletePost({
+/**
+ * A button that asks once before submitting : used for deleting a story and for
+ * removing a gallery photo. The dialog is rendered inside the same `<form>`, so
+ * `useFormStatus` reports that form's submission state.
+ */
+export default function ConfirmActionButton({
   action,
-  postId,
-  postTitle,
-}: ConfirmDeletePostProps) {
+  name,
+  value,
+  triggerLabel,
+  ariaLabel,
+  tag,
+  heading,
+  text,
+  confirmLabel,
+  pendingLabel,
+}: ConfirmActionButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -26,32 +46,45 @@ export default function ConfirmDeletePost({
 
   return (
     <form action={action} className="blog-delete-form">
-      <input type="hidden" name="id" value={postId} />
+      <input type="hidden" name={name} value={value} />
       <button
         ref={triggerRef}
         type="button"
         className="blog-delete-button"
-        aria-label={`Delete ${postTitle}`}
+        aria-label={ariaLabel}
         aria-haspopup="dialog"
         onClick={() => setIsOpen(true)}
       >
-        DELETE
+        {triggerLabel}
       </button>
 
-      {isOpen && <ConfirmDialog postTitle={postTitle} onClose={close} />}
+      {isOpen && (
+        <ConfirmDialog
+          tag={tag}
+          heading={heading}
+          text={text}
+          confirmLabel={confirmLabel}
+          pendingLabel={pendingLabel}
+          onClose={close}
+        />
+      )}
     </form>
   );
 }
 
-/**
- * Rendered inside the `<form>` so `useFormStatus` reports that form's
- * submission state.
- */
 function ConfirmDialog({
-  postTitle,
+  tag,
+  heading,
+  text,
+  confirmLabel,
+  pendingLabel,
   onClose,
 }: {
-  postTitle: string;
+  tag: string;
+  heading: string;
+  text: ReactNode;
+  confirmLabel: string;
+  pendingLabel: string;
   onClose: () => void;
 }) {
   const { pending } = useFormStatus();
@@ -59,7 +92,7 @@ function ConfirmDialog({
   const cancelRef = useRef<HTMLButtonElement>(null);
   const pendingRef = useRef(pending);
   const closeRef = useRef(onClose);
-  const titleId = useId();
+  const headingId = useId();
   const descriptionId = useId();
 
   // Keep the mount-only effect below reading current values.
@@ -71,7 +104,7 @@ function ConfirmDialog({
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        // The delete is already in flight, so don't let Escape imply it stopped.
+        // The action is already in flight, so don't let Escape imply it stopped.
         if (!pendingRef.current) closeRef.current();
         return;
       }
@@ -115,15 +148,14 @@ function ConfirmDialog({
         className="confirm-dialog"
         role="alertdialog"
         aria-modal="true"
-        aria-labelledby={titleId}
+        aria-labelledby={headingId}
         aria-describedby={descriptionId}
         onClick={(event) => event.stopPropagation()}
       >
-        <p className="subpage-tag">DELETE STORY</p>
-        <h2 id={titleId}>Delete this story?</h2>
+        <p className="subpage-tag">{tag}</p>
+        <h2 id={headingId}>{heading}</h2>
         <p id={descriptionId} className="confirm-dialog-text">
-          &ldquo;{postTitle}&rdquo; will be permanently removed from the blog.
-          This cannot be undone.
+          {text}
         </p>
         <div className="confirm-dialog-actions">
           <button
@@ -135,11 +167,8 @@ function ConfirmDialog({
           >
             CANCEL
           </button>
-          <SubmitButton
-            className="confirm-delete-button"
-            pendingLabel="DELETING…"
-          >
-            DELETE STORY
+          <SubmitButton className="confirm-delete-button" pendingLabel={pendingLabel}>
+            {confirmLabel}
           </SubmitButton>
         </div>
       </div>
