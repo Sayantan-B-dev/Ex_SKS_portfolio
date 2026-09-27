@@ -1,6 +1,37 @@
 import type { NextConfig } from "next";
 
+/**
+ * Studio-added gallery photos are served from the account's own ImageKit URL
+ * endpoint, so `next/image` needs that exact endpoint whitelisted : host and the
+ * endpoint's path, nothing else on the shared ImageKit domain.
+ */
+function imageKitPattern() {
+  const endpoint = process.env.IMAGEKIT_URL_ENDPOINT?.trim();
+  if (!endpoint) return [];
+  try {
+    const url = new URL(endpoint);
+    return [
+      {
+        protocol: "https" as const,
+        hostname: url.hostname,
+        pathname: `${url.pathname.replace(/\/+$/, "")}/**`,
+      },
+    ];
+  } catch {
+    return [];
+  }
+}
+
 const nextConfig: NextConfig = {
+  experimental: {
+    serverActions: {
+      // Studio image uploads travel as Server Action bodies. Next caps those at
+      // 1MB by default, which surfaced as a raw 500 on /blog/admin. `lib/image-limits.ts`
+      // keeps the client-side cap just under this so an oversized file is reported
+      // in the form instead of failing here.
+      bodySizeLimit: "3mb",
+    },
+  },
   images: {
     qualities: [100, 75],
     remotePatterns: [
@@ -8,6 +39,7 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "i.ytimg.com",
       },
+      ...imageKitPattern(),
     ],
   },
   headers: async () => [

@@ -75,6 +75,13 @@ Each pattern below maps to one file under `components/`.
 
 **Header** (`Header.tsx`) — the only client component (`"use client"`). Desktop nav is a plain `<nav>`; below 768px it's replaced by a burger button toggling `.mobile-nav.open` via local `useState`. Keep this the only piece of client-side interactivity unless a new feature genuinely needs it.
 
+## Studio-managed media (blog + gallery)
+Two places accept images authored in the private studio, and both follow the same visual rules:
+- **Blog article** (`app/blog/[slug]/page.tsx`): the whole article sits in one hairline frame (`1px var(--border)`, 4px radius, panel→bg gradient, fluid `clamp(24–58px)` padding). The header (tag / title / excerpt) is separated from the body by a rule; content images keep their own aspect ratio (`width: 100%; height: auto`) and are centred — never cropped, unlike the landing page's fixed-ratio containers. Extra shots are always a **2-up grid** (`repeat(2, minmax(0, 1fr))`, 4:3 tiles via `object-fit: cover`), collapsing to one column at 480px, so any count (5 included) leaves a half-width cell rather than stretching. The closing CTA reuses `.btn-outline-pink` inside `.blog-post-footer` (62px top margin + rule + 40px padding above it).
+- **Blog listing** (`app/blog/page.tsx`): a card is clickable anywhere — the title link's `::after` covers the card (`inset: 0`), with `:focus-within` on the card; `READ STORY ↗` is a decorative cue, not a second tab stop.
+- **Gallery** (`app/gallery/page.tsx`): a server component that appends studio photos after the built-in eight, passing both to the client `GalleryBrowser`. Managed photos reuse `.gallery-card` exactly (same hover overlay, filter tabs, lightbox); every fifth spans two columns to keep the masonry rhythm.
+- **Studio panel** (`/blog/admin`, styled in `public/css/blog.css`): the gallery form is a bordered card with a two-column Caption/Category split (stacked at 768px), 50px-tall fields on `--bg`, a drawn-chevron `select`, and a pink-railed preview strip; the photo list is thumbnail + caption + a `ImageKit`/`Linked` chip + a pink remove button.
+
 ## Image/asset rules
 - Every image slot has a fixed container `aspect-ratio` (see `globals.css`) — this preserves the reference composition even with placeholder art. Containers use `position: relative` so `next/image fill` can fill them.
 - Current placeholders: `picsum.photos/seed/<name>/<w>/<h>` — deterministic per seed, swappable 1:1 with real assets later. `picsum.photos` is whitelisted in `next.config.ts` under `images.remotePatterns`; add any new host there before using it.

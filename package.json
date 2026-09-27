@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:blog": "node scripts/seed-blog.mjs"
+    "seed:blog": "node scripts/seed-blog.mjs",
+    "setup:imagekit": "node scripts/setup-imagekit-folders.mjs"
   },
   "dependencies": {
     "mongodb": "^7.6.0",
