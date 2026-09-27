@@ -93,39 +93,60 @@ export default async function BlogPage() {
       <Header />
       <main className="blog-page">
         <section className="blog-hero">
-          <p className="subpage-tag">THE SKS BLOG</p>
-          <h1>NOTES FROM THE ROAD</h1>
-          <p>Stories, studio moments, and soundtracked memories from Samrat&apos;s world.</p>
-          <p className="blog-hero-links">
-            <Link href="/#connect" className="blog-author-link">BOOK SAMRAT FOR YOUR EVENT <span>↗</span></Link>
-          </p>
-          <Link href="/blog/admin" className="blog-author-link">AUTHOR LOGIN <span>↗</span></Link>
+          <div className="blog-hero-inner">
+            <p className="subpage-tag">THE SKS BLOG</p>
+            <h1>NOTES FROM THE ROAD</h1>
+            <p className="blog-hero-lede">Stories, studio moments, and soundtracked memories from Samrat&apos;s world.</p>
+            <div className="blog-hero-actions">
+              <Link href="/#connect" className="btn-outline-pink blog-hero-cta">
+                BOOK SAMRAT FOR YOUR EVENT <span className="btn-arrow">↗</span>
+              </Link>
+              <Link href="/blog/admin" className="blog-author-link">AUTHOR LOGIN <span>↗</span></Link>
+            </div>
+          </div>
         </section>
-        <section className="blog-grid wrap">
-          {!isBlogConfigured() ? (
-            <p className="blog-empty">Connect MongoDB to publish the first story.</p>
-          ) : posts.length === 0 ? (
-            <p className="blog-empty">The first story is being tuned. Check back soon.</p>
-          ) : (
-            posts.map((post, index) => (
-              <article className={`blog-card blog-card-${(index % 3) + 1}`} key={post.id}>
-                <div className="blog-card-art">
-                  {post.cover_image ? (
-                    <img src={post.cover_image} alt={post.title} />
-                  ) : (
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                  )}
-                  <span className="blog-card-kicker">FIELD NOTE</span>
-                </div>
-                <div className="blog-card-body">
-                  <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>
-                  <h2><Link href={`/blog/${post.slug}`}>{post.title}</Link></h2>
-                  <p>{post.excerpt}</p>
-                  <Link className="blog-read-link" href={`/blog/${post.slug}`}>READ STORY <span>↗</span></Link>
-                </div>
-              </article>
-            ))
+        <section className="blog-list wrap">
+          {isBlogConfigured() && (
+            <div className="blog-list-head">
+              <p className="subpage-tag">ALL STORIES</p>
+              <span>
+                {posts.length} {posts.length === 1 ? "field note" : "field notes"}
+              </span>
+            </div>
           )}
+          <div className="blog-grid">
+            {!isBlogConfigured() ? (
+              <p className="blog-empty">Connect MongoDB to publish the first story.</p>
+            ) : posts.length === 0 ? (
+              <p className="blog-empty">The first story is being tuned. Check back soon.</p>
+            ) : (
+              posts.map((post, index) => (
+                <article className={`blog-card blog-card-${(index % 3) + 1}`} key={post.id}>
+                  <div className="blog-card-art">
+                    {post.cover_image ? (
+                      <img src={post.cover_image} alt={post.title} />
+                    ) : (
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                    )}
+                    <span className="blog-card-kicker">FIELD NOTE</span>
+                  </div>
+                  <div className="blog-card-body">
+                    <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>
+                    <h2>
+                      {/* The link's overlay makes the whole card clickable. */}
+                      <Link className="blog-card-link" href={`/blog/${post.slug}`}>
+                        {post.title}
+                      </Link>
+                    </h2>
+                    <p>{post.excerpt}</p>
+                    <span className="blog-read-link blog-card-cue" aria-hidden="true">
+                      READ STORY <span>↗</span>
+                    </span>
+                  </div>
+                </article>
+              ))
+            )}
+          </div>
         </section>
       </main>
       <Footer />

@@ -87,17 +87,45 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
         />
-        <Link href="/blog" className="blog-back-link">BACK TO BLOG</Link>
-        <article className="blog-post wrap">
-          <p className="subpage-tag">FIELD NOTE | {new Date(post.published_at).toLocaleDateString("en-IN")}</p>
-          <h1>{post.title}</h1>
-          <p className="blog-post-excerpt">{post.excerpt}</p>
-          {post.cover_image && <img className="blog-post-image" src={post.cover_image} alt={post.title} />}
-          <div className="blog-post-content">{post.content}</div>
-          <p className="blog-hero-links">
-            <Link href="/#connect" className="blog-read-link">BOOK SAMRAT FOR YOUR EVENT <span>↗</span></Link>
-          </p>
-        </article>
+        <div className="blog-post-shell wrap">
+          <Link href="/blog" className="blog-back-link">BACK TO BLOG</Link>
+          <article className="blog-post">
+            <header className="blog-post-header">
+              <p className="subpage-tag">
+                FIELD NOTE | {new Date(post.published_at).toLocaleDateString("en-IN")}
+              </p>
+              <h1>{post.title}</h1>
+              <p className="blog-post-excerpt">{post.excerpt}</p>
+            </header>
+            {post.cover_image && (
+              <figure className="blog-post-media blog-post-cover">
+                {/* eslint-disable-next-line @next/next/no-img-element -- covers and extra shots can live on any host the author pastes */}
+                <img src={post.cover_image} alt={post.title} />
+              </figure>
+            )}
+            <div className="blog-post-content">{post.content}</div>
+            {post.images.length > 0 && (
+              <div className="blog-post-gallery">
+                {post.images.map((image, index) => (
+                  <figure key={image} className="blog-post-gallery-item">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- covers and extra shots can live on any host the author pastes */}
+                    <img
+                      src={image}
+                      alt={`${post.title} : image ${index + 1}`}
+                      loading="lazy"
+                    />
+                  </figure>
+                ))}
+              </div>
+            )}
+            <footer className="blog-post-footer">
+              <p className="blog-post-cta-note">Want this energy at your own event?</p>
+              <Link href="/#connect" className="btn-outline-pink blog-post-cta">
+                BOOK SAMRAT FOR YOUR EVENT <span className="btn-arrow">↗</span>
+              </Link>
+            </footer>
+          </article>
+        </div>
       </main>
       <Footer />
     </>
