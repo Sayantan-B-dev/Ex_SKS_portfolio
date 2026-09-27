@@ -21,3 +21,5 @@ next-env.d.ts
 coverage
 *.tmp
 tsconfig.tsbuildinfo
+
+old.webp
