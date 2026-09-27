@@ -143,7 +143,7 @@ export default function AchievementsSection() {
                   <Image
                     src="/logos/middaylogo.webp"
                     alt="Mid-day"
-                    width={112}
+                    width={132}
                     height={30}
                     loading="lazy"
                     className="ach-press-logo-side"
