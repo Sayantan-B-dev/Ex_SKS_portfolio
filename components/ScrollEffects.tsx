@@ -34,7 +34,6 @@ export default function ScrollEffects() {
       let ticking = false;
       const heroBg = document.querySelector<HTMLElement>("[data-parallax='hero-bg']");
       const heroBadge = document.querySelector<HTMLElement>("[data-parallax='hero-badge']");
-      const connectImg = document.querySelector<HTMLElement>("[data-parallax='connect-img']");
       const achPanels = document.querySelectorAll<HTMLElement>("[data-parallax='panel']");
 
       const updateParallax = () => {
@@ -49,17 +48,6 @@ export default function ScrollEffects() {
         if (heroBadge && scrollY <= 850) {
           const badgeOffset = scrollY * -0.15;
           heroBadge.style.transform = `translate3d(0, ${badgeOffset.toFixed(1)}px, 0) rotate(-4deg)`;
-        }
-
-        // Connect section portrait subtle parallax
-        if (connectImg) {
-          const rect = connectImg.getBoundingClientRect();
-          const viewHeight = window.innerHeight;
-          if (rect.top < viewHeight && rect.bottom > 0) {
-            const progress = (viewHeight - rect.top) / (viewHeight + rect.height);
-            const offset = (progress - 0.5) * 28;
-            connectImg.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
-          }
         }
 
         // Achievement panels subtle multi-layer parallax

@@ -101,11 +101,6 @@
     gap: 30px;
     padding: 50px 30px;
   }
-  .connect-photo {
-    width: 100%;
-    max-width: 340px;
-    margin: 0 auto;
-  }
   .connect-left {
     text-align: center;
   }
@@ -403,9 +398,6 @@
   /* Connect */
   .connect {
     padding: 40px 20px;
-  }
-  .connect-photo {
-    max-width: 300px;
   }
   .connect-left h2 {
     font-size: clamp(22px, 3vw, 28px);
@@ -754,9 +746,6 @@
   .connect {
     padding: 36px 16px;
     gap: 24px;
-  }
-  .connect-photo {
-    max-width: 260px;
   }
   .connect-left h2 {
     font-size: clamp(20px, 4vw, 26px);

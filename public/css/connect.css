@@ -2,7 +2,7 @@
 .connect {
   padding: 60px 40px;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1.5fr 1fr;
   gap: 30px;
   align-items: center;
 }
@@ -31,30 +31,29 @@
   margin-top: 3px;
   color: var(--pink);
 }
-/* Fixed 3 / 4 portrait slot : the container drives the crop, never the source.
-   Centred anchor keeps the performer in frame when the landscape source is
-   cropped to portrait — same opt-out as .footer-bg-img. Served at quality 100
-   with a sizes hint matching the slot, so it keeps full detail. */
-.connect-photo {
+/* The frame always takes the photo's own width and height : static import
+   gives Next the intrinsic dimensions, `width: 100% / height: auto` scales
+   them fluidly — never cropped, no forcing numbers anywhere. */
+.connect-photo-full {
   position: relative;
-  width: 320px;
-  max-width: 100%;
-  aspect-ratio: 3 / 4;
+  width: 100%;
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid var(--border-strong);
   will-change: transform;
 }
-.connect-photo img {
-  object-position: center;
-}
-/* Magnet layer : overscanned 24px on every side so the ±14px cursor drift
-   never exposes an edge — the fixed container clips it (overflow hidden). */
+/* In-flow overscan : 8px larger than the frame on every side — exactly the
+   headroom the ±7px magnet drift needs, so no edge is ever exposed and the
+   frame keeps the photo's own ratio to within a percent. */
 .connect-magnet {
-  position: absolute;
-  inset: -24px;
+  width: calc(100% + 16px);
+  margin: -8px;
   will-change: transform;
   transition: transform 0.18s ease-out;
+}
+.connect-magnet img {
+  display: block;
+  object-position: center;
 }
 .connect-right {
   display: flex;

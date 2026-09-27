@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
+import connectPhoto from "@/public/images/posing_on_stage_after_singing_background_crowd_with_flashlight.webp";
 
 const HIGHLIGHTS = [
   "Playback Singer",
@@ -63,19 +64,17 @@ export default function ConnectSection() {
       </div>
 
       <div
-        className="connect-photo reveal-up"
-        data-parallax="connect-img"
+        className="connect-photo-full reveal-up"
         onMouseMove={onMagnetMove}
         onMouseLeave={onMagnetLeave}
       >
         <div className="connect-magnet" ref={magnetRef}>
           <Image
-            src="/images/posing_on_stage_after_singing_background_crowd_with_flashlight.webp"
+            src={connectPhoto}
             alt="Samrat Sarkar posing on stage after live performance with crowd — book SKS Music Band for events"
-            fill
             loading="lazy"
             quality={100}
-            sizes="(max-width: 900px) 100vw, 100vw"
+            sizes="100vw"
             className="img-smooth"
           />
         </div>
