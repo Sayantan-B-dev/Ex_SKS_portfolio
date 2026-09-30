@@ -63,7 +63,7 @@ function SongCard({
           fill
           loading="lazy"
           quality={100}
-          sizes="(max-width: 480px) 220px, (max-width: 768px) 300px, 400px"
+          sizes="100vw"
           className="img-smooth"
         />
         <div className="song-play-overlay">

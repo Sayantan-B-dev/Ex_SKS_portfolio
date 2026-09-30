@@ -122,7 +122,7 @@ export default function AchievementsSection() {
                   alt={panel.alt}
                   fill
                   loading="lazy"
-                  sizes="(max-width: 480px) 100vw, 50vw"
+                  sizes="100vw"
                   className="img-smooth"
                 />
                 <div className="ach-overlay" />

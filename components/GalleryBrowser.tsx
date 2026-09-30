@@ -69,7 +69,7 @@ export default function GalleryBrowser({ items }: { items: GalleryItem[] }) {
               alt={item.title}
               fill
               loading="lazy"
-              sizes="(max-width: 768px) 100vw, 33vw"
+              sizes="100vw"
               className="img-smooth"
             />
             <div className="gallery-card-overlay">
@@ -114,7 +114,7 @@ export default function GalleryBrowser({ items }: { items: GalleryItem[] }) {
                 fill
                 onLoad={() => setLoadedSrc(activeImage.src)}
                 className="lightbox-img"
-                sizes="90vw"
+                sizes="100vw"
               />
             </div>
             <div className="lightbox-caption">{activeImage.title}</div>

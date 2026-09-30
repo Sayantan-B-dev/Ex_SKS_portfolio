@@ -198,7 +198,7 @@ export default function AboutPage() {
                   fill
                   priority
                   className="img-smooth"
-                  sizes="(max-width: 768px) 100vw, 480px"
+                  sizes="100vw"
                 />
                 <div className="about-portrait-badge">
                   <span>WINNER OF</span>

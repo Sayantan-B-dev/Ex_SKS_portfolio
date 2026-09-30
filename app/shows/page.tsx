@@ -224,7 +224,7 @@ export default function ShowsPage() {
                       alt={`${show.title} : Samrat Sarkar live on stage`}
                       fill
                       loading="lazy"
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="100vw"
                       className="img-smooth"
                     />
                     <div className="show-card-overlay" />

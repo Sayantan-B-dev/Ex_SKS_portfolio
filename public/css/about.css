@@ -16,6 +16,9 @@
   border: 1px solid var(--border);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(245, 197, 24, 0.15);
 }
+.about-portrait-card img {
+  object-position: center;
+}
 .about-portrait-badge {
   position: absolute;
   left: 20px;
