@@ -69,6 +69,7 @@ export default function GalleryBrowser({ items }: { items: GalleryItem[] }) {
               alt={item.title}
               fill
               loading="lazy"
+              quality={100}
               sizes="100vw"
               className="img-smooth"
             />
@@ -113,6 +114,7 @@ export default function GalleryBrowser({ items }: { items: GalleryItem[] }) {
                 alt={activeImage.title}
                 fill
                 onLoad={() => setLoadedSrc(activeImage.src)}
+                quality={100}
                 className="lightbox-img"
                 sizes="100vw"
               />

@@ -84,6 +84,7 @@ export default function AchievementsSection() {
                 alt=""
                 fill
                 loading="lazy"
+                quality={100}
                 sizes="100vw"
                 className="img-smooth"
               />
@@ -122,6 +123,7 @@ export default function AchievementsSection() {
                   alt={panel.alt}
                   fill
                   loading="lazy"
+                  quality={100}
                   sizes="100vw"
                   className="img-smooth"
                 />

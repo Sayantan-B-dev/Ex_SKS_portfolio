@@ -85,6 +85,7 @@ export default async function GalleryPage() {
               fill
               priority
               loading="eager"
+              quality={100}
               sizes="100vw"
               className="subpage-hero-img"
             />

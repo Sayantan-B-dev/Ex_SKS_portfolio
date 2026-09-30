@@ -11,6 +11,7 @@ export default function Footer() {
           alt="Samrat Sarkar smiling on stage with microphone and stage lights"
           fill
           loading="lazy"
+          quality={100}
           className="footer-bg-img img-smooth"
           sizes="100vw"
         />

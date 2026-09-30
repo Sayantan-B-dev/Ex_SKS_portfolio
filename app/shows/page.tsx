@@ -187,6 +187,7 @@ export default function ShowsPage() {
               alt="Samrat Sarkar live concert stage — SKS Music Band performing worldwide across 40 countries"
               fill
               priority
+              quality={100}
               sizes="100vw"
               className="subpage-hero-img"
             />
@@ -224,6 +225,7 @@ export default function ShowsPage() {
                       alt={`${show.title} : Samrat Sarkar live on stage`}
                       fill
                       loading="lazy"
+                      quality={100}
                       sizes="100vw"
                       className="img-smooth"
                     />

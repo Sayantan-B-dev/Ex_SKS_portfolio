@@ -171,6 +171,7 @@ export default function AboutPage() {
               alt="Samrat Sarkar live on stage with crowd and flashlights — Bollywood playback singer and live performer"
               fill
               priority
+              quality={100}
               sizes="100vw"
               className="subpage-hero-img"
             />
@@ -197,6 +198,7 @@ export default function AboutPage() {
                   alt="Samrat Sarkar portrait holding a microphone under stage lights — SKS Music Band founder"
                   fill
                   priority
+                  quality={100}
                   className="img-smooth"
                   sizes="100vw"
                 />
