@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ScrollEffects from "@/components/ScrollEffects";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import TourAnnouncement, { type TourSlide } from "@/components/TourAnnouncement";
 import StatsBar from "@/components/StatsBar";
 import SongsSection from "@/components/SongsSection";
 import AchievementsSection from "@/components/AchievementsSection";
@@ -11,6 +12,14 @@ import { FAQS } from "@/lib/faqs";
 import ConnectSection from "@/components/ConnectSection";
 import Footer from "@/components/Footer";
 import { SITE_URL } from "@/lib/site";
+import { getTourEvents, isTourConfigured } from "@/lib/blog";
+
+/**
+ * Studio-managed tour events must reach the landing page without a rebuild, so
+ * the page is served from cache and refreshed on demand (`revalidatePath("/")`
+ * in app/blog/actions.ts) with a slow safety net underneath.
+ */
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
@@ -76,7 +85,34 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+/**
+ * A tour fetch never takes the landing page down with it : if MongoDB is
+ * unreachable the section simply does not render.
+ */
+async function loadTourSlides(): Promise<TourSlide[]> {
+  if (!isTourConfigured()) return [];
+  try {
+    const events = await getTourEvents();
+    return events.map((event) => ({
+      id: event.id,
+      kicker: event.kicker,
+      title: event.title,
+      dateText: event.dateText,
+      description: event.description,
+      image: event.image,
+      startingPoint: event.startingPoint,
+      cities: event.cities,
+      endingText: event.endingText,
+      redirectTo: event.redirectTo,
+      ctaLabel: event.ctaLabel,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function Home() {
+  const tourSlides = await loadTourSlides();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -102,6 +138,7 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
+        <TourAnnouncement events={tourSlides} />
         <StatsBar />
         <SongsSection />
         <AchievementsSection />

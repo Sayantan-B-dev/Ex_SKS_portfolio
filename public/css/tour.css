@@ -1,0 +1,595 @@
+/* ===== TOUR ANNOUNCEMENT (landing page) ===== */
+.tour {
+  padding: 60px 40px;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(255, 45, 120, 0.09), transparent 30rem),
+    linear-gradient(180deg, var(--bg-alt), var(--bg));
+}
+
+.tour-inner {
+  display: grid;
+  gap: 30px;
+}
+
+/* ── Switcher (only when the studio holds more than one event) ── */
+.tour-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.tour-switcher-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.tour-switcher-label {
+  font: 700 12px var(--font-ui);
+  letter-spacing: 0.26em;
+  color: var(--white);
+}
+
+.tour-switcher-count {
+  font: 600 11px var(--font-ui);
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.tour-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tour-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--border-strong);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.tour-dot:hover {
+  background: var(--white);
+}
+
+.tour-dot.is-active {
+  background: var(--yellow);
+  transform: scale(1.25);
+}
+
+/* ── One row : [info][image][map], all three stretched to the same height ── */
+.tour-body {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr 1.25fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.tour-body.is-short {
+  grid-template-columns: 1fr 0.9fr;
+}
+
+.tour-col-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.tour-kicker {
+  margin: 0;
+  font: 700 12px var(--font-ui);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--pink);
+}
+
+.tour-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 52px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.tour-date {
+  margin: 0;
+  font: 600 12px var(--font-ui);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.tour-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* The CTA settles at the foot of the column, so the row reads as one block. */
+.tour-cta-row {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.tour-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* The uploaded file keeps its own aspect ratio : no fixed frame, never cropped.
+   It is centred in the column, which stretches to the height of the row. */
+.tour-col-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-panel);
+}
+
+.tour-col-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Journey map : a low, wide road that lights up behind the traveller ── */
+.tour-col-map {
+  min-width: 0;
+}
+
+.tour-map {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 60%),
+    var(--bg-alt);
+}
+
+.tour-map-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tour-journey-label {
+  font: 700 13px var(--font-ui);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.tour-map-count {
+  font: 600 11px var(--font-ui);
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Deliberately short : the road spreads sideways, not down. */
+.tour-map-canvas {
+  --tour-map-h: 200px;
+  position: relative;
+  height: var(--tour-map-h);
+  min-height: 148px;
+  cursor: crosshair;
+}
+
+.tour-map-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tour-map-road {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.tour-map-trail {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 6px rgba(245, 197, 24, 0.45));
+}
+
+.tour-map-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.tour-map-node-dot {
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: var(--bg);
+  transition: background-color 0.25s var(--ease-out), border-color 0.25s,
+    box-shadow 0.25s, transform 0.25s var(--ease-out);
+}
+
+.tour-map-node.is-start .tour-map-node-dot {
+  border-color: rgba(255, 45, 120, 0.7);
+}
+
+.tour-map-node.is-lit .tour-map-node-dot {
+  background: var(--yellow);
+  border-color: var(--yellow);
+}
+
+.tour-map-node.is-start.is-lit .tour-map-node-dot {
+  background: var(--pink);
+  border-color: var(--pink);
+}
+
+.tour-map-node:hover .tour-map-node-dot {
+  border-color: var(--white);
+  transform: scale(1.2);
+}
+
+.tour-map-node.is-active .tour-map-node-dot {
+  transform: scale(1.4);
+  box-shadow: 0 0 0 5px rgba(245, 197, 24, 0.18);
+}
+
+.tour-map-node.is-start.is-active .tour-map-node-dot {
+  box-shadow: 0 0 0 5px rgba(255, 45, 120, 0.2);
+}
+
+/* Tiny name on every stop, alternating above and below so neighbours clear
+   each other. The active one is named once more, larger, in the readout. */
+.tour-map-node-label {
+  position: absolute;
+  left: 50%;
+  max-width: 92px;
+  overflow: hidden;
+  color: var(--muted);
+  font: 600 8px var(--font-ui);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  text-shadow: 0 1px 3px var(--bg), 0 0 6px var(--bg);
+  transform: translateX(-50%);
+  transition: color 0.25s;
+}
+
+.tour-map-node.is-above .tour-map-node-label {
+  bottom: calc(100% - 2px);
+}
+
+.tour-map-node.is-below .tour-map-node-label {
+  top: calc(100% - 2px);
+}
+
+/* Keep the end labels from spilling out of the card. */
+.tour-map-node.is-first .tour-map-node-label {
+  left: 0;
+  transform: none;
+}
+
+.tour-map-node.is-last .tour-map-node-label {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+.tour-map-node.is-lit .tour-map-node-label {
+  color: var(--white);
+}
+
+.tour-map-node.is-active .tour-map-node-label {
+  color: var(--yellow);
+}
+
+.tour-map-avatar {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--pink);
+  box-shadow: 0 0 16px rgba(255, 45, 120, 0.75);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.tour-map-avatar::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgba(255, 45, 120, 0.6);
+  border-radius: 50%;
+  animation: tour-pulse 1.2s var(--ease-out) infinite;
+}
+
+@keyframes tour-pulse {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+
+.tour-map-readout {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tour-map-stop {
+  font: 600 9.5px var(--font-ui);
+  letter-spacing: 0.22em;
+  color: var(--pink);
+}
+
+.tour-map-city {
+  font: 800 clamp(18px, 1.7vw, 25px) / 1.1 var(--font-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.tour-map-hint {
+  font: 600 9.5px var(--font-ui);
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.tour-ending {
+  margin: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  font: 600 11px var(--font-ui);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ===== STUDIO : TOUR EVENT FORM ===== */
+.tour-field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.tour-form textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 13px 15px;
+  background: var(--bg);
+  color: var(--white);
+  font: 15px/1.6 var(--font-body);
+  letter-spacing: normal;
+  text-transform: none;
+  resize: vertical;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.tour-form textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.tour-form textarea:hover {
+  border-color: var(--border-strong);
+}
+
+.tour-form textarea:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.14);
+  outline: none;
+  background: var(--bg-panel);
+}
+
+.tour-check {
+  display: flex !important;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px !important;
+  cursor: pointer;
+  text-transform: none !important;
+}
+
+.tour-check input[type="checkbox"] {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--pink);
+  cursor: pointer;
+}
+
+.tour-check > span {
+  display: grid;
+  gap: 4px;
+  font: 600 12px var(--font-ui);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.tour-check-hint {
+  font: 12px/1.5 var(--font-body);
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--muted);
+}
+
+.tour-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.tour-row-no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 92px;
+  height: 66px;
+  border: 1px dashed var(--border);
+  border-radius: 3px;
+  color: var(--muted);
+  font: 600 9px var(--font-ui);
+  letter-spacing: 0.16em;
+}
+
+.blog-gallery-chip.is-featured {
+  border-color: rgba(255, 45, 120, 0.45);
+  color: var(--pink);
+}
+
+/* ===== RESPONSIVE ===== */
+/* 1024px : the map drops under [info][image] and spreads the full width. */
+@media (max-width: 1024px) {
+  .tour-body {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+
+  .tour-col-map {
+    grid-column: 1 / -1;
+  }
+
+  .tour-map-canvas {
+    --tour-map-h: 185px;
+  }
+}
+
+@media (max-width: 900px) {
+  .tour {
+    padding: 52px 30px;
+  }
+}
+
+/* 768px : everything into one column, in the order info → image → map. */
+@media (max-width: 768px) {
+  .tour {
+    padding: 46px 20px;
+  }
+
+  .tour-body {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .tour-col-map {
+    grid-column: auto;
+  }
+
+  .tour-title {
+    font-size: clamp(28px, 6vw, 42px);
+  }
+
+  .tour-cta-row {
+    margin-top: 4px;
+  }
+
+  .tour-map-canvas {
+    --tour-map-h: 165px;
+  }
+
+  .tour-field-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tour {
+    padding: 40px 16px;
+  }
+
+  .tour-switcher {
+    align-items: flex-start;
+  }
+
+  .tour-title {
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  .tour-map {
+    padding: 14px;
+  }
+
+  .tour-map-canvas {
+    --tour-map-h: 150px;
+    min-height: 132px;
+  }
+
+  .tour-map-city {
+    font-size: 17px;
+  }
+
+  .tour-map-node-label {
+    max-width: 74px;
+    font-size: 7.5px;
+  }
+
+  .tour-form-actions {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .tour-form-actions .blog-submit-button {
+    width: 100%;
+  }
+}
+
+/* Reduced motion : the trail is already stepped to full length, so only the
+   decorative pulse needs switching off. */
+@media (prefers-reduced-motion: reduce) {
+  .tour-map-avatar::after {
+    display: none;
+  }
+}
