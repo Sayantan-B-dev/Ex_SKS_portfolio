@@ -91,11 +91,11 @@ export default function Footer() {
         <div className="footer-links-col">
           <div className="footer-col-title">PAGES</div>
           <nav className="footer-links">
-            <Link href="/">Home</Link>
             <Link href="/about">About</Link>
             <Link href="/shows">Shows</Link>
             <Link href="/gallery">Gallery</Link>
             <Link href="/blog">Blog</Link>
+            <Link href="/dashboard">Dashboard</Link>
             <Link href="/#connect">Contact</Link>
           </nav>
         </div>

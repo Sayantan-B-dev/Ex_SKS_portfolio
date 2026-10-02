@@ -101,7 +101,6 @@ export default async function BlogPage() {
               <Link href="/#connect" className="btn-outline-pink blog-hero-cta">
                 BOOK SAMRAT FOR YOUR EVENT <span className="btn-arrow">↗</span>
               </Link>
-              <Link href="/blog/admin" className="blog-author-link">AUTHOR LOGIN <span>↗</span></Link>
             </div>
           </div>
         </section>
