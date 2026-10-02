@@ -28,6 +28,35 @@ export type GalleryImage = {
 };
 
 /**
+ * One leg of a tour the studio manages : the announcement card shown on the
+ * landing page, tagged in the same shared collection with its own `type` so the
+ * single-collection rule still holds.
+ */
+export type TourEvent = {
+  id: string;
+  /** Small all-caps label above the title, e.g. "BEYOND THE MUSIC". */
+  kicker: string;
+  title: string;
+  /** Free-text date range the author types, e.g. "DEC 2026 — MAR 2027". */
+  dateText: string;
+  description: string;
+  image: string;
+  /** ImageKit's id for the file, empty for a pasted link. */
+  fileId: string;
+  filePath: string;
+  startingPoint: string;
+  cities: string[];
+  endingText: string;
+  /** Where the CTA button goes; blank hides the button. */
+  redirectTo: string;
+  ctaLabel: string;
+  /** Featured events sort first and open the switcher. */
+  featured: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+/**
  * ImageKit bookkeeping for one uploaded image : the id lets the story's images
  * be deleted by id when the story goes, without relying on ImageKit's search
  * index, which lags behind a fresh upload.
@@ -59,11 +88,15 @@ export type BlogPost = {
  */
 const BLOG_TYPE = "blog_post";
 const GALLERY_TYPE = "gallery_image";
+const TOUR_TYPE = "tour_event";
 const DEFAULT_DB_NAME = "BlueEyeEntertainment";
 const DEFAULT_COLLECTION_NAME = "SamratPortfolio";
 
 /** A story can carry a handful of supporting shots : enough, not a dump. */
 const MAX_POST_IMAGES = 12;
+
+/** A tour's route stays readable : past this the zigzag turns into a scroll. */
+export const MAX_TOUR_CITIES = 16;
 
 type GalleryImageDocument = {
   type: typeof GALLERY_TYPE;
@@ -72,6 +105,25 @@ type GalleryImageDocument = {
   filePath?: string;
   title: string;
   category: string;
+  created_at: Date;
+  updated_at: Date;
+};
+
+type TourEventDocument = {
+  type: typeof TOUR_TYPE;
+  kicker?: string;
+  title: string;
+  date_text?: string;
+  description: string;
+  image?: string;
+  fileId?: string;
+  filePath?: string;
+  starting_point: string;
+  cities?: string[];
+  ending_text?: string;
+  redirect_to?: string;
+  cta_label?: string;
+  featured?: boolean;
   created_at: Date;
   updated_at: Date;
 };
@@ -96,6 +148,11 @@ export function isBlogConfigured() {
 
 /** Same requirement as the blog, exposed so the gallery page can ask. */
 export function isGalleryConfigured() {
+  return Boolean(process.env.MONGODB_URI);
+}
+
+/** Same requirement again, exposed so the landing page can ask before fetching. */
+export function isTourConfigured() {
   return Boolean(process.env.MONGODB_URI);
 }
 
@@ -144,6 +201,10 @@ async function getGalleryCollection() {
   return getCollectionOf<GalleryImageDocument>();
 }
 
+async function getTourCollection() {
+  return getCollectionOf<TourEventDocument>();
+}
+
 function createIndexes() {
   return (async () => {
     const collection: Collection<BlogPostDocument> = await getPostsCollection();
@@ -158,6 +219,7 @@ function createIndexes() {
       },
       { key: { type: 1, published_at: -1 }, name: "blog_type_published" },
       { key: { type: 1, created_at: -1 }, name: "gallery_type_created" },
+      { key: { type: 1, featured: -1, created_at: -1 }, name: "tour_type_featured" },
     ]);
   })();
 }
@@ -470,6 +532,166 @@ export async function removeGalleryImage(id: string) {
   }
 }
 
+/* ===== TOUR EVENTS ===== */
+
+function toTourEvent(doc: WithId<TourEventDocument>): TourEvent {
+  return {
+    id: doc._id.toHexString(),
+    kicker: doc.kicker ?? "",
+    title: doc.title,
+    dateText: doc.date_text ?? "",
+    description: doc.description,
+    image: doc.image ?? "",
+    fileId: doc.fileId ?? "",
+    filePath: doc.filePath ?? "",
+    startingPoint: doc.starting_point,
+    cities: doc.cities ?? [],
+    endingText: doc.ending_text ?? "",
+    redirectTo: doc.redirect_to ?? "",
+    ctaLabel: doc.cta_label ?? "",
+    featured: doc.featured ?? false,
+    created_at: toIso(doc.created_at),
+    updated_at: toIso(doc.updated_at),
+  };
+}
+
+/**
+ * Cities are typed one per line in the studio, so trim each line, drop blanks,
+ * de-duplicate, and cap the route at a length the journey graphic can carry.
+ */
+function cleanCities(values: readonly string[]) {
+  const seen = new Set<string>();
+  const cities: string[] = [];
+  for (const value of values) {
+    const city = value.trim();
+    if (!city) continue;
+    const key = city.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    cities.push(city);
+    if (cities.length === MAX_TOUR_CITIES) break;
+  }
+  return cities;
+}
+
+/** A redirect is a link the author pasted, so keep it to an absolute http(s) or site-relative path. */
+function cleanRedirect(value: string) {
+  const url = value.trim();
+  if (!url) return "";
+  return /^(https?:\/\/|\/)/i.test(url) ? url : "";
+}
+
+/** Featured events first, then newest : the order the landing page reads them. */
+export async function getTourEvents() {
+  await ensureIndexes();
+  const collection = await getTourCollection();
+  const docs = await collection
+    .find({ type: TOUR_TYPE })
+    .sort({ featured: -1, created_at: -1 })
+    .toArray();
+  return docs.map(toTourEvent);
+}
+
+function tourFields(input: {
+  kicker: string;
+  title: string;
+  dateText: string;
+  description: string;
+  image: string;
+  fileId?: string;
+  filePath?: string;
+  startingPoint: string;
+  cities: readonly string[];
+  endingText: string;
+  redirectTo: string;
+  ctaLabel: string;
+  featured: boolean;
+}) {
+  return {
+    kicker: input.kicker.trim(),
+    title: input.title.trim(),
+    date_text: input.dateText.trim(),
+    description: input.description.trim(),
+    image: input.image.trim(),
+    fileId: input.fileId?.trim() ?? "",
+    filePath: input.filePath?.trim() ?? "",
+    starting_point: input.startingPoint.trim(),
+    cities: cleanCities(input.cities),
+    ending_text: input.endingText.trim(),
+    redirect_to: cleanRedirect(input.redirectTo),
+    cta_label: input.ctaLabel.trim(),
+    featured: Boolean(input.featured),
+  };
+}
+
+export type TourEventInput = {
+  kicker: string;
+  title: string;
+  dateText: string;
+  description: string;
+  image: string;
+  fileId?: string;
+  filePath?: string;
+  startingPoint: string;
+  cities: readonly string[];
+  endingText: string;
+  redirectTo: string;
+  ctaLabel: string;
+  featured: boolean;
+};
+
+export async function createTourEvent(input: TourEventInput) {
+  await ensureIndexes();
+  const collection = await getTourCollection();
+  const now = new Date();
+  try {
+    await collection.insertOne({
+      type: TOUR_TYPE,
+      ...tourFields(input),
+      created_at: now,
+      updated_at: now,
+    });
+  } catch (error) {
+    throw new Error(`Unable to add that tour event: ${describeError(error)}`);
+  }
+}
+
+export async function updateTourEvent(input: TourEventInput & { id: string }) {
+  await ensureIndexes();
+  const collection = await getTourCollection();
+  try {
+    await collection.updateOne(
+      { _id: toObjectId(input.id), type: TOUR_TYPE },
+      { $set: { ...tourFields(input), updated_at: new Date() } }
+    );
+  } catch (error) {
+    throw new Error(`Unable to update that tour event: ${describeError(error)}`);
+  }
+}
+
+/**
+ * Removes a tour event and hands back the ImageKit identity its image was
+ * stored with, so the caller can clean up exactly that one file.
+ */
+export async function deleteTourEvent(id: string) {
+  await ensureIndexes();
+  const collection = await getTourCollection();
+  try {
+    const removed = await collection.findOneAndDelete({
+      _id: toObjectId(id),
+      type: TOUR_TYPE,
+    });
+    if (!removed) return null;
+    return {
+      image: removed.image ?? "",
+      fileId: removed.fileId ?? "",
+      filePath: removed.filePath ?? "",
+    };
+  } catch (error) {
+    throw new Error(`Unable to remove that tour event: ${describeError(error)}`);
+  }
+}
+
 /**
  * Removes the story and hands back the images it carried, so the caller can
  * clean up exactly those ImageKit files (see `deleteBlogImages`).
@@ -494,16 +716,10 @@ export async function deleteBlogPost(id: string) {
 }
 
 /**
- * Which of these image URLs are still referenced by a story in this collection?
- * An image shared by another story is left in ImageKit rather than deleted out
- * from under it. Runs after the deleted story is gone, so it only sees the
- * remaining stories.
- */
-/**
  * Which of these image URLs are still referenced by anything in this collection
- * : another story, or a gallery image. An image shared by another content type
- * is left in ImageKit rather than deleted out from under it. Runs after the
- * deleted document is gone, so it only sees what remains.
+ * : another story, a gallery image, or a tour event. An image shared by another
+ * content type is left in ImageKit rather than deleted out from under it. Runs
+ * after the deleted document is gone, so it only sees what remains.
  */
 export async function getReferencedImageUrls(urls: readonly string[]) {
   await ensureIndexes();
@@ -511,6 +727,7 @@ export async function getReferencedImageUrls(urls: readonly string[]) {
     cover_image?: string | null;
     images?: string[];
     url?: string;
+    image?: string;
   }>();
   const unique = [...new Set(urls.map((url) => url.trim()).filter(Boolean))];
   if (unique.length === 0) return new Set<string>();
@@ -524,15 +741,21 @@ export async function getReferencedImageUrls(urls: readonly string[]) {
             $or: [{ cover_image: { $in: unique } }, { images: { $in: unique } }],
           },
           { type: GALLERY_TYPE, url: { $in: unique } },
+          { type: TOUR_TYPE, image: { $in: unique } },
         ],
       },
-      { projection: { cover_image: 1, images: 1, url: 1 } }
+      { projection: { cover_image: 1, images: 1, url: 1, image: 1 } }
     )
     .toArray();
 
   const referenced = new Set<string>();
   for (const doc of docs) {
-    for (const candidate of [doc.cover_image, doc.url, ...(doc.images ?? [])]) {
+    for (const candidate of [
+      doc.cover_image,
+      doc.url,
+      doc.image,
+      ...(doc.images ?? []),
+    ]) {
       if (candidate && unique.includes(candidate)) referenced.add(candidate);
     }
   }

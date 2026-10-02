@@ -6,11 +6,14 @@ import { authenticate, clearSession, isAuthenticated } from "@/lib/blog-auth";
 import {
   createBlogPost,
   createGalleryImage,
+  createTourEvent,
   deleteBlogPost,
+  deleteTourEvent,
   getReferencedImageUrls,
   parsePublishedDate,
   removeGalleryImage,
   updateBlogPost,
+  updateTourEvent,
   type BlogImageFile,
 } from "@/lib/blog";
 import { deleteBlogImages, uploadBlogImage } from "@/lib/imagekit";
@@ -145,6 +148,113 @@ export async function removeGalleryImageAction(formData: FormData) {
   if (imagesFailed) params.set("galleryImagesFailed", "1");
   if (purgeFailed) params.set("galleryPurgeFailed", "1");
   redirect(`/blog/admin?${params.toString()}#gallery`);
+}
+
+/** True for a site-relative path or an absolute http(s) link. */
+function isLink(value: string) {
+  return /^(https?:\/\/|\/)/i.test(value.trim());
+}
+
+/**
+ * Reads the studio's tour fields. Cities arrive one per line from a textarea, so
+ * they are split here : `cleanCities` in lib/blog.ts trims, de-dupes, and caps
+ * the route.
+ */
+function readTourInput(formData: FormData) {
+  return {
+    kicker: String(formData.get("tourKicker") ?? "").trim(),
+    title: String(formData.get("tourTitle") ?? "").trim(),
+    dateText: String(formData.get("tourDate") ?? "").trim(),
+    description: String(formData.get("tourDescription") ?? "").trim(),
+    image: String(formData.get("tourImage") ?? "").trim(),
+    fileId: String(formData.get("tourFileId") ?? "").trim(),
+    filePath: String(formData.get("tourFilePath") ?? "").trim(),
+    startingPoint: String(formData.get("tourStartingPoint") ?? "").trim(),
+    cities: String(formData.get("tourCities") ?? "").split(/\r?\n/),
+    endingText: String(formData.get("tourEndingText") ?? "").trim(),
+    redirectTo: String(formData.get("tourRedirectTo") ?? "").trim(),
+    ctaLabel: String(formData.get("tourCtaLabel") ?? "").trim(),
+    featured: formData.get("tourFeatured") === "on",
+  };
+}
+
+/** Adds one tour event. The landing page picks it up on its next revalidation. */
+export async function addTourEventAction(formData: FormData) {
+  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  const input = readTourInput(formData);
+  if (!input.title || !input.description || !input.startingPoint) {
+    redirect("/blog/admin?error=tourRequired#tour");
+  }
+  if (!input.image) redirect("/blog/admin?error=tourImage#tour");
+  if (input.redirectTo && !isLink(input.redirectTo)) {
+    redirect("/blog/admin?error=tourUrl#tour");
+  }
+  await createTourEvent(input);
+  revalidatePath("/");
+  revalidatePath("/blog/admin");
+  redirect("/blog/admin?tourAdded=1#tour");
+}
+
+export async function updateTourEventAction(formData: FormData) {
+  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  const id = String(formData.get("id") ?? "");
+  const input = readTourInput(formData);
+  if (!id || !input.title || !input.description || !input.startingPoint) {
+    redirect("/blog/admin?error=tourRequired#tour");
+  }
+  if (!input.image) redirect("/blog/admin?error=tourImage#tour");
+  if (input.redirectTo && !isLink(input.redirectTo)) {
+    redirect("/blog/admin?error=tourUrl#tour");
+  }
+  await updateTourEvent({ ...input, id });
+  revalidatePath("/");
+  revalidatePath("/blog/admin");
+  redirect("/blog/admin?tourUpdated=1#tour");
+}
+
+/**
+ * Removes a tour event, then the one ImageKit file it was added with. Same
+ * guardrails as a story or gallery photo: the file must sit in
+ * `/sks-portfolio/blogs`, it is deleted by the id recorded when we uploaded it,
+ * and it survives if another story, photo, or tour still points at the URL.
+ */
+export async function removeTourEventAction(formData: FormData) {
+  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  const id = String(formData.get("id") ?? "");
+  if (!id) redirect("/blog/admin?error=missing");
+
+  const removed = await deleteTourEvent(id);
+  let removedImages = 0;
+  let keptImages = 0;
+  let imagesFailed = false;
+  let purgeFailed = false;
+
+  if (removed && removed.image) {
+    const stillUsed = await getReferencedImageUrls([removed.image]);
+    keptImages = stillUsed.size;
+    if (keptImages === 0) {
+      try {
+        const cleanup = await deleteBlogImages([
+          { url: removed.image, fileId: removed.fileId || undefined },
+        ]);
+        removedImages = cleanup.deleted;
+        purgeFailed = cleanup.purgeFailed > 0;
+      } catch {
+        imagesFailed = true;
+      }
+    }
+  }
+
+  revalidatePath("/");
+  revalidatePath("/blog/admin");
+  const params = new URLSearchParams({
+    tourRemoved: "1",
+    images: String(removedImages),
+  });
+  if (keptImages > 0) params.set("kept", String(keptImages));
+  if (imagesFailed) params.set("tourImagesFailed", "1");
+  if (purgeFailed) params.set("tourPurgeFailed", "1");
+  redirect(`/blog/admin?${params.toString()}#tour`);
 }
 
 export async function loginAction(formData: FormData) {
