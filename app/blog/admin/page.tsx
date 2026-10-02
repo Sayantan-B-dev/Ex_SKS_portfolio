@@ -4,24 +4,30 @@ import { SITE_URL } from "@/lib/site";
 import BlogMediaFields from "@/components/BlogMediaFields";
 import ConfirmActionButton from "@/components/ConfirmActionButton";
 import GalleryAddForm from "@/components/GalleryAddForm";
+import TourEventForm from "@/components/TourEventForm";
 import PasswordField from "@/components/PasswordField";
 import SubmitButton from "@/components/SubmitButton";
 import { isAuthenticated, isConfigured } from "@/lib/blog-auth";
 import {
   addGalleryImageAction,
+  addTourEventAction,
   deleteAction,
   loginAction,
   logoutAction,
   publishAction,
   removeGalleryImageAction,
+  removeTourEventAction,
   updateAction,
+  updateTourEventAction,
 } from "@/app/blog/actions";
 import {
   getAdminPosts,
   getGalleryImages,
+  getTourEvents,
   toDateInputValue,
   type BlogPost,
   type GalleryImage,
+  type TourEvent,
 } from "@/lib/blog";
 
 export const dynamic = "force-dynamic";
@@ -55,7 +61,13 @@ export default async function BlogAdminPage({
     galleryRemoved?: string;
     galleryImagesFailed?: string;
     galleryPurgeFailed?: string;
+    tourAdded?: string;
+    tourUpdated?: string;
+    tourRemoved?: string;
+    tourImagesFailed?: string;
+    tourPurgeFailed?: string;
     edit?: string;
+    tourEdit?: string;
   }>;
 }) {
   const loggedIn = await isAuthenticated();
@@ -64,11 +76,15 @@ export default async function BlogAdminPage({
   const keptImages = Number(query.kept ?? 0) || 0;
   let posts: BlogPost[] = [];
   let photos: GalleryImage[] = [];
+  let tours: TourEvent[] = [];
   let editingPost: BlogPost | null = null;
+  let editingTour: TourEvent | null = null;
   if (loggedIn && isConfigured()) {
     posts = await getAdminPosts();
     photos = await getGalleryImages();
+    tours = await getTourEvents();
     editingPost = posts.find((post) => post.id === query.edit) ?? null;
+    editingTour = tours.find((tour) => tour.id === query.tourEdit) ?? null;
   }
   return (
     <main className="blog-admin-page">
@@ -145,7 +161,54 @@ export default async function BlogAdminPage({
                 copy a browser already loaded may still appear until the cache expires.
               </p>
             )}
+            {query.tourAdded && (
+              <p className="admin-message admin-success">
+                Tour event added. It is live in the landing page announcement.
+              </p>
+            )}
+            {query.tourUpdated && (
+              <p className="admin-message admin-success">Tour event updated.</p>
+            )}
+            {query.tourRemoved && (
+              <p className="admin-message admin-success">
+                Tour event removed
+                {deletedImages > 0
+                  ? ` : ${deletedImages} ImageKit ${deletedImages === 1 ? "file" : "files"} removed`
+                  : ""}
+                {keptImages > 0
+                  ? `, ${keptImages} kept because another story, photo, or tour still uses ${keptImages === 1 ? "it" : "them"}`
+                  : ""}
+                .
+              </p>
+            )}
+            {query.tourImagesFailed && (
+              <p className="admin-message admin-error">
+                The tour event was removed, but its ImageKit file could not be deleted.
+                Clear it from ImageKit yourself if you want it gone.
+              </p>
+            )}
+            {query.tourPurgeFailed && (
+              <p className="admin-message admin-error">
+                The tour image was removed, but ImageKit&apos;s cache could not be purged,
+                so a copy a browser already loaded may still appear until the cache
+                expires.
+              </p>
+            )}
             {query.error === "required" && <p className="admin-message admin-error">Title, excerpt, and story are required.</p>}
+            {query.error === "tourRequired" && (
+              <p className="admin-message admin-error">
+                A tour event needs a title, a description, and a starting point.
+              </p>
+            )}
+            {query.error === "tourImage" && (
+              <p className="admin-message admin-error">Add a tour image : paste a link or upload a file.</p>
+            )}
+            {query.error === "tourUrl" && (
+              <p className="admin-message admin-error">
+                That redirect link is not valid. Use a full https link or a path that
+                starts with /.
+              </p>
+            )}
             {query.error === "cover" && <p className="admin-message admin-error">Add a cover image : paste a link or upload a file.</p>}
             {query.error === "date" && <p className="admin-message admin-error">That publish date is not valid. Pick a date or leave it empty.</p>}
 
@@ -284,6 +347,83 @@ export default async function BlogAdminPage({
                       />
                     </div>
                   ))}
+                </div>
+              )}
+            </section>
+
+            <section className="blog-panel" id="tour">
+              <div className="blog-panel-head blog-manage-heading">
+                <h2>TOUR EVENTS</h2>
+                <span>
+                  {tours.length} {tours.length === 1 ? "event" : "events"}
+                </span>
+              </div>
+              <p className="blog-panel-note">
+                Events appear in the tour announcement between the hero and the stats
+                bar. The featured one opens the switcher. Uploads go to ImageKit under
+                /sks-portfolio/blogs.
+              </p>
+              <TourEventForm
+                key={editingTour?.id ?? "new"}
+                action={editingTour ? updateTourEventAction : addTourEventAction}
+                defaults={editingTour}
+              />
+              {tours.length === 0 ? (
+                <p className="blog-manage-empty">Tour events you add will appear here.</p>
+              ) : (
+                <div className="blog-gallery-list">
+                  {tours.map((tour) => {
+                    const facts = [tour.kicker, tour.dateText]
+                      .filter(Boolean)
+                      .join(" | ");
+                    return (
+                      <div className="blog-gallery-row" key={tour.id}>
+                        {tour.image ? (
+                          /* eslint-disable-next-line @next/next/no-img-element -- a tour image can live on any host the author pastes */
+                          <img src={tour.image} alt={tour.title} loading="lazy" />
+                        ) : (
+                          <span className="tour-row-no-image">NO IMAGE</span>
+                        )}
+                        <div className="blog-gallery-meta">
+                          <strong>{tour.title}</strong>
+                          <span className="blog-gallery-facts">
+                            {tour.featured && (
+                              <span className="blog-gallery-chip is-featured">Featured</span>
+                            )}
+                            <span
+                              className={`blog-gallery-chip ${
+                                tour.fileId ? "is-imagekit" : "is-link"
+                              }`}
+                            >
+                              {tour.fileId ? "ImageKit" : "Linked"}
+                            </span>
+                            {facts || `${tour.cities.length} cities`}
+                          </span>
+                        </div>
+                        <div className="blog-row-actions">
+                          <Link href={`/blog/admin?tourEdit=${tour.id}#tour`}>EDIT</Link>
+                          <ConfirmActionButton
+                            action={removeTourEventAction}
+                            name="id"
+                            value={tour.id}
+                            triggerLabel="REMOVE"
+                            ariaLabel={`Remove ${tour.title} from the tour announcements`}
+                            tag="REMOVE TOUR EVENT"
+                            heading="Remove this tour event?"
+                            text={
+                              <>
+                                &ldquo;{tour.title}&rdquo; will be removed from the landing
+                                page, along with the image it uploaded to ImageKit. This
+                                cannot be undone.
+                              </>
+                            }
+                            confirmLabel="REMOVE EVENT"
+                            pendingLabel="REMOVING…"
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </section>
