@@ -39,3 +39,5 @@
 @import "../public/css/blog.css";
 @import "../public/css/faq.css";
 @import "../public/css/tour.css";
+/* Private dashboard */
+@import "../public/css/dashboard.css";
