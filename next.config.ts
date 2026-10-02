@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
       // Studio image uploads travel as Server Action bodies. Next caps those at
-      // 1MB by default, which surfaced as a raw 500 on /blog/admin. `lib/image-limits.ts`
+      // 1MB by default, which surfaced as a raw 500 on the studio's upload form. `lib/image-limits.ts`
       // keeps the client-side cap just under this so an oversized file is reported
       // in the form instead of failing here.
       bodySizeLimit: "3mb",

@@ -70,6 +70,6 @@ The `/blog` blog stores posts in MongoDB Atlas. Copy `.env.example` to `.env.loc
 npm run seed:blog   # creates the indexes and adds two sample stories
 ```
 
-The seed is idempotent — re-running it never duplicates a story or reshuffles its publish date. The public blog includes an **AUTHOR LOGIN** link; the author manages all posts from `/blog/admin`, where they can create, read, update, and delete stories.
+The seed is idempotent — re-running it never duplicates a story or reshuffles its publish date. The author manages everything from `/dashboard`, reached through the **Dashboard** link in the footer's Pages column (the public blog no longer carries an author link). `/dashboard` is the sign-in page when signed out and the studio when signed in, with three sections — Stories, Gallery, and Tour Events — each listing its content above the form that adds or edits it. The old `/blog/admin` URL forwards there.
 
 This site shares the Blue Eye Entertainment Atlas cluster with another app, so it keeps every document in its own `SamratPortfolio` collection, tagged with a `type` field. The other app's `artists` collection is never read or written, and the connection string is only used on the server — it must never be exposed to the browser.
