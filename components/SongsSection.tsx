@@ -63,7 +63,9 @@ function SongCard({
           fill
           loading="lazy"
           quality={100}
-          sizes="100vw"
+          // Song cards are fixed-width (see .song-card in songs.css), never
+          // full-viewport, so the sizes hint has to match those widths.
+          sizes="(max-width: 480px) 200px, (max-width: 768px) 260px, (max-width: 900px) 350px, 500px"
           className="img-smooth"
         />
         <div className="song-play-overlay">

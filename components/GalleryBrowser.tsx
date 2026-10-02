@@ -70,7 +70,13 @@ export default function GalleryBrowser({ items }: { items: GalleryItem[] }) {
               fill
               loading="lazy"
               quality={100}
-              sizes="100vw"
+              // 3-up grid, 2-up ≤900px, single column ≤768px; a col-span-2 card
+              // covers two tracks, so it asks for roughly twice the width.
+              sizes={
+                item.span === "col-span-2"
+                  ? "(max-width: 768px) 100vw, (max-width: 900px) 50vw, 62vw"
+                  : "(max-width: 768px) 100vw, (max-width: 900px) 50vw, 31vw"
+              }
               className="img-smooth"
             />
             <div className="gallery-card-overlay">

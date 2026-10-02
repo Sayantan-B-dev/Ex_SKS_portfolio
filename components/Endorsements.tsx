@@ -53,7 +53,8 @@ export default function Endorsements() {
                     fill
                     loading="lazy"
                     className="endorse-logo-img"
-                    sizes="100vw"
+                    // Logo cards are fixed-width (see .logo-card), never full width.
+                    sizes="(max-width: 480px) 130px, (max-width: 768px) 150px, (max-width: 900px) 180px, 220px"
                   />
                 </div>
               </SpotlightCard>

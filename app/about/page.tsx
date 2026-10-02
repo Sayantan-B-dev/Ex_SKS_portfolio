@@ -200,7 +200,8 @@ export default function AboutPage() {
                   priority
                   quality={100}
                   className="img-smooth"
-                  sizes="100vw"
+                  // Left column of the 2-up bio grid; ~400px once it stacks.
+                  sizes="(max-width: 900px) 400px, 40vw"
                 />
                 <div className="about-portrait-badge">
                   <span>WINNER OF</span>

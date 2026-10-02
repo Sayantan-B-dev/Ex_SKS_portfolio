@@ -85,7 +85,8 @@ export default function AchievementsSection() {
                 fill
                 loading="lazy"
                 quality={100}
-                sizes="100vw"
+                // The shared-stage strip is near full width, inset on both sides.
+                sizes="(max-width: 720px) 100vw, (max-width: 900px) 92vw, 88vw"
                 className="img-smooth"
               />
               <div className="ach-overlay" />
@@ -124,7 +125,8 @@ export default function AchievementsSection() {
                   fill
                   loading="lazy"
                   quality={100}
-                  sizes="100vw"
+                  // Panels are a 2-up grid (single column ≤720px), never full width.
+                  sizes="(max-width: 720px) 96vw, (max-width: 900px) 48vw, 46vw"
                   className="img-smooth"
                 />
                 <div className="ach-overlay" />

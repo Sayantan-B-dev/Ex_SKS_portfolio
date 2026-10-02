@@ -226,7 +226,8 @@ export default function ShowsPage() {
                       fill
                       loading="lazy"
                       quality={100}
-                      sizes="100vw"
+                      // 3-up grid that goes single column at ≤900px.
+                      sizes="(max-width: 900px) 100vw, 32vw"
                       className="img-smooth"
                     />
                     <div className="show-card-overlay" />
