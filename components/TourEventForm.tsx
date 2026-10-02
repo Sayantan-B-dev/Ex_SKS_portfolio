@@ -255,7 +255,7 @@ export default function TourEventForm({
             {editing ? "SAVE TOUR EVENT" : "ADD TOUR EVENT"}
           </SubmitButton>
           {editing && (
-            <Link href="/blog/admin#tour" className="blog-cancel-link">
+            <Link href="/dashboard?tab=tour" className="blog-cancel-link">
               CANCEL EDIT
             </Link>
           )}

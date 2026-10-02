@@ -89,20 +89,20 @@ export async function uploadImageAction(formData: FormData): Promise<ImageUpload
 
 /** Adds one photo to the gallery page. Uploaded files keep their ImageKit id. */
 export async function addGalleryImageAction(formData: FormData) {
-  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  if (!(await isAuthenticated())) redirect("/dashboard?error=session");
   const url = String(formData.get("galleryUrl") ?? "").trim();
   const title = String(formData.get("galleryTitle") ?? "").trim();
   const category = String(formData.get("galleryCategory") ?? "").trim();
   const fileId = String(formData.get("galleryFileId") ?? "").trim();
   const filePath = String(formData.get("galleryFilePath") ?? "").trim();
 
-  if (!/^https?:\/\//i.test(url)) redirect("/blog/admin?error=galleryImage");
-  if (!title) redirect("/blog/admin?error=galleryTitle");
+  if (!/^https?:\/\//i.test(url)) redirect("/dashboard?tab=gallery&error=galleryImage");
+  if (!title) redirect("/dashboard?tab=gallery&error=galleryTitle");
 
   await createGalleryImage({ url, title, category, fileId, filePath });
   revalidatePath("/gallery");
-  revalidatePath("/blog/admin");
-  redirect("/blog/admin?galleryAdded=1#gallery");
+  revalidatePath("/dashboard");
+  redirect("/dashboard?tab=gallery&galleryAdded=1");
 }
 
 /**
@@ -112,9 +112,9 @@ export async function addGalleryImageAction(formData: FormData) {
  * story or gallery image still points at the same URL.
  */
 export async function removeGalleryImageAction(formData: FormData) {
-  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  if (!(await isAuthenticated())) redirect("/dashboard?error=session");
   const id = String(formData.get("id") ?? "");
-  if (!id) redirect("/blog/admin?error=missing");
+  if (!id) redirect("/dashboard?error=missing");
 
   const removed = await removeGalleryImage(id);
   let removedImages = 0;
@@ -139,7 +139,7 @@ export async function removeGalleryImageAction(formData: FormData) {
   }
 
   revalidatePath("/gallery");
-  revalidatePath("/blog/admin");
+  revalidatePath("/dashboard");
   const params = new URLSearchParams({
     galleryRemoved: "1",
     images: String(removedImages),
@@ -147,7 +147,7 @@ export async function removeGalleryImageAction(formData: FormData) {
   if (keptImages > 0) params.set("kept", String(keptImages));
   if (imagesFailed) params.set("galleryImagesFailed", "1");
   if (purgeFailed) params.set("galleryPurgeFailed", "1");
-  redirect(`/blog/admin?${params.toString()}#gallery`);
+  redirect(`/dashboard?tab=gallery&${params.toString()}`);
 }
 
 /** True for a site-relative path or an absolute http(s) link. */
@@ -180,36 +180,36 @@ function readTourInput(formData: FormData) {
 
 /** Adds one tour event. The landing page picks it up on its next revalidation. */
 export async function addTourEventAction(formData: FormData) {
-  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  if (!(await isAuthenticated())) redirect("/dashboard?error=session");
   const input = readTourInput(formData);
   if (!input.title || !input.description || !input.startingPoint) {
-    redirect("/blog/admin?error=tourRequired#tour");
+    redirect("/dashboard?tab=tour&error=tourRequired");
   }
-  if (!input.image) redirect("/blog/admin?error=tourImage#tour");
+  if (!input.image) redirect("/dashboard?tab=tour&error=tourImage");
   if (input.redirectTo && !isLink(input.redirectTo)) {
-    redirect("/blog/admin?error=tourUrl#tour");
+    redirect("/dashboard?tab=tour&error=tourUrl");
   }
   await createTourEvent(input);
   revalidatePath("/");
-  revalidatePath("/blog/admin");
-  redirect("/blog/admin?tourAdded=1#tour");
+  revalidatePath("/dashboard");
+  redirect("/dashboard?tab=tour&tourAdded=1");
 }
 
 export async function updateTourEventAction(formData: FormData) {
-  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  if (!(await isAuthenticated())) redirect("/dashboard?error=session");
   const id = String(formData.get("id") ?? "");
   const input = readTourInput(formData);
   if (!id || !input.title || !input.description || !input.startingPoint) {
-    redirect("/blog/admin?error=tourRequired#tour");
+    redirect("/dashboard?tab=tour&error=tourRequired");
   }
-  if (!input.image) redirect("/blog/admin?error=tourImage#tour");
+  if (!input.image) redirect("/dashboard?tab=tour&error=tourImage");
   if (input.redirectTo && !isLink(input.redirectTo)) {
-    redirect("/blog/admin?error=tourUrl#tour");
+    redirect("/dashboard?tab=tour&error=tourUrl");
   }
   await updateTourEvent({ ...input, id });
   revalidatePath("/");
-  revalidatePath("/blog/admin");
-  redirect("/blog/admin?tourUpdated=1#tour");
+  revalidatePath("/dashboard");
+  redirect("/dashboard?tab=tour&tourUpdated=1");
 }
 
 /**
@@ -219,9 +219,9 @@ export async function updateTourEventAction(formData: FormData) {
  * and it survives if another story, photo, or tour still points at the URL.
  */
 export async function removeTourEventAction(formData: FormData) {
-  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  if (!(await isAuthenticated())) redirect("/dashboard?error=session");
   const id = String(formData.get("id") ?? "");
-  if (!id) redirect("/blog/admin?error=missing");
+  if (!id) redirect("/dashboard?error=missing");
 
   const removed = await deleteTourEvent(id);
   let removedImages = 0;
@@ -246,7 +246,7 @@ export async function removeTourEventAction(formData: FormData) {
   }
 
   revalidatePath("/");
-  revalidatePath("/blog/admin");
+  revalidatePath("/dashboard");
   const params = new URLSearchParams({
     tourRemoved: "1",
     images: String(removedImages),
@@ -254,23 +254,23 @@ export async function removeTourEventAction(formData: FormData) {
   if (keptImages > 0) params.set("kept", String(keptImages));
   if (imagesFailed) params.set("tourImagesFailed", "1");
   if (purgeFailed) params.set("tourPurgeFailed", "1");
-  redirect(`/blog/admin?${params.toString()}#tour`);
+  redirect(`/dashboard?tab=tour&${params.toString()}`);
 }
 
 export async function loginAction(formData: FormData) {
   const username = String(formData.get("username") ?? "");
   const password = String(formData.get("password") ?? "");
-  if (await authenticate(username, password)) redirect("/blog/admin");
-  redirect("/blog/admin?error=login");
+  if (await authenticate(username, password)) redirect("/dashboard");
+  redirect("/dashboard?error=login");
 }
 
 export async function logoutAction() {
   await clearSession();
-  redirect("/blog/admin");
+  redirect("/dashboard");
 }
 
 export async function publishAction(formData: FormData) {
-  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  if (!(await isAuthenticated())) redirect("/dashboard?error=session");
   const title = String(formData.get("title") ?? "").trim();
   const excerpt = String(formData.get("excerpt") ?? "").trim();
   const content = String(formData.get("content") ?? "").trim();
@@ -278,12 +278,12 @@ export async function publishAction(formData: FormData) {
   const images = formData.getAll("images").map((value) => String(value));
   const publishedDate = String(formData.get("publishedDate") ?? "").trim();
   const imageFiles = readImageFiles(formData);
-  if (!title || !excerpt || !content) redirect("/blog/admin?error=required");
+  if (!title || !excerpt || !content) redirect("/dashboard?tab=stories&error=required");
   // A story needs a cover : either a pasted URL or an ImageKit upload.
-  if (!coverImage) redirect("/blog/admin?error=cover");
+  if (!coverImage) redirect("/dashboard?tab=stories&error=cover");
   // Blank is fine (today), but a malformed picker value must not be stored.
   if (publishedDate && !parsePublishedDate(publishedDate)) {
-    redirect("/blog/admin?error=date");
+    redirect("/dashboard?tab=stories&error=date");
   }
   await createBlogPost({
     title,
@@ -295,12 +295,12 @@ export async function publishAction(formData: FormData) {
     publishedAt: publishedDate,
   });
   revalidatePath("/blog");
-  revalidatePath("/blog/admin");
-  redirect("/blog/admin?published=1");
+  revalidatePath("/dashboard");
+  redirect("/dashboard?tab=stories&published=1");
 }
 
 export async function updateAction(formData: FormData) {
-  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  if (!(await isAuthenticated())) redirect("/dashboard?error=session");
   const id = String(formData.get("id") ?? "");
   const title = String(formData.get("title") ?? "").trim();
   const excerpt = String(formData.get("excerpt") ?? "").trim();
@@ -309,10 +309,10 @@ export async function updateAction(formData: FormData) {
   const images = formData.getAll("images").map((value) => String(value));
   const publishedDate = String(formData.get("publishedDate") ?? "").trim();
   const imageFiles = readImageFiles(formData);
-  if (!id || !title || !excerpt || !content) redirect("/blog/admin?error=required");
-  if (!coverImage) redirect("/blog/admin?error=cover");
+  if (!id || !title || !excerpt || !content) redirect("/dashboard?tab=stories&error=required");
+  if (!coverImage) redirect("/dashboard?tab=stories&error=cover");
   if (publishedDate && !parsePublishedDate(publishedDate)) {
-    redirect("/blog/admin?error=date");
+    redirect("/dashboard?tab=stories&error=date");
   }
   await updateBlogPost({
     id,
@@ -325,8 +325,8 @@ export async function updateAction(formData: FormData) {
     publishedAt: publishedDate,
   });
   revalidatePath("/blog");
-  revalidatePath(`/blog/admin`);
-  redirect("/blog/admin?updated=1");
+  revalidatePath(`/dashboard`);
+  redirect("/dashboard?tab=stories&updated=1");
 }
 
 /**
@@ -336,9 +336,9 @@ export async function updateAction(formData: FormData) {
  * and never anything the story did not link to itself.
  */
 export async function deleteAction(formData: FormData) {
-  if (!(await isAuthenticated())) redirect("/blog/admin?error=session");
+  if (!(await isAuthenticated())) redirect("/dashboard?error=session");
   const id = String(formData.get("id") ?? "");
-  if (!id) redirect("/blog/admin?error=missing");
+  if (!id) redirect("/dashboard?error=missing");
 
   const removed = await deleteBlogPost(id);
 
@@ -376,10 +376,10 @@ export async function deleteAction(formData: FormData) {
   }
 
   revalidatePath("/blog");
-  revalidatePath("/blog/admin");
+  revalidatePath("/dashboard");
   const params = new URLSearchParams({ deleted: "1", images: String(removedImages) });
   if (keptImages > 0) params.set("kept", String(keptImages));
   if (imagesFailed) params.set("imagesFailed", "1");
   if (purgeFailed) params.set("purgeFailed", "1");
-  redirect(`/blog/admin?${params.toString()}`);
+  redirect(`/dashboard?tab=stories&${params.toString()}`);
 }
