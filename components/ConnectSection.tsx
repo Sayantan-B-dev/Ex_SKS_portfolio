@@ -45,7 +45,7 @@ export default function ConnectSection() {
   };
 
   return (
-    <section className="connect wrap" id="connect">
+    <section className="connect" id="connect">
       <div className="connect-left reveal-up">
         <h2>
           CONNECT WITH
@@ -74,7 +74,8 @@ export default function ConnectSection() {
             alt="Samrat Sarkar posing on stage after live performance with crowd — book SKS Music Band for events"
             loading="lazy"
             quality={100}
-            sizes="100vw"
+            // Middle track of a 3-column grid : full width only once it stacks.
+            sizes="(max-width: 900px) 100vw, 45vw"
             className="img-smooth"
           />
         </div>

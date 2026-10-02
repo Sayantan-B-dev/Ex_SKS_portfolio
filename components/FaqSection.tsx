@@ -12,7 +12,7 @@ export default function FaqSection() {
 
   return (
     <section className="faq-section" aria-labelledby="faq-heading">
-      <div className="faq-inner wrap">
+      <div className="faq-inner">
         <div className="faq-intro reveal-up">
           <p className="faq-eyebrow">BEFORE THE FIRST NOTE</p>
           <h2 id="faq-heading">
