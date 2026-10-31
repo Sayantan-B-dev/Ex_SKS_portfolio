@@ -5,14 +5,14 @@ export type Faq = {
 
 export const FAQS: Faq[] = [
   {
-    question: "What kind of events can SKS perform at?",
+    question: "What kind of events can Sammrat Ka Saagar perform at?",
     answer:
       "The band performs at concerts, corporate meets, weddings, sangeet celebrations, barat processions, galas, and birthday bashes. The set can be shaped around the room, the audience, and the energy you want to build.",
   },
   {
     question: "How many musicians are included in the band?",
     answer:
-      "SKS can be booked as a focused 5-member setup or scaled up to a 16-member band. Larger productions can also include dancers and guest artists when the brief calls for a full-stage experience.",
+      "Sammrat Ka Saagar can be booked as a focused 5-member setup or scaled up to a 16-member band. Larger productions can also include dancers and guest artists when the brief calls for a full-stage experience.",
   },
   {
     question: "Can Samrat perform playback and film songs?",
@@ -32,6 +32,6 @@ export const FAQS: Faq[] = [
   {
     question: "How do I check availability and get a quote?",
     answer:
-      "Send the event date, city, venue, event type, and the kind of lineup you have in mind. The SKS team will come back with availability, format options, and a production quote.",
+      "Send the event date, city, venue, event type, and the kind of lineup you have in mind. The Sammrat Ka Saagar team will come back with availability, format options, and a production quote.",
   },
 ];

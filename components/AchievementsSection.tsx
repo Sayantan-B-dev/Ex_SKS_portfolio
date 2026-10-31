@@ -23,7 +23,7 @@ const PANELS: AchievementPanel[] = [
   {
     src: "/images/achievements/shows_countries.webp",
     pos: "p1",
-    alt: "Samrat Sarkar SKS Music Band — over 1300 live shows across 40 countries worldwide",
+    alt: "Samrat Sarkar Sammrat Ka Saagar Music Band — over 1300 live shows across 40 countries worldwide",
     eyebrow: "01 · Live Career",
     lines: ["OVER 1300 SHOWS", "40 COUNTRIES"],
     body: "More than 1,300 live shows across 40 countries, building an international performance career.",
@@ -46,7 +46,7 @@ const PANELS: AchievementPanel[] = [
   {
     src: "/images/achievements/winner_mirchi_music_flipped.webp",
     pos: "p3",
-    alt: "Winner of Mirchi Music Awards — Samrat Sarkar SKS Band",
+    alt: "Winner of Mirchi Music Awards — Samrat Sarkar Sammrat Ka Saagar Band",
     eyebrow: "03 · Recognition",
     lines: ["WINNER OF", "MIRCHI", "MUSIC"],
     body: "Recognised as a winner at the Mirchi Music Awards.",
