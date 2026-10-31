@@ -1,6 +1,6 @@
 {
-  "name": "SKS Samrat Sarkar Music Band",
-  "short_name": "SKS Band",
+  "name": "Sammrat Ka Saagar Samrat Sarkar Music Band",
+  "short_name": "Sammrat Ka Saagar",
   "description": "Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries.",
   "start_url": "/",
   "display": "standalone",
@@ -8,9 +8,9 @@
   "theme_color": "#f5c518",
   "icons": [
     {
-      "src": "/images/sks_logo_png.webp",
+      "src": "/images/SammratKaSaagarLogo.png",
       "sizes": "any",
-      "type": "image/webp"
+      "type": "image/png"
     }
   ]
 }
