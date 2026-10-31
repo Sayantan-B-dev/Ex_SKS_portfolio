@@ -14,15 +14,15 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Blog : Notes From The Road",
   description:
-    "Stories, studio moments, and tour diaries from Samrat Sarkar and the SKS live band. Concert notes and soundtracked memories from 40 plus countries.",
+    "Stories, studio moments, and tour diaries from Samrat Sarkar and the Sammrat Ka Saagar live band. Concert notes and soundtracked memories from 40 plus countries.",
   keywords: [
     "Samrat Sarkar blog",
-    "SKS band stories",
+    "Sammrat Ka Saagar band stories",
     "tour diary",
     "studio moments",
     "live band India",
     "Samrat Sarkar tour diary",
-    "SKS music band blog",
+    "Sammrat Ka Saagar music band blog",
     "Bollywood singer blog",
     "Indian musician blog",
     "concert stories India",
@@ -35,17 +35,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "SKS : Samrat Sarkar Music Band",
-    title: "Blog : Notes From The Road | SKS Music Band",
+    siteName: "Sammrat Ka Saagar : Samrat Sarkar Music Band",
+    title: "Blog : Notes From The Road | Sammrat Ka Saagar Music Band",
     description:
-      "Stories, studio moments, and tour diaries from Samrat Sarkar and the SKS live band.",
+      "Stories, studio moments, and tour diaries from Samrat Sarkar and the Sammrat Ka Saagar live band.",
     url: `${SITE_URL}/blog`,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog : Notes From The Road | SKS Music Band",
+    title: "Blog : Notes From The Road | Sammrat Ka Saagar Music Band",
     description:
-      "Stories, studio moments, and tour diaries from Samrat Sarkar and the SKS live band.",
+      "Stories, studio moments, and tour diaries from Samrat Sarkar and the Sammrat Ka Saagar live band.",
   },
   alternates: {
     canonical: `${SITE_URL}/blog`,
@@ -94,7 +94,7 @@ export default async function BlogPage() {
       <main className="blog-page">
         <section className="blog-hero">
           <div className="blog-hero-inner">
-            <p className="subpage-tag">THE SKS BLOG</p>
+            <p className="subpage-tag">THE SAMMRAT KA SAAGAR BLOG</p>
             <h1>NOTES FROM THE ROAD</h1>
             <p className="blog-hero-lede">Stories, studio moments, and soundtracked memories from Samrat&apos;s world.</p>
             <div className="blog-hero-actions">

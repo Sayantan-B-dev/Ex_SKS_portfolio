@@ -22,12 +22,12 @@ import { getTourEvents, isTourConfigured } from "@/lib/blog";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
+  title: "Sammrat Ka Saagar | Samrat Sarkar : Bollywood Playback Singer & Live Band",
   description:
-    "Sammrat Ka Saagar (SKS) : Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries. Winner of Mirchi Music Awards. Endorsed by Roland & Samson. Book the 5 to 16 member power band.",
+    "Sammrat Ka Saagar : Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries. Winner of Mirchi Music Awards. Endorsed by Roland & Samson. Book the 5 to 16 member power band.",
   keywords: [
     "Samrat Sarkar",
-    "SKS band",
+    "Sammrat Ka Saagar band",
     "Bollywood playback singer",
     "live band India",
     "music director",
@@ -59,8 +59,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "SKS : Samrat Sarkar Music Band",
-    title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
+    siteName: "Sammrat Ka Saagar : Samrat Sarkar Music Band",
+    title: "Sammrat Ka Saagar | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     description:
       "Over 1300 shows across 40+ countries. Bollywood playback singer, music director, and electrifying live performer.",
     url: SITE_URL,
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
+    title: "Sammrat Ka Saagar | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     description:
       "Over 1300 shows across 40+ countries. Bollywood playback singer, music director, and electrifying live performer.",
     images: [`${SITE_URL}/images/hero_samrat_live.webp`],

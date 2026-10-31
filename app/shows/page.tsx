@@ -48,8 +48,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "SKS : Samrat Sarkar Music Band",
-    title: "Live Shows & Global Tours | SKS Music Band",
+    siteName: "Sammrat Ka Saagar : Samrat Sarkar Music Band",
+    title: "Live Shows & Global Tours | Sammrat Ka Saagar Music Band",
     description:
       "1300+ live performances across 40+ countries. Bryan Adams opening act, celebrity mega concerts, customizable band packages.",
     url: `${SITE_URL}/shows`,
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Live Shows & Global Tours | SKS Music Band",
+    title: "Live Shows & Global Tours | Sammrat Ka Saagar Music Band",
     description:
       "1300+ live performances across 40+ countries. Book the power band.",
     images: [`${SITE_URL}/images/achievements/opening_act_bryan_adams2.webp`],
@@ -126,14 +126,14 @@ export default function ShowsPage() {
   const eventJsonLd = {
     "@context": "https://schema.org",
     "@type": "EventSeries",
-    name: "Samrat Sarkar & SKS Music Band Live Shows",
+    name: "Samrat Sarkar & Sammrat Ka Saagar Music Band Live Shows",
     description:
-      "1300+ live performances across 40+ countries. Bollywood playback singer Samrat Sarkar and the SKS power band performing at concerts, corporate events, weddings, and global tours.",
+      "1300+ live performances across 40+ countries. Bollywood playback singer Samrat Sarkar and the Sammrat Ka Saagar power band performing at concerts, corporate events, weddings, and global tours.",
     url: `${SITE_URL}/shows`,
     image: `${SITE_URL}/images/achievements/opening_act_bryan_adams2.webp`,
     performer: {
       "@type": "MusicGroup",
-      name: "Sammrat Ka Saagar (SKS)",
+      name: "Sammrat Ka Saagar",
       url: SITE_URL,
     },
     location: {
@@ -142,7 +142,7 @@ export default function ShowsPage() {
     },
     organizer: {
       "@type": "MusicGroup",
-      name: "Sammrat Ka Saagar (SKS)",
+      name: "Sammrat Ka Saagar",
       url: SITE_URL,
     },
   };
@@ -184,7 +184,7 @@ export default function ShowsPage() {
           <div className="subpage-hero-bg">
             <Image
               src="/images/singing_on_stage_background_fire.webp"
-              alt="Samrat Sarkar live concert stage — SKS Music Band performing worldwide across 40 countries"
+              alt="Samrat Sarkar live concert stage — Sammrat Ka Saagar Music Band performing worldwide across 40 countries"
               fill
               priority
               quality={100}

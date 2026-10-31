@@ -46,8 +46,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "SKS : Samrat Sarkar Music Band",
-    title: "About Samrat Sarkar | SKS Music Band",
+    siteName: "Sammrat Ka Saagar : Samrat Sarkar Music Band",
+    title: "About Samrat Sarkar | Sammrat Ka Saagar Music Band",
     description:
       "Bollywood playback singer, composer, and electrifying live performer. 1300+ shows across 40+ countries. Winner of Mirchi Music Awards.",
     url: `${SITE_URL}/about`,
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Samrat Sarkar | SKS Music Band",
+    title: "About Samrat Sarkar | Sammrat Ka Saagar Music Band",
     description:
       "Bollywood playback singer, composer, and electrifying live performer. 1300+ shows across 40+ countries.",
     images: [
@@ -195,7 +195,7 @@ export default function AboutPage() {
               <div className="about-portrait-card">
                 <Image
                   src="/images/smiling_head_tilting_with_mic_stage_lights.webp"
-                  alt="Samrat Sarkar portrait holding a microphone under stage lights — SKS Music Band founder"
+                  alt="Samrat Sarkar portrait holding a microphone under stage lights — Sammrat Ka Saagar Music Band founder"
                   fill
                   priority
                   quality={100}

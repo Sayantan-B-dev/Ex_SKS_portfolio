@@ -31,8 +31,8 @@ export async function generateMetadata({
     openGraph: {
       type: "article",
       locale: "en_IN",
-      siteName: "SKS : Samrat Sarkar Music Band",
-      title: `${post.title} | SKS Music Band`,
+      siteName: "Sammrat Ka Saagar : Samrat Sarkar Music Band",
+      title: `${post.title} | Sammrat Ka Saagar Music Band`,
       description: post.excerpt,
       url,
       ...(cover
@@ -41,7 +41,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} | SKS Music Band`,
+      title: `${post.title} | Sammrat Ka Saagar Music Band`,
       description: post.excerpt,
       ...(cover ? { images: [cover] } : {}),
     },

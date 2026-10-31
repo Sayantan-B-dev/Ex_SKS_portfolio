@@ -81,7 +81,7 @@ export default async function GalleryPage() {
           <div className="subpage-hero-bg">
             <Image
               src="/images/hero_samrat_live.webp"
-              alt="Samrat Sarkar live concert crowd with stage lights — SKS Music Band photo and stage gallery"
+              alt="Samrat Sarkar live concert crowd with stage lights — Sammrat Ka Saagar Music Band photo and stage gallery"
               fill
               priority
               loading="eager"
