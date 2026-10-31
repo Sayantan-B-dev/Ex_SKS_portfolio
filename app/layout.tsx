@@ -162,9 +162,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/images/SammratKaSaagarLogo.png",
-    shortcut: "/images/SammratKaSaagarLogo.png",
-    apple: "/images/SammratKaSaagarLogo.png",
+    icon: "/images/sks_logo_png.webp",
+    shortcut: "/images/sks_logo_png.webp",
+    apple: "/images/sks_logo_png.webp",
   },
   manifest: "/manifest.json",
 };
@@ -186,7 +186,7 @@ export default function RootLayout({
     alternateName: ["Samrat Sarkar Band", "Sammrat Ka Saagar Music Band"],
     url: SITE_URL,
     image: OG_IMAGE,
-    logo: `${SITE_URL}/images/SammratKaSaagarLogo.png`,
+    logo: `${SITE_URL}/images/sks_logo_png.webp`,
     description:
       "Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries. Winner of Mirchi Music Awards. Endorsed by Roland & Samson. Book the 5 to 16 member power band for concerts, corporate events, weddings, and global tours.",
     genre: ["Bollywood", "Punjabi", "Live Music", "Pop", "Hindi Pop", "Indian Pop"],
@@ -254,7 +254,7 @@ export default function RootLayout({
     name: "Sammrat Ka Saagar",
     alternateName: ["Samrat Sarkar Band", "Sammrat Ka Saagar Music Band"],
     url: SITE_URL,
-    logo: `${SITE_URL}/images/SammratKaSaagarLogo.png`,
+    logo: `${SITE_URL}/images/sks_logo_png.webp`,
     description:
       "Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries.",
     foundingDate: "2003",

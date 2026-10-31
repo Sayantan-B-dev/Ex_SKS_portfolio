@@ -21,15 +21,15 @@ export default function Footer() {
       <div className="footer-inner wrap">
         {/* Logo column */}
         <div className="footer-brand">
-          <div className="footer-logo-wrap">
+          {/* <div className="footer-logo-wrap">
             <Image
-              src="/images/SammratKaSaagarLogo.png"
+              src="/images/sks_logo_png.webp"
               alt="Sammrat Ka Saagar Official Logo"
               width={80}
               height={80}
               className="footer-sks-logo"
             />
-          </div>
+          </div> */}
           <div className="footer-brand-text">
             {/* <div className="footer-sks">SKS</div> */}
             <div className="footer-tagline">SAMMRAT KA SAAGAR</div>
