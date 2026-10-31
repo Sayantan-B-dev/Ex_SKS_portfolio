@@ -6,7 +6,7 @@ export default function Loading() {
   return (
     <div className="initial-loading">
       <div className="initial-loading-inner">
-        <div className="initial-loading-logo">SKS</div>
+        <div className="initial-loading-logo">SAMMRAT KA SAAGAR</div>
         <ThreeDot
           variant="bounce"
           color="#32cd32"

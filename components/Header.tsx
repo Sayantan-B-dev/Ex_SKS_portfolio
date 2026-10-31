@@ -32,8 +32,8 @@ export default function Header() {
         <Link href="/" className="logo-brand">
           <div className="logo-img-wrap">
             <Image
-              src="/images/sks_logo_png.webp"
-              alt="SKS Sammrat Ka Saagar Official Logo"
+              src="/images/SammratKaSaagarLogo.png"
+              alt="Sammrat Ka Saagar Official Logo"
               width={64}
               height={64}
               className="sks-official-logo"
