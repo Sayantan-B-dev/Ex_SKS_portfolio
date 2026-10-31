@@ -20,23 +20,23 @@ import "../public/css/responsive.css";
 import CanvasCursor from "@/components/ui/CanvasCursor";
 import { SITE_URL } from "@/lib/site";
 
-const SITE_NAME = "SKS : Samrat Sarkar Music Band";
+const SITE_NAME = "Sammrat Ka Saagar : Samrat Sarkar Music Band";
 const OG_IMAGE = `${SITE_URL}/images/hero_samrat_live.webp`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
-    template: "%s | Samrat Sarkar : SKS Music Band",
+    default: "Sammrat Ka Saagar | Samrat Sarkar : Bollywood Playback Singer & Live Band",
+    template: "%s | Samrat Sarkar : Sammrat Ka Saagar Music Band",
   },
   description:
-    "Sammrat Ka Saagar (SKS) : Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries. Winner of Mirchi Music Awards. Endorsed by Roland & Samson. Book the 5 to 16 member power band for concerts, corporate events, weddings, and global tours.",
+    "Sammrat Ka Saagar : Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries. Winner of Mirchi Music Awards. Endorsed by Roland & Samson. Book the 5 to 16 member power band for concerts, corporate events, weddings, and global tours.",
   keywords: [
     // Brand & identity
     "Samrat Sarkar",
     "Sammrat Ka Saagar",
-    "SKS music band",
-    "SKS band",
+    "Sammrat Ka Saagar music band",
+    "Sammrat Ka Saagar band",
     "singersamrat",
     "samratsarkar",
     "samrat sarkar singer",
@@ -129,7 +129,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
+    title: "Sammrat Ka Saagar | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     description:
       "Over 1300 shows across 40+ countries. Bollywood playback singer, music director, and electrifying live performer. Winner of Mirchi Music Awards. Book the power band.",
     images: [
@@ -137,14 +137,14 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Samrat Sarkar performing live on stage with SKS Music Band",
+        alt: "Samrat Sarkar performing live on stage with Sammrat Ka Saagar Music Band",
         type: "image/webp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band",
+    title: "Sammrat Ka Saagar | Samrat Sarkar : Bollywood Playback Singer & Live Band",
     description:
       "Over 1300 shows across 40+ countries. Bollywood playback singer, music director, and electrifying live performer.",
     images: [OG_IMAGE],
@@ -162,9 +162,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/images/sks_logo_png.webp",
-    shortcut: "/images/sks_logo_png.webp",
-    apple: "/images/sks_logo_png.webp",
+    icon: "/images/SammratKaSaagarLogo.png",
+    shortcut: "/images/SammratKaSaagarLogo.png",
+    apple: "/images/SammratKaSaagarLogo.png",
   },
   manifest: "/manifest.json",
 };
@@ -182,11 +182,11 @@ export default function RootLayout({
   const musicGroupJsonLd = {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
-    name: "Sammrat Ka Saagar (SKS)",
-    alternateName: ["SKS Music Band", "Samrat Sarkar Band", "SKS Band"],
+    name: "Sammrat Ka Saagar",
+    alternateName: ["Samrat Sarkar Band", "Sammrat Ka Saagar Music Band"],
     url: SITE_URL,
     image: OG_IMAGE,
-    logo: `${SITE_URL}/images/sks_logo_png.webp`,
+    logo: `${SITE_URL}/images/SammratKaSaagarLogo.png`,
     description:
       "Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries. Winner of Mirchi Music Awards. Endorsed by Roland & Samson. Book the 5 to 16 member power band for concerts, corporate events, weddings, and global tours.",
     genre: ["Bollywood", "Punjabi", "Live Music", "Pop", "Hindi Pop", "Indian Pop"],
@@ -215,7 +215,7 @@ export default function RootLayout({
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     performIn: {
       "@type": "MusicPlaylist",
-      name: "SKS Live Shows",
+      name: "Sammrat Ka Saagar Live Shows",
       numberOfTracks: 1300,
     },
     contactPoint: {
@@ -251,10 +251,10 @@ export default function RootLayout({
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Sammrat Ka Saagar (SKS)",
-    alternateName: ["SKS Music Band", "Samrat Sarkar Band"],
+    name: "Sammrat Ka Saagar",
+    alternateName: ["Samrat Sarkar Band", "Sammrat Ka Saagar Music Band"],
     url: SITE_URL,
-    logo: `${SITE_URL}/images/sks_logo_png.webp`,
+    logo: `${SITE_URL}/images/SammratKaSaagarLogo.png`,
     description:
       "Bollywood playback singer, music director, and electrifying live performer. Over 1300 shows across 40+ countries.",
     foundingDate: "2003",

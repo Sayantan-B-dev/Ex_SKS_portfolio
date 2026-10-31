@@ -1,5 +1,5 @@
 # DESIGN.md
-Design tokens and component patterns for the SKS site. This file is the values source of truth for every agent/tool working in this repo (see `AGENTS.md`). The reference screenshot is the layout source of truth. If the two ever conflict, the screenshot wins and this file should be updated to match — don't quietly diverge from either.
+Design tokens and component patterns for the Sammrat Ka Saagar site. This file is the values source of truth for every agent/tool working in this repo (see `AGENTS.md`). The reference screenshot is the layout source of truth. If the two ever conflict, the screenshot wins and this file should be updated to match — don't quietly diverge from either.
 
 Tokens live as CSS custom properties in `app/globals.css` (`:root` block) — update them there, this file just documents what they mean and where they're used.
 
