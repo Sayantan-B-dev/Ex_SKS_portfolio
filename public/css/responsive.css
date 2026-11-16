@@ -3,29 +3,36 @@
 /* ── 900px (tablet landscape) ── */
 @media (max-width: 900px) {
   /* Header */
-  nav ul {
+  .header-inner {
+    padding: 14px 24px;
     gap: 16px;
   }
+  nav ul {
+    gap: 14px;
+  }
   nav a {
-    font-size: 11px;
-    letter-spacing: 0.08em;
+    font-size: 11.5px;
+    letter-spacing: 0.07em;
   }
   .btn-book {
-    padding: 8px 16px;
+    padding: 10px 16px;
     font-size: 10.5px;
+  }
+  .logo-brand {
+    gap: 10px;
   }
   .logo-brand .sks {
     font-size: 24px;
   }
   .logo-brand .sub1 {
-    font-size: 10px;
+    font-size: 11.5px;
   }
   .logo-brand .sub2 {
-    font-size: 8px;
+    font-size: 8.5px;
   }
   .logo-brand .logo-img-wrap {
-    width: 50px;
-    height: 50px;
+    width: 84px;
+    height: 67px;
   }
 
   /* Hero */
@@ -223,22 +230,29 @@
     display: flex;
   }
   .header-inner {
-    padding: 12px 20px;
+    padding: 14px 20px;
+    gap: 16px;
   }
   .btn-book {
-    padding: 8px 14px;
-    font-size: 10px;
+    padding: 9px 16px;
+    font-size: 10.5px;
     letter-spacing: 0.1em;
   }
+  .logo-brand {
+    gap: 10px;
+  }
   .logo-brand .logo-img-wrap {
-    width: 46px;
-    height: 46px;
+    width: 72px;
+    height: 58px;
   }
   .logo-brand .sks {
     font-size: 22px;
   }
   .logo-brand .sub1 {
-    font-size: 9.5px;
+    font-size: 10.5px;
+  }
+  .logo-brand .sub2 {
+    font-size: 8px;
   }
   .header-right {
     gap: 12px;
@@ -601,11 +615,15 @@
 @media (max-width: 480px) {
   /* Header */
   .header-inner {
-    padding: 10px 16px;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  .logo-brand {
+    gap: 9px;
   }
   .logo-brand .logo-img-wrap {
-    width: 40px;
-    height: 40px;
+    width: 58px;
+    height: 46px;
   }
   .logo-brand .sks {
     font-size: 20px;
@@ -618,8 +636,12 @@
     font-size: 7.5px;
   }
   .btn-book {
-    padding: 7px 12px;
+    padding: 8px 12px;
     font-size: 9.5px;
+    letter-spacing: 0.08em;
+  }
+  .mobile-nav.open {
+    padding: 6px 16px 20px;
   }
 
   /* Hero */

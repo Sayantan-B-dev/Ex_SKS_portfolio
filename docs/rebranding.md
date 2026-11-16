@@ -16,7 +16,7 @@ This document tracks the rebranding from "SKS" (Sammrat Ka Saagar) abbreviation 
   - MusicGroup: `name: "Sammrat Ka Saagar"`, removed "SKS" from alternateName
   - WebSite: Updated alternateName
   - Organization: `name: "Sammrat Ka Saagar"`, removed "SKS" from alternateName
-  - Kept logo references to `/images/sks_logo_png.webp` (to be updated when new logo is ready)
+  - Kept logo references to `/images/logo_v3.webp` (to be updated when new logo is ready)
 
 ### 2. Landing Page (`app/page.tsx`)
 - **Title**: Updated to use "Sammrat Ka Saagar"
@@ -58,12 +58,12 @@ This document tracks the rebranding from "SKS" (Sammrat Ka Saagar) abbreviation 
 ### 9. Components
 
 #### Header (`components/Header.tsx`)
-- **Logo Image**: Commented out the `<Image>` component for `/images/sks_logo_png.webp` (temporarily hidden)
+- **Logo Image**: Commented out the `<Image>` component for `/images/logo_v3.webp` (temporarily hidden)
 - **Logo Text**: Already had "SAMMRAT KA SAAGAR" and "MUSIC BAND" - kept as-is
 - **Removed unused `Image` import**
 
 #### Footer (`components/Footer.tsx`)
-- **Logo Image**: Commented out the `<Image>` component for `/images/sks_logo_png.webp` (temporarily hidden)
+- **Logo Image**: Commented out the `<Image>` component for `/images/logo_v3.webp` (temporarily hidden)
 - **Logo Text**: Already had "SAMMRAT KA SAAGAR" and "MUSIC BAND" - kept as-is
 - **Copyright**: Already used "Sammrat Ka Saagar Music Band" - kept as-is
 - **Removed unused `Image` import**
@@ -79,7 +79,7 @@ This document tracks the rebranding from "SKS" (Sammrat Ka Saagar) abbreviation 
 ### 11. PWA Manifest (`public/manifest.json`)
 - **Name**: "SKS Samrat Sarkar Music Band" → "Sammrat Ka Saagar Samrat Sarkar Music Band"
 - **Short Name**: "SKS Band" → "Sammrat Ka Saagar"
-- **Icons**: Kept reference to `/images/sks_logo_png.webp` (to be updated when new logo is ready)
+- **Icons**: Kept reference to `/images/logo_v3.webp` (to be updated when new logo is ready)
 
 ### 12. Humans.txt (`public/humans.txt`)
 - **Header**: "# SKS Music Band — Samrat Sarkar" → "# Sammrat Ka Saagar Music Band — Samrat Sarkar"
@@ -101,14 +101,14 @@ The following technical paths and identifiers were **NOT** changed as they are i
 These are internal technical identifiers and changing them would risk breaking infrastructure without user-facing benefit.
 
 ### Logo Files
-- Logo image files (`/images/sks_logo_png.webp`) remain in place
+- Logo image files (`/images/logo_v3.webp`) remain in place
 - Logo references in metadata (icons, JSON-LD) still point to the existing file
 - The Image components in Header and Footer are **commented out** (not deleted) for easy restoration when new logo is ready
 - CSS classes for logos (`.sks-official-logo`, `.footer-sks-logo`, `.logo .sks`, etc.) remain in stylesheets
 
 ## Future Work
 When the new "Sammrat Ka Saagar" logo is ready:
-1. Replace `/images/sks_logo_png.webp` with new logo file
+1. Replace `/images/logo_v3.webp` with new logo file
 2. Uncomment the `<Image>` components in `Header.tsx` and `Footer.tsx`
 3. Update alt text to "Sammrat Ka Saagar Official Logo"
 4. Update manifest.json icon reference if filename changes

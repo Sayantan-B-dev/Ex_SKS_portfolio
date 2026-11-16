@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="footer-brand">
           {/* <div className="footer-logo-wrap">
             <Image
-              src="/images/sks_logo_png.webp"
+              src="/images/logo_v3.webp"
               alt="Sammrat Ka Saagar Official Logo"
               width={80}
               height={80}
