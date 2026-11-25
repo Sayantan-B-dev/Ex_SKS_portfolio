@@ -1,14 +1,14 @@
 # Rebranding Documentation: SKS → Sammrat Ka Saagar
 
 ## Overview
-This document tracks the rebranding from "SKS" (Sammrat Ka Saagar) abbreviation to the full brand name "Sammrat Ka Saagar" across the codebase. The change was made to emphasize the full brand identity while keeping "Samrat Sarkar" as the artist name unchanged.
+This document tracks the rebranding from "SKS" (Sammrat Ka Saagar) abbreviation to the full brand name "Sammrat Ka Saagar" across the codebase. The change was made to emphasize the full brand identity while keeping "Sammrat Sarkar G" as the artist name unchanged.
 
 ## Changes Made
 
 ### 1. Core Layout & Metadata (`app/layout.tsx`)
-- **Site Name**: `SKS : Samrat Sarkar Music Band` → `Sammrat Ka Saagar : Samrat Sarkar Music Band`
-- **Page Title Template**: `%s | Samrat Sarkar : SKS Music Band` → `%s | Samrat Sarkar : Sammrat Ka Saagar Music Band`
-- **Default Title**: `SKS | Samrat Sarkar : Bollywood Playback Singer & Live Band` → `Sammrat Ka Saagar | Samrat Sarkar : Bollywood Playback Singer & Live Band`
+- **Site Name**: `SKS : Sammrat Sarkar G Music Band` → `Sammrat Ka Saagar : Sammrat Sarkar G Music Band`
+- **Page Title Template**: `%s | Sammrat Sarkar G : SKS Music Band` → `%s | Sammrat Sarkar G : Sammrat Ka Saagar Music Band`
+- **Default Title**: `SKS | Sammrat Sarkar G : Bollywood Playback Singer & Live Band` → `Sammrat Ka Saagar | Sammrat Sarkar G : Bollywood Playback Singer & Live Band`
 - **Description**: Removed `(SKS)` parenthetical from brand mention
 - **Keywords**: Replaced "SKS music band", "SKS band" with "Sammrat Ka Saagar music band", "Sammrat Ka Saagar band"
 - **OpenGraph/Twitter**: Updated siteName and titles
@@ -77,12 +77,12 @@ This document tracks the rebranding from "SKS" (Sammrat Ka Saagar) abbreviation 
 - **Answer 6**: "The SKS team will come back..." → "The Sammrat Ka Saagar team will come back..."
 
 ### 11. PWA Manifest (`public/manifest.json`)
-- **Name**: "SKS Samrat Sarkar Music Band" → "Sammrat Ka Saagar Samrat Sarkar Music Band"
+- **Name**: "SKS Sammrat Sarkar G Music Band" → "Sammrat Ka Saagar Sammrat Sarkar G Music Band"
 - **Short Name**: "SKS Band" → "Sammrat Ka Saagar"
 - **Icons**: Kept reference to `/images/logo_v3.webp` (to be updated when new logo is ready)
 
 ### 12. Humans.txt (`public/humans.txt`)
-- **Header**: "# SKS Music Band — Samrat Sarkar" → "# Sammrat Ka Saagar Music Band — Samrat Sarkar"
+- **Header**: "# SKS Music Band — Sammrat Sarkar G" → "# Sammrat Ka Saagar Music Band — Sammrat Sarkar G"
 
 ### 13. Design Documentation (`DESIGN.md`)
 - **Header**: "Design tokens and component patterns for the SKS site" → "Design tokens and component patterns for the Sammrat Ka Saagar site"
@@ -125,5 +125,5 @@ npm run dev
 Then visually verify at http://localhost:3000 that:
 - No "SKS" appears in user-facing text (except possibly in commented code)
 - "Sammrat Ka Saagar" appears prominently in headers, footers, metadata
-- "Samrat Sarkar" remains unchanged throughout
+- "Sammrat Sarkar G" remains unchanged throughout
 - Logo images are hidden (commented out)

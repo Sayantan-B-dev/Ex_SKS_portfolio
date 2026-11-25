@@ -31,6 +31,8 @@ export const metadata: Metadata = {
     "Bollywood band diary",
     "Indian live band stories",
     "music tour blog India",
+    "Sammrat Sarkar G blog",
+    "Sammrat Sarkar G tour diary",
   ],
   openGraph: {
     type: "website",
@@ -96,10 +98,10 @@ export default async function BlogPage() {
           <div className="blog-hero-inner">
             <p className="subpage-tag">THE SAMMRAT KA SAAGAR BLOG</p>
             <h1>NOTES FROM THE ROAD</h1>
-            <p className="blog-hero-lede">Stories, studio moments, and soundtracked memories from Samrat&apos;s world.</p>
+            <p className="blog-hero-lede">Stories, studio moments, and soundtracked memories from Sammrat Sarkar G&apos;s world.</p>
             <div className="blog-hero-actions">
               <Link href="/#connect" className="btn-outline-pink blog-hero-cta">
-                BOOK SAMRAT FOR YOUR EVENT <span className="btn-arrow">↗</span>
+                BOOK SAMMRAT SARKAR G FOR YOUR EVENT <span className="btn-arrow">↗</span>
               </Link>
             </div>
           </div>

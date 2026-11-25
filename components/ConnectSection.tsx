@@ -50,7 +50,7 @@ export default function ConnectSection() {
         <h2>
           CONNECT WITH
           <br />
-          SAMRAT &amp;
+          SAMMRAT SARKAR G &amp;
           <br />
           THE BAND
         </h2>
@@ -71,7 +71,7 @@ export default function ConnectSection() {
         <div className="connect-magnet" ref={magnetRef}>
           <Image
             src={connectPhoto}
-            alt="Samrat Sarkar posing on stage after live performance with crowd — book Sammrat Ka Saagar Music Band for events"
+            alt="Sammrat Sarkar G posing on stage after live performance with crowd — book Sammrat Ka Saagar Music Band for events"
             loading="lazy"
             quality={100}
             // Middle track of a 3-column grid : full width only once it stacks.

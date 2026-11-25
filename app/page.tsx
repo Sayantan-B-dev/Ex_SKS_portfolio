@@ -55,6 +55,8 @@ export const metadata: Metadata = {
     "destination wedding band",
     "private party band India",
     "sangeet performer",
+    "Sammrat Sarkar G",
+    "Sammrat Sarkar G live show",
   ],
   openGraph: {
     type: "website",

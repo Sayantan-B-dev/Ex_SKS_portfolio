@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <footer className="blog-post-footer">
               <p className="blog-post-cta-note">Want this energy at your own event?</p>
               <Link href="/#connect" className="btn-outline-pink blog-post-cta">
-                BOOK SAMRAT FOR YOUR EVENT <span className="btn-arrow">↗</span>
+                BOOK SAMMRAT SARKAR G FOR YOUR EVENT <span className="btn-arrow">↗</span>
               </Link>
             </footer>
           </article>

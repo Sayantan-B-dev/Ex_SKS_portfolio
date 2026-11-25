@@ -42,6 +42,11 @@ export const metadata: Metadata = {
     "Majhire Majhi singer",
     "Sa Re Ga Ma contestant",
     "child prodigy singer India",
+    "Sammrat Sarkar G biography",
+    "Sammrat Sarkar G singer",
+    "Sammrat Sarkar G age",
+    "Sammrat Sarkar G hometown",
+    "Sammrat Sarkar G Kolkata",
   ],
   openGraph: {
     type: "website",
@@ -180,7 +185,7 @@ export default function AboutPage() {
           <div className="wrap subpage-hero-content reveal-up">
             <p className="subpage-tag">BIOGRAPHY &amp; ARTISTRY</p>
             <h1 className="subpage-title">
-              ABOUT SAMRAT SARKAR
+              ABOUT SAMMRAT SARKAR G
             </h1>
             <p className="subpage-subtitle">
               Playback Singer • Music Director (Film/OTTs) • Live Wire Performer
@@ -214,13 +219,13 @@ export default function AboutPage() {
               <h2 className="sec-heading text-left">THE VOICE BEHIND MILLIONS OF HEARTS</h2>
               <div className="sec-underline text-left-underline" />
               <p className="bio-lead">
-                Samrat Sarkar is a powerhouse Bollywood playback singer, composer, and electrifying live performer renowned for back-to-back hit singles that resonate across generations.
+                Sammrat Sarkar G is a powerhouse Bollywood playback singer, composer, and electrifying live performer renowned for back-to-back hit singles that resonate across generations.
               </p>
               <p className="bio-para">
-                From chartbusters like <i>Aao Huzoor</i>, <i>Dil Di Dhadkan</i>, <i>Bichde</i>, and <i>Mere Sukh Bhi Tere Nein</i> featured on MTV, Zoom, and B4U to soulful Bollywood film anthems, Samrat has amassed millions of streams across Spotify, Apple Music, and YouTube.
+                From chartbusters like <i>Aao Huzoor</i>, <i>Dil Di Dhadkan</i>, <i>Bichde</i>, and <i>Mere Sukh Bhi Tere Nein</i> featured on MTV, Zoom, and B4U to soulful Bollywood film anthems, Sammrat Sarkar G has amassed millions of streams across Spotify, Apple Music, and YouTube.
               </p>
               <p className="bio-para">
-                His music for the film <b>Lines</b>, starring Hina Khan and Farida Jalal, received grand international acclaim at the prestigous <b>Cannes Festival</b>. Signed by <b>Roland India</b> and <b>Samson</b> as an official brand endorser, Samrat brings unrivaled stage energy with his 5 to 16 member band.
+                His music for the film <b>Lines</b>, starring Hina Khan and Farida Jalal, received grand international acclaim at the prestigous <b>Cannes Festival</b>. Signed by <b>Roland India</b> and <b>Samson</b> as an official brand endorser, Sammrat Sarkar G brings unrivaled stage energy with his 5 to 16 member band.
               </p>
 
               <div className="about-cta-row">

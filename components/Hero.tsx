@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="hero-img-wrap" data-parallax="hero-bg">
         <Image
           src="/images/singing_on_stage_background_fire.webp"
-          alt="Samrat Sarkar performing live on stage with fire — Bollywood playback singer and live band performer"
+          alt="Sammrat Sarkar G performing live on stage with fire — Bollywood playback singer and live band performer"
           fill
           priority
           quality={100}
@@ -33,7 +33,7 @@ export default function Hero() {
         <p className="hero-sub">
           <b>Playback Singer • Music Director • Live Wire Performer</b>
           <br />
-          From chartbuster singles to global stages, Samrat brings soul-stirring
+          From chartbuster singles to global stages, Sammrat Sarkar G brings soul-stirring
           music to life.
         </p>
         <div className="hero-btns">
@@ -51,7 +51,7 @@ export default function Hero() {
             </span>
           </button>
           <Link href="/#connect" className="btn-outline">
-            BOOK SAMRAT &amp; THE BAND
+            BOOK SAMMRAT SARKAR G &amp; THE BAND
           </Link>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function Hero() {
       <VideoModal
         isOpen={playHeroVideo}
         onClose={() => setPlayHeroVideo(false)}
-        title="Aao Huzoor : Samrat Sarkar Live"
+        title="Aao Huzoor : Sammrat Sarkar G Live"
         videoId="GHTWrTMTdiM"
       />
     </section>

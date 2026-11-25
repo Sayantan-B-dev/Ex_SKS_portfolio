@@ -15,14 +15,14 @@ export const FAQS: Faq[] = [
       "Sammrat Ka Saagar can be booked as a focused 5-member setup or scaled up to a 16-member band. Larger productions can also include dancers and guest artists when the brief calls for a full-stage experience.",
   },
   {
-    question: "Can Samrat perform playback and film songs?",
+    question: "Can Sammrat Sarkar G perform playback and film songs?",
     answer:
-      "Yes. Samrat is a playback singer and music director who has worked across Bollywood, OTT, regional films, jingles, and corporate songs. The live repertoire can include his originals alongside audience favourites.",
+      "Yes. Sammrat Sarkar G is a playback singer and music director who has worked across Bollywood, OTT, regional films, jingles, and corporate songs. The live repertoire can include his originals alongside audience favourites.",
   },
   {
     question: "Does the band travel for destination events?",
     answer:
-      "Yes. Samrat and the team have performed across 40+ countries and major cities in India, including London, Dubai, Singapore, Sydney, Moscow, New York, and destinations across the Caribbean and Southeast Asia.",
+      "Yes. Sammrat Sarkar G and the team have performed across 40+ countries and major cities in India, including London, Dubai, Singapore, Sydney, Moscow, New York, and destinations across the Caribbean and Southeast Asia.",
   },
   {
     question: "Can the performance include dancers or collaborations?",

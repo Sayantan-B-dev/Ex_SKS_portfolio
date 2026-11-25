@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     "concert band for hire near me",
     "live music for wedding reception",
     "Bollywood band for corporate event",
+    "Sammrat Sarkar G live shows",
   ],
   openGraph: {
     type: "website",

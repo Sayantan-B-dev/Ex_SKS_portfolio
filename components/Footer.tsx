@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="footer-img-wrap">
         <Image
           src="/images/smiling_head_tilting_with_mic_stage_lights.webp"
-          alt="Samrat Sarkar smiling on stage with microphone and stage lights"
+          alt="Sammrat Sarkar G smiling on stage with microphone and stage lights"
           fill
           loading="lazy"
           quality={100}

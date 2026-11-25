@@ -23,6 +23,8 @@ export const metadata: Metadata = {
     "award night photos India",
     "Bryan Adams opening act photo",
     "live band performance photos",
+    "Sammrat Sarkar G photos",
+    "Sammrat Sarkar G gallery",
   ],
   openGraph: {
     type: "website",

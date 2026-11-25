@@ -90,7 +90,7 @@ export default function GalleryBrowser({ items }: { items: GalleryItem[] }) {
 
       <div className="gallery-cta-row reveal-up">
         <Link href="/#connect" className="btn-yellow">
-          BOOK SAMRAT AND THE BAND
+          BOOK SAMMRAT SARKAR G AND THE BAND
         </Link>
       </div>
 

@@ -23,7 +23,7 @@ const PANELS: AchievementPanel[] = [
   {
     src: "/images/achievements/shows_countries.webp",
     pos: "p1",
-    alt: "Samrat Sarkar Sammrat Ka Saagar Music Band — over 1300 live shows across 40 countries worldwide",
+    alt: "Sammrat Sarkar G Sammrat Ka Saagar Music Band — over 1300 live shows across 40 countries worldwide",
     eyebrow: "01 · Live Career",
     lines: ["OVER 1300 SHOWS", "40 COUNTRIES"],
     body: "More than 1,300 live shows across 40 countries, building an international performance career.",
@@ -32,21 +32,21 @@ const PANELS: AchievementPanel[] = [
   {
     src: "/images/achievements/opening_act_bryan_adams2.webp",
     pos: "p2",
-    alt: "Samrat Sarkar career soaring high — Hindi pop collaboration with Usha Uthup, live in 40 countries",
+    alt: "Sammrat Sarkar G career soaring high — Hindi pop collaboration with Usha Uthup, live in 40 countries",
     eyebrow: "02 · Career Milestone",
     lines: ["FROM", "USHA UTHUP", "TO 40 COUNTRIES"],
-    body: "Singer Samrat Sarkar's career is soaring high, from Hindi pop song collaboration with Usha Uthup to performing live in 40 countries.",
+    body: "Singer Sammrat Sarkar G's career is soaring high, from Hindi pop song collaboration with Usha Uthup to performing live in 40 countries.",
     cue: "Click to see more",
     article: {
       href: MID_DAY_URL,
       title:
-        "Singer Samrat Sarkar's career is soaring high, from Hindi Pop song collaboration with Usha Uthup to performing live in 40 countries",
+        "Singer Sammrat Sarkar G's career is soaring high, from Hindi Pop song collaboration with Usha Uthup to performing live in 40 countries",
     },
   },
   {
     src: "/images/achievements/winner_mirchi_music_flipped.webp",
     pos: "p3",
-    alt: "Winner of Mirchi Music Awards — Samrat Sarkar Sammrat Ka Saagar Band",
+    alt: "Winner of Mirchi Music Awards — Sammrat Sarkar G Sammrat Ka Saagar Band",
     eyebrow: "03 · Recognition",
     lines: ["WINNER OF", "MIRCHI", "MUSIC"],
     body: "Recognised as a winner at the Mirchi Music Awards.",
@@ -55,7 +55,7 @@ const PANELS: AchievementPanel[] = [
   {
     src: "/images/achievements/sharing_stage_with_bryan.webp",
     pos: "p4",
-    alt: "Samrat Sarkar sharing the stage with Bryan Adams at Palace Grounds, Bangalore",
+    alt: "Sammrat Sarkar G sharing the stage with Bryan Adams at Palace Grounds, Bangalore",
     eyebrow: "04 · Major Performance",
     lines: ["OPENING ACT", "FOR BRYAN", "ADAMS"],
     body: (
@@ -177,7 +177,7 @@ export default function AchievementsSection() {
       <VideoModal
         isOpen={playSharedStageVideo}
         onClose={() => setPlaySharedStageVideo(false)}
-        title="Shared Stage With Superstars : Samrat Sarkar Live"
+        title="Shared Stage With Superstars : Sammrat Sarkar G Live"
         videoId="8CZk4NYqApU"
       />
     </section>
